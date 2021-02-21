@@ -73,6 +73,54 @@ class Auth extends CI_Controller
 		}
 	}
 
+	public function forgotPassword() 
+	{
+		if ($this->session->userdata('logged_in') === true) {
+			redirect('/dashboard');
+		} else {
+			$this->load->helper('form');
+			$this->load->library('form_validation');
+			
+			$this->form_validation->set_rules('email', 'Email', 'required');
+			
+			if ($this->form_validation->run() == false) {
+				$this->load->view('forgot-password');
+			} else {
+				$email = $this->input->post('email');
+
+				$result = $this->user_model->sendVerificationCode($email);
+
+				if ($result !== true) {
+					redirect('/reset-password');
+				}
+			}
+		}
+	}
+
+	public function resetPassword() 
+	{
+		if ($this->session->userdata('logged_in') === true) {
+			redirect('/dashboard');
+		} else {
+			$this->load->helper('form');
+			$this->load->library('form_validation');
+			
+			$this->form_validation->set_rules('password', 'New Password', 'trim|required');
+			$this->form_validation->set_rules('password_confirm', 'Confirm Password', 'trim|required|callback_check_equal_less['.$this->input->post('password').']');
+			
+			if ($this->form_validation->run() == false) {
+				$this->load->view('reset-password');
+			} else {
+				$password = $this->input->post('password');
+
+				$result = $this->user_model->resetPassword($password);
+				if ($result == true) {
+					redirect('/login');
+				}
+			}
+		}
+	}
+
 	public function logout() 
 	{
 		$this->session->sess_destroy();

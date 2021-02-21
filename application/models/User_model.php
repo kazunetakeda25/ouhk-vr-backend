@@ -54,6 +54,70 @@ class User_model extends CI_Model
 		return $this->db->get()->row();
 	}
 
+	public function sendVerificationCode($email)
+	{
+		$from = 'rey@criterion.net';
+
+		$this->load->library('email');
+
+		$config = array();
+		$config['protocol'] = 'smtp';
+		$config['smtp_host'] = 'smtp.mail.yahoo.com';
+		$config['smtp_user'] = 'youremail@yahoo.com';
+		$config['smtp_pass'] = 'yourpassword';
+		$config['smtp_port'] = 25;
+		$this->email->initialize($config);
+
+		$this->email->from($from, 'VIP Admin');
+        $this->email->to($email);
+        $this->email->subject('Please Verify Your Email.');
+		$user_id = $this->getUserIdFromEmail($email);
+		$user = $this->getUser($user_id);
+		
+		if ($user == null) {
+			return -1;
+		}
+
+        $this->email->message('
+		<!DOCTYPE html
+			PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+		<html xmlns="http://www.w3.org/1999/xhtml">
+
+		<head>
+			<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		</head>
+
+		<body>
+
+			Hi, <b>reysa</b>!
+			<br>
+			<br>
+			<br>
+			<b>Please click below link to reset your password.</b>
+			<br>
+			<a href="http://localhost/ouhk-vr-backend/reset-password/?hash=wjtgklwhjiohn23512hig8njiejgklwerwerj">Reset
+				Password</a>
+			<br>
+			<br>
+			<b>If you cannot open above link from your email inbox, please copy below url in your browser manually.</b>
+			<br>
+			http://localhost/ouhk-vr-backend/reset-password/?hash=wjtgklwhjiohn23512hig8njiejgklwerwerj
+			<br>
+			<br>
+			<br>
+			Best,
+			<br>
+			VIP Developer Team
+			<br>
+
+		</body>
+
+		</html>
+		');
+
+		return $this->email->send();
+	}
+
 	private function hashPassword($password) 
 	{
 		return password_hash($password, PASSWORD_BCRYPT);
@@ -63,6 +127,7 @@ class User_model extends CI_Model
 	{
 		return password_verify($password, $hash);
 	}
+	
 
 	public function generateLicense() {
 		
