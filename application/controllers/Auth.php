@@ -14,7 +14,7 @@ class Auth extends CI_Controller
 	public function login() 
 	{
 		if ($this->session->userdata('logged_in') === true) {
-			redirect('/dashboard');
+			redirect('/units');
 		} else {
 			$this->load->helper('form');
 			$this->load->library('form_validation');
@@ -39,7 +39,7 @@ class Auth extends CI_Controller
 					$this->session->set_userdata('role', (string)$user->role);
 					$this->session->set_userdata('logged_in', (bool)true);
 					
-					redirect('/dashboard');
+					redirect('/units');
 				} else {
 					$this->load->view('Auth/login');
 				}
@@ -66,7 +66,7 @@ class Auth extends CI_Controller
 			$password = $this->input->post('password');
 			
 			if ($this->user_model->createUser($username, $email, $password)) {
-				redirect('/dashboard');
+				redirect('/units');
 			} else {
 				$this->load->view('Auth/register');
 			}
@@ -76,7 +76,7 @@ class Auth extends CI_Controller
 	public function forgotPassword() 
 	{
 		if ($this->session->userdata('logged_in') === true) {
-			redirect('/dashboard');
+			redirect('/units');
 		} else {
 			$this->load->helper('form');
 			$this->load->library('form_validation');
@@ -100,7 +100,7 @@ class Auth extends CI_Controller
 	public function resetPassword() 
 	{
 		if ($this->session->userdata('logged_in') === true) {
-			redirect('/dashboard');
+			redirect('/units');
 		} else {
 			$this->load->helper('form');
 			$this->load->library('form_validation');

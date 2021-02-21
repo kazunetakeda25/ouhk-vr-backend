@@ -55,7 +55,10 @@ $route['register'] = 'auth/register';
 $route['forgot-password'] = 'auth/forgotPassword';
 $route['reset-password'] = 'auth/resetPassword';
 $route['logout'] = 'auth/logout';
+
 $route['dashboard'] = 'dashboard';
+
+$route['users'] = 'user/index';
 
 $route['default_controller'] = 'auth/login';
 $route['404_override'] = '';

@@ -176,14 +176,14 @@ class User_model extends CI_Model
 		}
 		
 		$this->db->select('id');
-    	$this->db->from('tbl_users');
+    	$this->db->from('tbl_user');
     	$this->db->where('email', $user['email']);
     	$query = $this->db->get();
 		$num = $query->num_rows();
 		if ($num > 0) {
 			return 0;
 		} else {
-			$this->db->insert('tbl_users', $data);
+			$this->db->insert('tbl_user', $data);
 			return $this->db->insert_id();
 		}
 	}
@@ -191,7 +191,7 @@ class User_model extends CI_Model
 	public function getUserIdFromLicense($license) {
 
 		$this->db->select('id');
-    	$this->db->from('tbl_users');
+    	$this->db->from('tbl_user');
     	$this->db->where('license', $license);
     	$query = $this->db->get();
 		$num = $query->num_rows();
@@ -204,7 +204,7 @@ class User_model extends CI_Model
 
 	public function getActiveUser($id) 
 	{
-		$this->db->from('tbl_users');
+		$this->db->from('tbl_user');
         $this->db->where('id', $id);
         $this->db->where('is_deleted', 0);
 
@@ -213,7 +213,7 @@ class User_model extends CI_Model
 
 	public function getAnyUser($id) 
 	{
-		$this->db->from('tbl_users');
+		$this->db->from('tbl_user');
         $this->db->where('id', $id);
 
 		return $this->db->get()->row();
@@ -221,7 +221,7 @@ class User_model extends CI_Model
 
 	public function getAllUsers() 
 	{
-		$this->db->from('tbl_users');
+		$this->db->from('tbl_user');
 
 		return $this->db->get()->result();
 	}
@@ -231,7 +231,7 @@ class User_model extends CI_Model
 		$data = array('is_deleted' => 1,
 					  'status' => 'INACTIVE', 
 					  'deleted_at' => date('Y-m-j H:i:s'));
-		$this->db->update('tbl_users', $data);
+		$this->db->update('tbl_user', $data);
 		return $this->db->affected_rows();
 	}
 
@@ -240,7 +240,7 @@ class User_model extends CI_Model
 		$data = array('is_deleted' => 1, 
 		              'status' => 'INACTIVE', 
 					  'deleted_at' => date('Y-m-j H:i:s'));
-		$this->db->update('tbl_users', $data);
+		$this->db->update('tbl_user', $data);
 		return $this->db->affected_rows();
 	}
 
@@ -256,7 +256,7 @@ class User_model extends CI_Model
 			$data['is_deleted'] = 1;
 			$data['deleted_at'] = date('Y-m-j H:i:s');
 		}
-		$this->db->update('tbl_users', $data);
+		$this->db->update('tbl_user', $data);
 		return $this->db->affected_rows();
 	}
 }
