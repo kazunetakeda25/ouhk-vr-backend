@@ -23,7 +23,7 @@ class Auth extends CI_Controller
 			$this->form_validation->set_rules('password', 'Password', 'required');
 			
 			if ($this->form_validation->run() == false) {
-				$this->load->view('login');
+				$this->load->view('Auth/login');
 			} else {
 				$email = $this->input->post('email');
 				$password = $this->input->post('password');
@@ -41,7 +41,7 @@ class Auth extends CI_Controller
 					
 					redirect('/dashboard');
 				} else {
-					$this->load->view('login');
+					$this->load->view('Auth/login');
 				}
 			}
 		}
@@ -59,7 +59,7 @@ class Auth extends CI_Controller
 		$this->form_validation->set_rules('password_confirm', 'Confirm Password', 'trim|required|min_length[6]|matches[password]');
 		
 		if ($this->form_validation->run() === false) {
-			$this->load->view('register');
+			$this->load->view('Auth/register');
 		} else {
 			$username = $this->input->post('username');
 			$email    = $this->input->post('email');
@@ -68,7 +68,7 @@ class Auth extends CI_Controller
 			if ($this->user_model->createUser($username, $email, $password)) {
 				redirect('/dashboard');
 			} else {
-				$this->load->view('register');
+				$this->load->view('Auth/register');
 			}
 		}
 	}
@@ -84,7 +84,7 @@ class Auth extends CI_Controller
 			$this->form_validation->set_rules('email', 'Email', 'required');
 			
 			if ($this->form_validation->run() == false) {
-				$this->load->view('forgot-password');
+				$this->load->view('Auth/forgot-password');
 			} else {
 				$email = $this->input->post('email');
 
@@ -109,7 +109,7 @@ class Auth extends CI_Controller
 			$this->form_validation->set_rules('password_confirm', 'Confirm Password', 'trim|required|callback_check_equal_less['.$this->input->post('password').']');
 			
 			if ($this->form_validation->run() == false) {
-				$this->load->view('reset-password');
+				$this->load->view('Auth/reset-password');
 			} else {
 				$password = $this->input->post('password');
 

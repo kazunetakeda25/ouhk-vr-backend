@@ -13,9 +13,9 @@ class Users extends CI_Controller {
 
 	public function index()
 	{
-		if ($this->session->userdata('username') == 'admin' && $this->session->userdata('logged_in') === true) {
+		if ($this->session->userdata('logged_in') === true) {
 			$res['data_users'] = $this->user_model->getAllUsers();
-            $this->load->view('users', $res);
+            $this->load->view('User/index', $res);
 		} else {
 			redirect('/login');
 		}
