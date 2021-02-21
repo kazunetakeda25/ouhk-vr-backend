@@ -10,6 +10,60 @@ class User_model extends CI_Model
 		$this->load->database();
 	}
 
+	public function createUser($username, $email, $password) 
+	{
+		$data = array(
+			'username'   => $username,
+			'email'      => $email,
+			'password'   => $this->hashPassword($password),
+			'created_at' => date('Y-m-j H:i:s'),
+		);
+		
+		return $this->db->insert('tbl_user', $data);
+		
+	}
+	
+	public function resolveLogin($email, $password) 
+	{
+		$this->db->select('password');
+		$this->db->from('tbl_user');
+        $this->db->where('email', $email);
+        $this->db->where('is_deleted', 0);
+
+		$hash = $this->db->get()->row('password');
+		
+		return $this->verifyPasswordHash($password, $hash);
+	}
+	
+	public function getUserIdFromEmail($email) 
+	{
+		$this->db->select('id');
+		$this->db->from('tbl_user');
+        $this->db->where('email', $email);
+        $this->db->where('is_deleted', 0);
+
+		return $this->db->get()->row('id');
+	}
+	
+	public function getUser($user_id) 
+	{
+		$this->db->from('tbl_user');
+        $this->db->where('id', $user_id);
+        $this->db->where('is_deleted', 0);
+
+		return $this->db->get()->row();
+	}
+
+	private function hashPassword($password) 
+	{
+		return password_hash($password, PASSWORD_BCRYPT);
+	}
+	
+	private function verifyPasswordHash($password, $hash)
+	{
+		return password_verify($password, $hash);
+	}
+
 	public function generateLicense() {
 		
 		$num_segments = 4;

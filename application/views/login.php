@@ -50,7 +50,7 @@
                 <section class="flexbox-container">
                     <div class="col-12 d-flex align-items-center justify-content-center">
                         <div class="col-lg-4 col-md-6 col-10 box-shadow-2 p-0">
-                            <div class="card border-grey border-lighten-3 px-1 py-1 m-0">
+                            <div class="card border-grey border-lighten-3 px-1 pt-1 pb-4 m-0">
                                 <div class="card-header border-0">
                                     <div class="text-center mb-1">
                                         <img src="<?=base_url()?>assets/images/VIP_Icon.png" alt="branding logo">
@@ -59,15 +59,15 @@
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
-                                        <?= form_open() ?>
+                                        <?= form_open('/login') ?>
                                             <fieldset class="form-group position-relative has-icon-left">
-                                                <input type="text" class="form-control round" id="user-name" name="username" placeholder="Username" required>
+                                                <input type="email" class="form-control round" id="email" name="email" placeholder="Email" required>
                                                 <div class="form-control-position">
                                                     <i class="fa fa-user"></i>
                                                 </div>
                                             </fieldset>
                                             <fieldset class="form-group position-relative has-icon-left">
-                                                <input type="password" class="form-control round" id="user-password" name="password" placeholder="Password" required>
+                                                <input type="password" class="form-control round" id="password" name="password" placeholder="Password" required>
                                                 <div class="form-control-position">
                                                     <i class="fa fa-lock"></i>
                                                 </div>
