@@ -17,7 +17,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-$config['base_url'] = 'http://localhost/Celer-Admin/';
+$config['base_url'] = 'http://localhost/ouhk-vr-backend/';
+// $config['base_url'] = 'https://localhost';
 
 /*
 |--------------------------------------------------------------------------
@@ -498,4 +499,4 @@ $config['rewrite_short_tags'] = FALSE;
 */
 $config['proxy_ips'] = '';
 
-date_default_timezone_set('America/New_York');
+date_default_timezone_set('Asia/Hong_Kong');
