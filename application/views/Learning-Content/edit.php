@@ -120,7 +120,7 @@
                             class="menu-title" data-i18n="">Lectures</span></a>
                 </li>
                 <li class=" nav-item"><a href="<?=base_url()?>practice"><i class="fa fa-file"></i><span
-                            class="menu-title" data-i18n="">Practices</span></a>
+                            class="menu-title small" data-i18n="">Interpreting <br>Practice & Exercise</span></a>
                 </li>
                 <li class=" nav-item"><a href="<?=base_url()?>sttt"><i class="fa fa-book"></i><span class="menu-title"
                             data-i18n="">Answer ST & TT</span></a>

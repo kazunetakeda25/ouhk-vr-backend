@@ -1,32 +1,32 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Lecture extends CI_Controller {
+class Practice extends CI_Controller {
 
 	public function __construct() 
 	{
 		parent::__construct();
 
 		$this->load->library(array('session'));
-		$this->load->model('lecture_model');
+		$this->load->model('practice_model');
 		$this->load->model('unit_model');
 	}
 
 	public function index()
 	{
 		if ($this->session->userdata('logged_in') === true) {
-			$result['data_lecture'] = $this->lecture_model->getAll();
-            $this->load->view('Lecture/index', $result);
+			$result['data_practice'] = $this->practice_model->getAll();
+            $this->load->view('Practice/index', $result);
 		} else {
 			redirect('/login');
 		}
 	}
 
-	public function unitLecture($unit_number)
+	public function unitPractice($unit_number)
 	{
 		if ($this->session->userdata('logged_in') === true) {
-			$result['data_lecture'] = $this->lecture_model->getAllForUnit($unit_number);
-            $this->load->view('Lecture/index', $result);
+			$result['data_practice'] = $this->practice_model->getAllForUnit($unit_number);
+            $this->load->view('Practice/index', $result);
 		} else {
 			redirect('/login');
 		}
@@ -38,11 +38,11 @@ class Lecture extends CI_Controller {
 			$this->load->library('form_validation');
 			
 			$this->form_validation->set_rules('unit_number', 'Unit Number', 'required');
-			$this->form_validation->set_rules('title', 'Lecture Title', 'required');
+			$this->form_validation->set_rules('title', 'Practice Title', 'required');
 			
 			if ($this->form_validation->run() == false || $_FILES === null) {
 				$result['data_unit'] = $this->unit_model->getUnitList();
-				$this->load->view('Lecture/add', $result);
+				$this->load->view('Practice/add', $result);
 			} else {
 				$unit_number = $this->input->post('unit_number');
 				$title = $this->input->post('title');
@@ -57,9 +57,9 @@ class Lecture extends CI_Controller {
 						'mp3' => $mp3_path
 					);
 					
-					$result = $this->lecture_model->add($array);
+					$result = $this->practice_model->add($array);
 					if ($result > 0) {
-						redirect('/lecture');
+						redirect('/practice');
 					}
 				}
 			}
@@ -69,9 +69,9 @@ class Lecture extends CI_Controller {
 	}
 
 	public function delete($id) {
-		$result = $this->lecture_model->delete($id);
+		$result = $this->practice_model->delete($id);
         if ($result > 0) {
-			redirect('/lecture');
+			redirect('/practice');
 		}
 	}
 
@@ -81,12 +81,12 @@ class Lecture extends CI_Controller {
 			$this->load->library('form_validation');
 			
 			$this->form_validation->set_rules('unit_number', 'Unit Number', 'required');
-			$this->form_validation->set_rules('title', 'Lecture Title', 'required');
+			$this->form_validation->set_rules('title', 'Practice Title', 'required');
 			
 			if ($this->form_validation->run() == false) {
 				$result['data_unit'] = $this->unit_model->getUnitList();
-				$result['data_lecture'] = $this->lecture_model->get($id);
-				$this->load->view('Lecture/edit', $result);
+				$result['data_practice'] = $this->practice_model->get($id);
+				$this->load->view('Practice/edit', $result);
 			} else {
 				$unit_number = $this->input->post('unit_number');
 				$title = $this->input->post('title');
@@ -103,9 +103,9 @@ class Lecture extends CI_Controller {
 							'mp3' => $mp3_path
 						);
 						
-						$result = $this->lecture_model->update($id, $array);
+						$result = $this->practice_model->update($id, $array);
 						if ($result > 0) {
-							redirect('/lecture');
+							redirect('/practice');
 						}
 					}
 				} else {
@@ -114,9 +114,9 @@ class Lecture extends CI_Controller {
 						'title' => $title
 					);
 					
-					$result = $this->lecture_model->update($id, $array);
+					$result = $this->practice_model->update($id, $array);
 					if ($result > 0) {
-						redirect('/lecture');
+						redirect('/practice');
 					}
 				}
 			}

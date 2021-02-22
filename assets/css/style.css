@@ -15,3 +15,14 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 .main-menu.menu-light .navigation>li.active>a, .main-menu.menu-light .navigation>li.hover>a, .main-menu.menu-light .navigation>li.open>a, .main-menu.menu-light .navigation>li:hover>a {
     color: #fa626b;
 }
+
+.menu-title.small {
+    line-height: 1.5;
+    transform: translate3d(0, 10px, 0);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+body.vertical-layout.vertical-menu.menu-expanded .main-menu .navigation>li:hover>a>span.small {
+    transform: translate3d(4px, 10px, 0);
+}
