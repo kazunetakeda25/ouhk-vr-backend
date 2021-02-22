@@ -1,14 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class STTT extends CI_Controller {
+class Glossary extends CI_Controller {
 
 	public function __construct() 
 	{
 		parent::__construct();
 
 		$this->load->library(array('session'));
-		$this->load->model('sttt_model');
+		$this->load->model('glossary_model');
 		$this->load->model('unit_model');
 		$this->load->model('practice_model');
 	}
@@ -16,28 +16,28 @@ class STTT extends CI_Controller {
 	public function index()
 	{
 		if ($this->session->userdata('logged_in') === true) {
-			$result['data_sttt'] = $this->sttt_model->getAll();
-            $this->load->view('ST-and-TT/index', $result);
+			$result['data_glossary'] = $this->glossary_model->getAll();
+            $this->load->view('Glossary/index', $result);
 		} else {
 			redirect('/login');
 		}
 	}
 
-	public function unitSTTT($unit_number)
+	public function unitGlossary($unit_number)
 	{
 		if ($this->session->userdata('logged_in') === true) {
-			$result['data_sttt'] = $this->sttt_model->getAllForUnit($unit_number);
-            $this->load->view('ST-and-TT/index', $result);
+			$result['data_glossary'] = $this->glossary_model->getAllForUnit($unit_number);
+            $this->load->view('Glossary/index', $result);
 		} else {
 			redirect('/login');
 		}
 	}
 
-	public function practiceSTTT($practice_number)
+	public function practiceGlossary($practice_number)
 	{
 		if ($this->session->userdata('logged_in') === true) {
-			$result['data_sttt'] = $this->sttt_model->getAllForPractice($practice_number);
-            $this->load->view('ST-and-TT/index', $result);
+			$result['data_glossary'] = $this->glossary_model->getAllForPractice($practice_number);
+            $this->load->view('Glossary/index', $result);
 		} else {
 			redirect('/login');
 		}
@@ -50,31 +50,32 @@ class STTT extends CI_Controller {
 			
 			$this->form_validation->set_rules('unit_number', 'Unit Number', 'required');
 			$this->form_validation->set_rules('practice_number', 'Practice Number', 'required');
-			$this->form_validation->set_rules('title', 'Answer ST and TT Title', 'required');
-			$this->form_validation->set_rules('original_text', 'Original Text', 'required');
-			$this->form_validation->set_rules('translated_text', 'Translated Text', 'required');
+			$this->form_validation->set_rules('title', 'Glossary Title', 'required');
+			$this->form_validation->set_rules('original_word', 'Original Word', 'required');
+			$this->form_validation->set_rules('translated_word', 'Translated Word', 'required');
 			
 			if ($this->form_validation->run() == false || $_FILES === null) {
 				$result['data_unit'] = $this->unit_model->getUnitList();
 				$result['data_practice'] = $this->practice_model->getPracticeList();
-				$this->load->view('ST-and-TT/add', $result);
+				$this->load->view('Glossary/add', $result);
 			} else {
 				$unit_number = $this->input->post('unit_number');
 				$practice_number = $this->input->post('practice_number');
 				$title = $this->input->post('title');
-				$original_text = $this->input->post('original_text');
-				$translated_text = $this->input->post('translated_text');
+				$original_word = $this->input->post('original_word');
+				$translated_word = $this->input->post('translated_word');
+				
 				$array = array(
 					'unit_number' => $unit_number, 
 					'practice_number' => $practice_number, 
 					'title' => $title, 
-					'original_text' => $original_text, 
-					'translated_text' => $translated_text
+					'original_word' => $original_word, 
+					'translated_word' => $translated_word
 				);
 					
-				$result = $this->sttt_model->add($array);
+				$result = $this->glossary_model->add($array);
 				if ($result > 0) {
-					redirect('/sttt');
+					redirect('/glossary');
 				}
 			}
 		} else {
@@ -83,9 +84,9 @@ class STTT extends CI_Controller {
 	}
 
 	public function delete($id) {
-		$result = $this->sttt_model->delete($id);
+		$result = $this->glossary_model->delete($id);
         if ($result > 0) {
-			redirect('/sttt');
+			redirect('/glossary');
 		}
 	}
 
@@ -96,32 +97,33 @@ class STTT extends CI_Controller {
 			
 			$this->form_validation->set_rules('unit_number', 'Unit Number', 'required');
 			$this->form_validation->set_rules('practice_number', 'Practice Number', 'required');
-			$this->form_validation->set_rules('title', 'Answer ST and TT Title', 'required');
-			$this->form_validation->set_rules('original_text', 'Original Text', 'required');
-			$this->form_validation->set_rules('translated_text', 'Translated Text', 'required');
+			$this->form_validation->set_rules('title', 'Glossary Title', 'required');
+			$this->form_validation->set_rules('original_word', 'Original Word', 'required');
+			$this->form_validation->set_rules('translated_word', 'Translated Word', 'required');
 			
 			if ($this->form_validation->run() == false) {
 				$result['data_unit'] = $this->unit_model->getUnitList();
 				$result['data_practice'] = $this->practice_model->getPracticeList();
-				$result['data_sttt'] = $this->sttt_model->get($id);
-				$this->load->view('ST-and-TT/edit', $result);
+				$result['data_glossary'] = $this->glossary_model->get($id);
+				$this->load->view('Glossary/edit', $result);
 			} else {
 				$unit_number = $this->input->post('unit_number');
 				$practice_number = $this->input->post('practice_number');
 				$title = $this->input->post('title');
-				$original_text = $this->input->post('original_text');
-				$translated_text = $this->input->post('translated_text');
+				$original_word = $this->input->post('original_word');
+				$translated_word = $this->input->post('translated_word');
+				
 				$array = array(
 					'unit_number' => $unit_number, 
 					'practice_number' => $practice_number, 
 					'title' => $title, 
-					'original_text' => $original_text, 
-					'translated_text' => $translated_text
+					'original_word' => $original_word, 
+					'translated_word' => $translated_word
 				);
-				
-				$result = $this->sttt_model->update($id, $array);
+						
+				$result = $this->glossary_model->update($id, $array);
 				if ($result > 0) {
-					redirect('/sttt');
+					redirect('/glossary');
 				}
 			}
 		} else {

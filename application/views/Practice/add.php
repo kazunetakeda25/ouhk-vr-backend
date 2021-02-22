@@ -156,7 +156,7 @@
                                         <?= form_open_multipart('/practuce/add') ?>
                                         <div class="form-body">
                                             <h4 class="form-section">
-                                                <i class="fa fa-folder"></i>IP&E Create
+                                                <i class="fa fa-folder"></i>Practice Create
                                             </h4>
                                             <div class="form-group">
                                                 <label for="unit_number">Unit Number</label>
@@ -172,7 +172,7 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label for="number">IP&E Number</label>
+                                                        <label for="number">Practice Number</label>
                                                         <input type="text" id="number" class="form-control"
                                                             placeholder="Enter Interpreting Practice and Exercise Number" name="number">
                                                     </div>
@@ -181,14 +181,14 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label for="title">IP&E Title</label>
+                                                        <label for="title">Practice Title</label>
                                                         <input type="text" id="title" class="form-control"
                                                             placeholder="Enter Interpreting Practice and Exercise Title" name="title">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="label-control">IP&E Non-VR Video File</label>
+                                                <label class="label-control">Non-VR Video File</label>
                                                 <div>
                                                     <label id="input" class="file center-block">
                                                         <input type="file" id="video" name="video" accept=".mp4">

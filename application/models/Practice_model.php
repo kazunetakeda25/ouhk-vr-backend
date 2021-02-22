@@ -68,6 +68,16 @@ class Practice_model extends CI_Model
 		$this->db->update('tbl_practice', $data);
 		return $this->db->affected_rows();
 	}
+
+	public function getPracticeList() 
+	{
+		$this->db->select('number');
+		$this->db->from('tbl_practice');
+		$this->db->where("is_deleted", "0");
+		$this->db->order_by("number", "asc");
+		
+		return $this->db->get()->result();
+	}
 }
 
 ?>

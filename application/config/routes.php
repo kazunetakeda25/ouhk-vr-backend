@@ -59,6 +59,9 @@ $route['logout'] = 'auth/logout';
 $route['dashboard'] = 'dashboard';
 
 $route['users'] = 'user/index';
+$route['unit/add'] = 'unit/add';
+$route['unit/delete/(:num)'] = 'unit/delete/$1';
+$route['unit/edit/(:num)'] = 'unit/edit/$1';
 
 $route['unit'] = 'unit/index';
 $route['unit/add'] = 'unit/add';
@@ -84,9 +87,15 @@ $route['practice/delete/(:num)'] = 'practice/delete/$1';
 $route['practice/edit/(:num)'] = 'practice/edit/$1';
 
 $route['glossary'] = 'glossary/index';
+$route['glossary/(:num)'] = 'glossary/unitGlossary/$1';
+$route['glossary/practice/(:num)'] = 'glossary/practiceGlossary/$1';
+$route['glossary/add'] = 'glossary/add';
+$route['glossary/delete/(:num)'] = 'glossary/delete/$1';
+$route['glossary/edit/(:num)'] = 'glossary/edit/$1';
 
 $route['sttt'] = 'sttt/index';
 $route['sttt/(:num)'] = 'sttt/unitSTTT/$1';
+$route['sttt/practice/(:num)'] = 'sttt/practiceSTTT/$1';
 $route['sttt/add'] = 'sttt/add';
 $route['sttt/delete/(:num)'] = 'sttt/delete/$1';
 $route['sttt/edit/(:num)'] = 'sttt/edit/$1';
