@@ -96,7 +96,7 @@
         data-img="<?=base_url()?>app-assets/images/backgrounds/02.jpg">
         <div class="navbar-header">
             <ul class="nav navbar-nav flex-row">
-                <li class="nav-item mr-auto"><a class="navbar-brand" href="index.html"><img class="brand-logo"
+                <li class="nav-item mr-auto"><a class="navbar-brand" href="<?=base_url()?>unit"><img class="brand-logo"
                             alt="Chameleon admin logo" src="<?=base_url()?>assets/images/VIP_Icon.png"
                             style="width: 52px;" />
                         <h3 class="brand-text">VIP</h3>

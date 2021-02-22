@@ -42,7 +42,9 @@
     <link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/css/style.css">
 
     <link rel="stylesheet" href="<?=base_url()?>app-assets/css/feather.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+        integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+        crossorigin="anonymous" />
 
 
 </head>
@@ -95,7 +97,7 @@
         data-img="<?=base_url()?>app-assets/images/backgrounds/02.jpg">
         <div class="navbar-header">
             <ul class="nav navbar-nav flex-row">
-                <li class="nav-item mr-auto"><a class="navbar-brand" href="index.html"><img class="brand-logo"
+                <li class="nav-item mr-auto"><a class="navbar-brand" href="<?=base_url()?>unit"><img class="brand-logo"
                             alt="Chameleon admin logo" src="<?=base_url()?>assets/images/VIP_Icon.png"
                             style="width: 52px;" />
                         <h3 class="brand-text">VIP</h3>
@@ -106,14 +108,28 @@
         <div class="navigation-background"></div>
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class=" nav-item active"><a href="/users"><i class="fa fa-user"></i><span class="menu-title"
+                <li class=" nav-item active"><a href="<?=base_url()?>user"><i class="fa fa-user"></i><span class="menu-title"
                             data-i18n="">Users</span></a>
                 </li>
-                <li class=" nav-item"><a href="/units"><i class="fa fa-folder"></i><span class="menu-title"
+                <li class=" nav-item"><a href="<?=base_url()?>unit"><i class="fa fa-folder"></i><span class="menu-title"
                             data-i18n="">Units</span></a>
                 </li>
-
-
+                <li class=" nav-item"><a href="<?=base_url()?>learning-content"><i class="fa fa-book-open"></i><span
+                            class="menu-title" data-i18n="">Learning
+                            Contents</span></a>
+                </li>
+                <li class=" nav-item"><a href="<?=base_url()?>lecture"><i class="fa fa-microphone"></i><span
+                            class="menu-title" data-i18n="">Lectures</span></a>
+                </li>
+                <li class=" nav-item"><a href="<?=base_url()?>practice"><i class="fa fa-file"></i><span
+                            class="menu-title small" data-i18n="">Interpreting <br>Practice & Exercise</span></a>
+                </li>
+                <li class=" nav-item"><a href="<?=base_url()?>sttt"><i class="fa fa-book"></i><span class="menu-title"
+                            data-i18n="">Answer ST & TT</span></a>
+                </li>
+                <li class=" nav-item"><a href="<?=base_url()?>glossary"><i class="fa fa-language"></i><span
+                            class="menu-title" data-i18n="">Glossaries</span></a>
+                </li>
             </ul>
         </div>
     </div>
