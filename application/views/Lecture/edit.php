@@ -56,10 +56,24 @@
                     </ul>
                     <ul class="nav navbar-nav float-right">
                         <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
-                                <span class="avatar avatar-online"><img src="<?= base_url() ?>assets/images/ProfileIcon.jpg" alt="avatar"></span></a>
+                                <?php if (empty($this->session->userdata('photo'))) { ?>
+                                    <span class="avatar avatar-online"><img src="<?= base_url() ?>assets/images/ProfileIcon.jpg" alt="avatar"></span>
+                                <?php } else { ?>
+                                    <span class="avatar avatar-online"><img src="<?= base_url() . $this->session->userdata('photo') ?>" alt="avatar"></span>
+                                <?php } ?>
+                            </a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <div class="arrow_box_right"><a class="dropdown-item" href="#"><span class="avatar avatar-online"><img src="<?= base_url() ?>assets/images/ProfileIcon.jpg" alt="avatar"><span class="user-name text-bold-700 ml-1">Admin</span></span></a>
-                                    <div class="dropdown-divider"></div><a class="dropdown-item" href="login.html"><i class="fa fa-sign-out"></i> Logout</a>
+                                <div class="arrow_box_right">
+                                    <a class="dropdown-item" href="#">
+                                        <?php if (empty($this->session->userdata('photo'))) { ?>
+                                            <span class="avatar avatar-online"><img src="<?= base_url() ?>assets/images/ProfileIcon.jpg" alt="avatar">
+                                            <?php } else { ?>
+                                                <span class="avatar avatar-online"><img src="<?= base_url() . $this->session->userdata('photo') ?>" alt="avatar">
+                                                <?php } ?>
+                                                <span class="user-name text-bold-700 ml-1"><?= $this->session->userdata('username') ?></span>
+                                                </span>
+                                    </a>
+                                    <div class="dropdown-divider"></div><a class="dropdown-item" href="<?= base_url() ?>logout"><i class="fa fa-sign-out"></i> Logout</a>
                                 </div>
                             </div>
                         </li>
