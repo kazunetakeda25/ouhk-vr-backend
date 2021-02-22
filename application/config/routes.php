@@ -72,6 +72,10 @@ $route['learning-content/delete/(:num)'] = 'learningContent/delete/$1';
 $route['learning-content/edit/(:num)'] = 'learningContent/edit/$1';
 
 $route['lecture'] = 'lecture/index';
+$route['lecture/(:num)'] = 'lecture/unitLecture/$1';
+$route['lecture/add'] = 'lecture/add';
+$route['lecture/delete/(:num)'] = 'lecture/delete/$1';
+$route['lecture/edit/(:num)'] = 'lecture/edit/$1';
 
 $route['practice'] = 'practice/index';
 
