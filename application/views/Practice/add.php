@@ -115,10 +115,10 @@
                 <li class=" nav-item"><a href="<?=base_url()?>learning-content"><i class="fa fa-book-open"></i><span
                             class="menu-title" data-i18n="">Learning Contents</span></a>
                 </li>
-                <li class=" nav-item active"><a href="<?=base_url()?>lecture"><i class="fa fa-microphone"></i><span
+                <li class=" nav-item"><a href="<?=base_url()?>lecture"><i class="fa fa-microphone"></i><span
                             class="menu-title" data-i18n="">Lectures</span></a>
                 </li>
-                <li class=" nav-item"><a href="<?=base_url()?>practice"><i class="fa fa-file"></i><span
+                <li class=" nav-item active"><a href="<?=base_url()?>practice"><i class="fa fa-file"></i><span
                             class="menu-title small" data-i18n="">Interpreting <br>Practice & Exercise</span></a>
                 </li>
                 <li class=" nav-item"><a href="<?=base_url()?>sttt"><i class="fa fa-book"></i><span class="menu-title"
@@ -172,9 +172,18 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
+                                                        <label for="number">IP&E Number</label>
+                                                        <input type="text" id="number" class="form-control"
+                                                            placeholder="Enter Interpreting Practice and Exercise Number" name="number">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
                                                         <label for="title">IP&E Title</label>
                                                         <input type="text" id="title" class="form-control"
-                                                            placeholder="Enter Lecture Title" name="title">
+                                                            placeholder="Enter Interpreting Practice and Exercise Title" name="title">
                                                     </div>
                                                 </div>
                                             </div>
