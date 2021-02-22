@@ -10,7 +10,7 @@
     <meta name="keywords"
         content="admin template, Chameleon admin template, dashboard template, gradient admin template, responsive admin template, webapp, eCommerce dashboard, analytic dashboard">
     <meta name="author" content="ThemeSelect">
-    <title>VIP - Lectures</title>
+    <title>VIP - Interpreting Practice & Exercises</title>
     <link rel="apple-touch-icon" href="<?=base_url()?>app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="<?=base_url()?>assets/images/favicon.ico">
     <link
@@ -140,7 +140,7 @@
             </div>
             <div class="content-header row">
                 <div class="content-header-left col-md-4 col-12 mb-2">
-                    <h3 class="content-header-title">Lecture Management</h3>
+                    <h3 class="content-header-title">Interpreting Practice & Exercise Management</h3>
                 </div>
             </div>
 
@@ -153,10 +153,10 @@
                             <div class="card">
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        <?= form_open_multipart('/lecture/add') ?>
+                                        <?= form_open_multipart('/practuce/add') ?>
                                         <div class="form-body">
                                             <h4 class="form-section">
-                                                <i class="fa fa-folder"></i>Lecture Create
+                                                <i class="fa fa-folder"></i>IP&E Create
                                             </h4>
                                             <div class="form-group">
                                                 <label for="unit_number">Unit Number</label>
@@ -172,17 +172,17 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label for="title">Lecture Title</label>
+                                                        <label for="title">IP&E Title</label>
                                                         <input type="text" id="title" class="form-control"
                                                             placeholder="Enter Lecture Title" name="title">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="label-control">Lecture MP3 File</label>
+                                                <label class="label-control">IP&E Non-VR Video File</label>
                                                 <div>
                                                     <label id="input" class="file center-block">
-                                                        <input type="file" id="mp3" name="mp3" accept=".mp3">
+                                                        <input type="file" id="video" name="video" accept=".mp4">
                                                     </label>
                                                 </div>
                                             </div>

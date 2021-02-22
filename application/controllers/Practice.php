@@ -46,15 +46,15 @@ class Practice extends CI_Controller {
 			} else {
 				$unit_number = $this->input->post('unit_number');
 				$title = $this->input->post('title');
-				if ($_FILES['mp3']['error'] == UPLOAD_ERR_OK) {
-					$tmp_name = $_FILES["mp3"]["tmp_name"];
-					$name = basename($_FILES["mp3"]["name"]);
-					$mp3_path = 'uploads/' . $name;
-					move_uploaded_file($tmp_name, $mp3_path);
+				if ($_FILES['video']['error'] == UPLOAD_ERR_OK) {
+					$tmp_name = $_FILES["video"]["tmp_name"];
+					$name = basename($_FILES["video"]["name"]);
+					$video_path = 'uploads/practice/' . $name;
+					move_uploaded_file($tmp_name, $video_path);
 					$array = array(
 						'unit_number' => $unit_number, 
 						'title' => $title, 
-						'mp3' => $mp3_path
+						'video' => $video_path
 					);
 					
 					$result = $this->practice_model->add($array);
@@ -90,17 +90,17 @@ class Practice extends CI_Controller {
 			} else {
 				$unit_number = $this->input->post('unit_number');
 				$title = $this->input->post('title');
-				$change_mp3 = $this->input->post('change_mp3');
-				if ($change_mp3 == 1) {
-					if ($_FILES['mp3']['error'] == UPLOAD_ERR_OK) {
-						$tmp_name = $_FILES["mp3"]["tmp_name"];
-						$name = basename($_FILES["mp3"]["name"]);
-						$mp3_path = 'uploads/' . $name;
-						move_uploaded_file($tmp_name, $mp3_path);
+				$change_video = $this->input->post('change_video');
+				if ($change_video == 1) {
+					if ($_FILES['video']['error'] == UPLOAD_ERR_OK) {
+						$tmp_name = $_FILES["video"]["tmp_name"];
+						$name = basename($_FILES["video"]["name"]);
+						$video_path = 'uploads/practice/' . $name;
+						move_uploaded_file($tmp_name, $video_path);
 						$array = array(
 							'unit_number' => $unit_number, 
 							'title' => $title, 
-							'mp3' => $mp3_path
+							'video' => $video_path
 						);
 						
 						$result = $this->practice_model->update($id, $array);

@@ -78,10 +78,18 @@ $route['lecture/delete/(:num)'] = 'lecture/delete/$1';
 $route['lecture/edit/(:num)'] = 'lecture/edit/$1';
 
 $route['practice'] = 'practice/index';
+$route['practice/(:num)'] = 'practice/unitPractice/$1';
+$route['practice/add'] = 'practice/add';
+$route['practice/delete/(:num)'] = 'practice/delete/$1';
+$route['practice/edit/(:num)'] = 'practice/edit/$1';
 
-$route['practice-glossary'] = 'practiceGlossary/index';
+$route['glossary'] = 'glossary/index';
 
 $route['sttt'] = 'sttt/index';
+$route['sttt/(:num)'] = 'sttt/unitSTTT/$1';
+$route['sttt/add'] = 'sttt/add';
+$route['sttt/delete/(:num)'] = 'sttt/delete/$1';
+$route['sttt/edit/(:num)'] = 'sttt/edit/$1';
 
 $route['video-online'] = 'videoonline/index';
 

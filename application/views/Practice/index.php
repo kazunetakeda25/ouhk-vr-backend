@@ -11,7 +11,7 @@
     <meta name="keywords"
         content="admin template, Chameleon admin template, dashboard template, gradient admin template, responsive admin template, webapp, eCommerce dashboard, analytic dashboard">
     <meta name="author" content="ThemeSelect">
-    <title>VIP - Lectures</title>
+    <title>VIP - Interpreting Practice & Exercise</title>
     <link rel="apple-touch-icon" href="<?=base_url()?>app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="<?=base_url()?>assets/images/favicon.ico">
     <link
@@ -142,7 +142,7 @@
             </div>
             <div class="content-header row">
                 <div class="content-header-left col-md-4 col-12 mb-2">
-                    <h3 class="content-header-title">Lecture Management</h3>
+                    <h3 class="content-header-title">Interpreting Practice & Exercise Management</h3>
                 </div>
                 <div class="content-header-right col-md-8 col-12">
                     <div class="breadcrumbs-top float-md-right">
@@ -150,9 +150,9 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a>Admin</a>
                                 </li>
-                                <li class="breadcrumb-item"><a>Lecture Managment</a>
+                                <li class="breadcrumb-item"><a>IP&E Managment</a>
                                 </li>
-                                <li class="breadcrumb-item active"><a>Lecture List</a>
+                                <li class="breadcrumb-item active"><a>IP&E List</a>
                                 </li>
                             </ol>
                         </div>
@@ -170,8 +170,8 @@
                                 <div class="card-content collapse show">
                                     <div class="card-body">
                                         <a type="button" class="btn btn-success" style="color: white"
-                                            href="lecture/add">
-                                            <i class="fa fa-folder"></i> Create New Lecture
+                                            href="practice/add">
+                                            <i class="fa fa-folder"></i> Create New IP&E
                                         </a>
                                         <p>&nbsp;</p>
                                         <div class="table-responsive">
@@ -182,23 +182,23 @@
                                                     <tr>
                                                         <th scope="col" class="d-none">ID</th>
                                                         <th scope="col">Unit Number</th>
-                                                        <th scope="col">Lecture Title</th>
+                                                        <th scope="col">Title</th>
                                                         <th scope="col">Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <?php
-                                                    foreach ($data_lecture as $lecture) {
+                                                    foreach ($data_practice as $practice) {
                                                         echo '<tr>';
-                                                        echo '<td class="d-none">' . $lecture->id . '</td>';
-                                                        echo '<th scope="row">' . $lecture->unit_number . '</th>';
-                                                        echo '<td>' . $lecture->title . '</td>';
+                                                        echo '<td class="d-none">' . $practice->id . '</td>';
+                                                        echo '<th scope="row">' . $practice->unit_number . '</th>';
+                                                        echo '<td>' . $practice->title . '</td>';
                                                         echo '<td style="white-space: nowrap">
-                                                                <a type="button" class="btn btn-info text-white" href="lecture/edit/' . $lecture->id . '"
+                                                                <a type="button" class="btn btn-info text-white" href="practice/edit/' . $practice->id . '"
                                                                     title="Edit">
                                                                     <span class="fa fa-edit"></span>
                                                                 </a>
-                                                                <a type="button" class="btn btn-danger text-white" href="javascript:deleteLecture(' . $lecture->id . ');"
+                                                                <a type="button" class="btn btn-danger text-white" href="javascript:deletePractice(' . $practice->id . ');"
                                                                     title="Delete">
                                                                     <span class="fa fa-trash"></span>
                                                                 </a>
@@ -252,9 +252,9 @@
     <!-- BEGIN: Page JS-->
     <!-- END: Page JS-->
     <script>
-    function deleteLecture(id) {
-        if (confirm('Are you sure you want to delete this lecture?')) {
-            window.location.replace("lecture/delete/" + id);
+    function deletePractice(id) {
+        if (confirm('Are you sure you want to delete this interpreting practice & excercise?')) {
+            window.location.replace("practice/delete/" + id);
         }
     }
     </script>
