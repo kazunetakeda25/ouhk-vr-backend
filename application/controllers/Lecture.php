@@ -49,7 +49,7 @@ class Lecture extends CI_Controller {
 				if ($_FILES['mp3']['error'] == UPLOAD_ERR_OK) {
 					$tmp_name = $_FILES["mp3"]["tmp_name"];
 					$name = basename($_FILES["mp3"]["name"]);
-					$mp3_path = 'uploads/lecture/' . $name;
+					$mp3_path = 'uploads/audio/' . $name;
 					move_uploaded_file($tmp_name, $mp3_path);
 					$array = array(
 						'unit_number' => $unit_number, 
@@ -95,7 +95,7 @@ class Lecture extends CI_Controller {
 					if ($_FILES['mp3']['error'] == UPLOAD_ERR_OK) {
 						$tmp_name = $_FILES["mp3"]["tmp_name"];
 						$name = basename($_FILES["mp3"]["name"]);
-						$mp3_path = 'uploads/lecture/' . $name;
+						$mp3_path = 'uploads/audio/' . $name;
 						move_uploaded_file($tmp_name, $mp3_path);
 						$array = array(
 							'unit_number' => $unit_number, 

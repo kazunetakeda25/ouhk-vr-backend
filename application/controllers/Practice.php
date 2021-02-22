@@ -51,7 +51,7 @@ class Practice extends CI_Controller {
 				if ($_FILES['video']['error'] == UPLOAD_ERR_OK) {
 					$tmp_name = $_FILES["video"]["tmp_name"];
 					$name = basename($_FILES["video"]["name"]);
-					$video_path = 'uploads/practice/' . $name;
+					$video_path = 'uploads/video/' . $name;
 					move_uploaded_file($tmp_name, $video_path);
 					$array = array(
 						'unit_number' => $unit_number, 
@@ -100,7 +100,7 @@ class Practice extends CI_Controller {
 					if ($_FILES['video']['error'] == UPLOAD_ERR_OK) {
 						$tmp_name = $_FILES["video"]["tmp_name"];
 						$name = basename($_FILES["video"]["name"]);
-						$video_path = 'uploads/practice/' . $name;
+						$video_path = 'uploads/video/' . $name;
 						move_uploaded_file($tmp_name, $video_path);
 						$array = array(
 							'unit_number' => $unit_number, 
