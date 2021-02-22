@@ -12,6 +12,7 @@ class LearningContent_model extends CI_Model
 
 	public function getAll() 
 	{
+		$this->db->select('id, unit_number, title');
 		$this->db->from('tbl_learning_content');
 		$this->db->where("is_deleted", "0");
 		$this->db->order_by("unit_number", "asc");
@@ -35,7 +36,7 @@ class LearningContent_model extends CI_Model
 
 	public function get($id) 
 	{
-		$this->db->select('*');
+		$this->db->select('id, unit_number, title, data');
     	$this->db->from('tbl_learning_content');
 		$this->db->where('id', $id);
 		

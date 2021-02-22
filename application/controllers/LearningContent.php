@@ -14,8 +14,8 @@ class LearningContent extends CI_Controller {
 	public function index()
 	{
 		if ($this->session->userdata('logged_in') === true) {
-			$res['data_learning_content'] = $this->learningcontent_model->getAll();
-            $this->load->view('Learning-Content/index', $res);
+			$result['data_learning_content'] = $this->learningcontent_model->getAll();
+            $this->load->view('Learning-Content/index', $result);
 		} else {
 			redirect('/login');
 		}
@@ -28,22 +28,22 @@ class LearningContent extends CI_Controller {
 			
 			$this->form_validation->set_rules('unit_number', 'Unit Number', 'required');
 			$this->form_validation->set_rules('title', 'Learning Content Title', 'required');
-			$this->form_validation->set_rules('content', 'Learning Content Data', 'required');
+			$this->form_validation->set_rules('data', 'Learning Content Data', 'required');
 			
 			if ($this->form_validation->run() == false) {
 				$this->load->view('Learning-Content/add');
 			} else {
 				$unit_number = $this->input->post('unit_number');
 				$title = $this->input->post('title');
-				$content = $this->input->post('content');
+				$data = $this->input->post('data');
 
-				$data = array(
+				$array = array(
 					'unit_number' => $unit_number, 
 					'title' => $title, 
-					'content' => $content
+					'data' => $data
 				);
 				
-				$result = $this->learningcontent_model->add($data);
+				$result = $this->learningcontent_model->add($array);
 				if ($result > 0) {
 					redirect('/learning-content');
 				}
@@ -67,23 +67,23 @@ class LearningContent extends CI_Controller {
 			
 			$this->form_validation->set_rules('unit_number', 'Unit Number', 'required');
 			$this->form_validation->set_rules('title', 'Learning Content Title', 'required');
-			$this->form_validation->set_rules('content', 'Learning Content Data', 'required');
+			$this->form_validation->set_rules('data', 'Learning Content Data', 'required');
 			
 			if ($this->form_validation->run() == false) {
-				$res['data_unit'] = $this->learningcontent_model->get($id);
-				$this->load->view('Learning-Content/edit', $res);
+				$result['data_learning_content'] = $this->learningcontent_model->get($id);
+				$this->load->view('Learning-Content/edit', $result);
 			} else {
 				$unit_number = $this->input->post("unit_number");
 				$title = $this->input->post("title");
-				$content = $this->input->post("content");
+				$data = $this->input->post("data");
 				
-				$data = array(
+				$array = array(
 					'unit_number' => $unit_number, 
 					'title' => $title, 
-					'content' => $content
+					'data' => $data
 				);
 				
-				$result = $this->learningcontent_model->update($id, $data);
+				$result = $this->learningcontent_model->update($id, $array);
 				if ($result > 0) {
 					redirect('/learning-content');
 				}

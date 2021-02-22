@@ -107,26 +107,27 @@
         <div class="navigation-background"></div>
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class=" nav-item"><a href="user"><i class="fa fa-user"></i><span class="menu-title"
+                <li class=" nav-item"><a href="<?=base_url()?>user"><i class="fa fa-user"></i><span class="menu-title"
                             data-i18n="">Users</span></a>
                 </li>
-                <li class=" nav-item"><a href="unit"><i class="fa fa-folder"></i><span class="menu-title"
+                <li class=" nav-item"><a href="<?=base_url()?>unit"><i class="fa fa-folder"></i><span class="menu-title"
                             data-i18n="">Units</span></a>
                 </li>
-                <li class=" nav-item active"><a href="learning-content"><i class="fa fa-book-open"></i><span
-                            class="menu-title" data-i18n="">Learning Contents</span></a>
+                <li class=" nav-item active"><a href="<?=base_url()?>learning-content"><i
+                            class="fa fa-book-open"></i><span class="menu-title" data-i18n="">Learning
+                            Contents</span></a>
                 </li>
-                <li class=" nav-item"><a href="lecture"><i class="fa fa-microphone"></i><span class="menu-title"
-                            data-i18n="">Lectures</span></a>
+                <li class=" nav-item"><a href="<?=base_url()?>lecture"><i class="fa fa-microphone"></i><span
+                            class="menu-title" data-i18n="">Lectures</span></a>
                 </li>
-                <li class=" nav-item"><a href="practice"><i class="fa fa-file"></i><span class="menu-title"
-                            data-i18n="">Practices</span></a>
+                <li class=" nav-item"><a href="<?=base_url()?>practice"><i class="fa fa-file"></i><span
+                            class="menu-title" data-i18n="">Practices</span></a>
                 </li>
-                <li class=" nav-item"><a href="sttt"><i class="fa fa-book"></i><span class="menu-title"
+                <li class=" nav-item"><a href="<?=base_url()?>sttt"><i class="fa fa-book"></i><span class="menu-title"
                             data-i18n="">Answer ST & TT</span></a>
                 </li>
-                <li class=" nav-item"><a href="glossary"><i class="fa fa-language"></i><span class="menu-title"
-                            data-i18n="">Glossaries</span></a>
+                <li class=" nav-item"><a href="<?=base_url()?>glossary"><i class="fa fa-language"></i><span
+                            class="menu-title" data-i18n="">Glossaries</span></a>
                 </li>
             </ul>
         </div>
@@ -179,10 +180,9 @@
                                                 <thead class="text-white"
                                                     style="background-color: rgba(97, 227, 181,100)">
                                                     <tr>
-                                                        <th scope="col">ID</th>
+                                                        <th scope="col" class="d-none">ID</th>
                                                         <th scope="col">Unit Number</th>
                                                         <th scope="col">Title</th>
-                                                        <th scope="col">Content</th>
                                                         <th scope="col">Action</th>
                                                     </tr>
                                                 </thead>
@@ -190,10 +190,9 @@
                                                     <?php
                                                     foreach ($data_learning_content as $learning_content) {
                                                         echo '<tr>';
-                                                        echo '<th scope="row">' . $learning_content->id . '</th>';
-                                                        echo '<td>' . $learning_content->unit_number . '</td>';
+                                                        echo '<td class="d-none">' . $learning_content->id . '</td>';
+                                                        echo '<th scope="row">' . $learning_content->unit_number . '</th>';
                                                         echo '<td>' . $learning_content->title . '</td>';
-                                                        echo '<td>' . $learning_content->content . '</td>';
                                                         echo '<td style="white-space: nowrap">
                                                                 <a type="button" class="btn btn-info text-white" href="learning-content/edit/' . $learning_content->id . '"
                                                                     title="Edit">

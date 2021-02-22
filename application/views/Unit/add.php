@@ -106,26 +106,26 @@
         <div class="navigation-background"></div>
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class=" nav-item"><a href="user"><i class="fa fa-user"></i><span class="menu-title"
+                <li class=" nav-item"><a href="<?=base_url()?>user"><i class="fa fa-user"></i><span class="menu-title"
                             data-i18n="">Users</span></a>
                 </li>
-                <li class=" nav-item active"><a href="unit"><i class="fa fa-folder"></i><span class="menu-title"
-                            data-i18n="">Units</span></a>
+                <li class=" nav-item active"><a href="<?=base_url()?>unit"><i class="fa fa-folder"></i><span
+                            class="menu-title" data-i18n="">Units</span></a>
                 </li>
-                <li class=" nav-item"><a href="learning-content"><i class="fa fa-book-open"></i><span class="menu-title"
-                            data-i18n="">Learning Contents</span></a>
+                <li class=" nav-item"><a href="<?=base_url()?>learning-content"><i class="fa fa-book-open"></i><span
+                            class="menu-title" data-i18n="">Learning Contents</span></a>
                 </li>
-                <li class=" nav-item"><a href="lecture"><i class="fa fa-microphone"></i><span class="menu-title"
-                            data-i18n="">Lectures</span></a>
+                <li class=" nav-item"><a href="<?=base_url()?>lecture"><i class="fa fa-microphone"></i><span
+                            class="menu-title" data-i18n="">Lectures</span></a>
                 </li>
-                <li class=" nav-item"><a href="practice"><i class="fa fa-file"></i><span class="menu-title"
-                            data-i18n="">Practices</span></a>
+                <li class=" nav-item"><a href="<?=base_url()?>practice"><i class="fa fa-file"></i><span
+                            class="menu-title" data-i18n="">Practices</span></a>
                 </li>
-                <li class=" nav-item"><a href="sttt"><i class="fa fa-book"></i><span class="menu-title"
+                <li class=" nav-item"><a href="<?=base_url()?>sttt"><i class="fa fa-book"></i><span class="menu-title"
                             data-i18n="">Answer ST & TT</span></a>
                 </li>
-                <li class=" nav-item"><a href="glossary"><i class="fa fa-language"></i><span class="menu-title"
-                            data-i18n="">Glossaries</span></a>
+                <li class=" nav-item"><a href="<?=base_url()?>glossary"><i class="fa fa-language"></i><span
+                            class="menu-title" data-i18n="">Glossaries</span></a>
                 </li>
             </ul>
         </div>
