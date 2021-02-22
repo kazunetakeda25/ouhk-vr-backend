@@ -58,10 +58,10 @@ $route['logout'] = 'auth/logout';
 
 $route['dashboard'] = 'dashboard';
 
-$route['users'] = 'user/index';
-$route['unit/add'] = 'unit/add';
-$route['unit/delete/(:num)'] = 'unit/delete/$1';
-$route['unit/edit/(:num)'] = 'unit/edit/$1';
+$route['user'] = 'user/index';
+$route['user/add'] = 'user/add';
+$route['user/delete/(:num)'] = 'user/delete/$1';
+$route['user/edit/(:num)'] = 'user/edit/$1';
 
 $route['unit'] = 'unit/index';
 $route['unit/add'] = 'unit/add';

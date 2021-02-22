@@ -1,55 +1,58 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class User_model extends CI_Model 
+class User_model extends CI_Model
 {
-	public function __construct() 
+	public function __construct()
 	{
 		parent::__construct();
 
 		$this->load->database();
 	}
 
-	public function createUser($username, $email, $password) 
+	public function createUser($username, $email, $password)
 	{
 		$data = array(
 			'username'   => $username,
 			'email'      => $email,
 			'password'   => $this->hashPassword($password),
+			'role'   => 1,
+			'status'   => 0,
 			'created_at' => date('Y-m-j H:i:s'),
 		);
-		
+
 		return $this->db->insert('tbl_user', $data);
-		
 	}
-	
-	public function resolveLogin($email, $password) 
+
+	public function resolveLogin($email, $password)
 	{
 		$this->db->select('password');
 		$this->db->from('tbl_user');
-        $this->db->where('email', $email);
-        $this->db->where('is_deleted', 0);
+		$this->db->where('email', $email);
+		$this->db->where('role >', 1);
+		$this->db->where('status', 1);
+		$this->db->where('is_deleted', 0);
 
 		$hash = $this->db->get()->row('password');
-		
+
 		return $this->verifyPasswordHash($password, $hash);
 	}
-	
-	public function getUserIdFromEmail($email) 
+
+	public function getUserIdFromEmail($email)
 	{
 		$this->db->select('id');
 		$this->db->from('tbl_user');
-        $this->db->where('email', $email);
-        $this->db->where('is_deleted', 0);
+		$this->db->where('email', $email);
+		$this->db->where('is_deleted', 0);
 
 		return $this->db->get()->row('id');
 	}
-	
-	public function getUser($user_id) 
+
+	public function getUser($user_id)
 	{
 		$this->db->from('tbl_user');
-        $this->db->where('id', $user_id);
-        $this->db->where('is_deleted', 0);
+		$this->db->where('id', $user_id);
+		$this->db->where('is_deleted', 0);
 
 		return $this->db->get()->row();
 	}
@@ -69,16 +72,16 @@ class User_model extends CI_Model
 		$this->email->initialize($config);
 
 		$this->email->from($from, 'VIP Admin');
-        $this->email->to($email);
-        $this->email->subject('Please Verify Your Email.');
+		$this->email->to($email);
+		$this->email->subject('Please Verify Your Email.');
 		$user_id = $this->getUserIdFromEmail($email);
 		$user = $this->getUser($user_id);
-		
+
 		if ($user == null) {
 			return -1;
 		}
 
-        $this->email->message('
+		$this->email->message('
 		<!DOCTYPE html
 			PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 		<html xmlns="http://www.w3.org/1999/xhtml">
@@ -118,67 +121,43 @@ class User_model extends CI_Model
 		return $this->email->send();
 	}
 
-	private function hashPassword($password) 
+	private function hashPassword($password)
 	{
 		return password_hash($password, PASSWORD_BCRYPT);
 	}
-	
+
 	private function verifyPasswordHash($password, $hash)
 	{
 		return password_verify($password, $hash);
 	}
-	
 
-	public function generateLicense() {
-		
-		$num_segments = 4;
-		$segment_chars = 4;
-		$suffix = "-";
+	public function getAll()
+	{
+		$this->db->select('id, username, email, role, status, created_at');
+		$this->db->where("is_deleted", "0");
+		$this->db->where("role !=", "3");
+		$this->db->from('tbl_user');
 
-		$tokens = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-		$license_string = '';
-		
-		for ($i = 0; $i < $num_segments; $i++) {
-			$segment = '';
-			for ($j = 0; $j < $segment_chars; $j++) {
-				$segment .= $tokens[rand(0, strlen($tokens) - 1)];
-			}
-
-			$license_string .= $segment;
-			if ($i < ($num_segments - 1)) {
-				$license_string .= '-';
-			}
-		}
-
-		return $license_string;
+		return $this->db->get()->result();
 	}
 
-	public function addUser($user) 
+	public function add($user)
 	{
 		$data = array(
-			'name' => $user['name'],
+			'username' => $user['username'],
 			'email' => $user['email'],
-			'license' => $this->generateLicense(), 
-			'status' => $user['status']
+			'password' => $user['password'],
+			'role' => $user['role'],
+			'status' => $user['status'],
+			'photo' => $user['photo'],
+			'created_at' => date("Y-m-d H:i:s")
 		);
 
-		if ($user['status'] == 'PENDING') {
-			$data['is_deleted'] = 0;
-			$data['created_at'] = date('Y-m-j H:i:s');
-		} else if ($user['status'] == 'ACTIVE') {
-			$data['is_deleted'] = 0;
-			$data['created_at'] = date('Y-m-j H:i:s');
-			$data['updated_at'] = date('Y-m-j H:i:s');
-		} else if ($user['status'] == 'INACTIVE') {
-			$data['is_deleted'] = 1;
-			$data['created_at'] = date('Y-m-j H:i:s');
-			$data['deleted_at'] = date('Y-m-j H:i:s');
-		}
-		
 		$this->db->select('id');
-    	$this->db->from('tbl_user');
-    	$this->db->where('email', $user['email']);
-    	$query = $this->db->get();
+		$this->db->from('tbl_user');
+		$this->db->where('username', $user['username']);
+		$this->db->or_where('email', $user['email']);
+		$query = $this->db->get();
 		$num = $query->num_rows();
 		if ($num > 0) {
 			return 0;
@@ -188,77 +167,32 @@ class User_model extends CI_Model
 		}
 	}
 
-	public function getUserIdFromLicense($license) {
-
-		$this->db->select('id');
-    	$this->db->from('tbl_user');
-    	$this->db->where('license', $license);
-    	$query = $this->db->get();
-		$num = $query->num_rows();
-		if ($num > 0) {
-			return $query->row()->id;
-		} else {
-			return 0;
-		}
-	}
-
-	public function getActiveUser($id) 
+	public function get($id)
 	{
+		$this->db->select('id, username, email, role, status, photo, created_at');
 		$this->db->from('tbl_user');
-        $this->db->where('id', $id);
-        $this->db->where('is_deleted', 0);
-
-		return $this->db->get()->row();
-	}
-
-	public function getAnyUser($id) 
-	{
-		$this->db->from('tbl_user');
-        $this->db->where('id', $id);
-
-		return $this->db->get()->row();
-	}
-
-	public function getAllUsers() 
-	{
-		$this->db->from('tbl_user');
-
-		return $this->db->get()->result();
-	}
-
-	public function deleteUser($id) {
 		$this->db->where('id', $id);
-		$data = array('is_deleted' => 1,
-					  'status' => 'INACTIVE', 
-					  'deleted_at' => date('Y-m-j H:i:s'));
+
+		$result = $this->db->get()->result();
+		return $result[0];
+	}
+
+	public function delete($id)
+	{
+		$this->db->where('id', $id);
+		$data = array(
+			'is_deleted' => 1,
+			'deleted_at' => date('Y-m-j H:i:s')
+		);
 		$this->db->update('tbl_user', $data);
 		return $this->db->affected_rows();
 	}
 
-	public function deleteUsers($ids) {; 
-		$this->db->where_in('id', $ids);
-		$data = array('is_deleted' => 1, 
-		              'status' => 'INACTIVE', 
-					  'deleted_at' => date('Y-m-j H:i:s'));
-		$this->db->update('tbl_user', $data);
-		return $this->db->affected_rows();
-	}
-
-	public function updateUser($id, $data) {
+	public function update($id, $data)
+	{
 		$this->db->where('id', $id);
-		if ($data['status'] == 'PENDING') {
-			$data['is_deleted'] = 0;
-			$data['updated_at'] = date('Y-m-j H:i:s');
-		} else if ($data['status'] == 'ACTIVE') {
-			$data['is_deleted'] = 0;
-			$data['updated_at'] = date('Y-m-j H:i:s');
-		} else if ($data['status'] == 'INACTIVE') {
-			$data['is_deleted'] = 1;
-			$data['deleted_at'] = date('Y-m-j H:i:s');
-		}
+		$data['updated_at'] = date('Y-m-j H:i:s');
 		$this->db->update('tbl_user', $data);
 		return $this->db->affected_rows();
 	}
 }
-
-?>
