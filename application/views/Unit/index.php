@@ -42,7 +42,9 @@
     <link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/css/style.css">
 
     <link rel="stylesheet" href="<?=base_url()?>app-assets/css/feather.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+        integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+        crossorigin="anonymous" />
 
 
 </head>
@@ -105,11 +107,26 @@
         <div class="navigation-background"></div>
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class="nav-item"><a href="/user"><i class="fa fa-user"></i><span class="menu-title"
+                <li class=" nav-item"><a href="user"><i class="fa fa-user"></i><span class="menu-title"
                             data-i18n="">Users</span></a>
                 </li>
-                <li class="nav-item active"><a href="/unit"><i class="fa fa-folder"></i><span class="menu-title"
+                <li class=" nav-item active"><a href="unit"><i class="fa fa-folder"></i><span class="menu-title"
                             data-i18n="">Units</span></a>
+                </li>
+                <li class=" nav-item"><a href="learning-content"><i class="fa fa-book-open"></i><span class="menu-title"
+                            data-i18n="">Learning Contents</span></a>
+                </li>
+                <li class=" nav-item"><a href="lecture"><i class="fa fa-microphone"></i><span class="menu-title"
+                            data-i18n="">Lectures</span></a>
+                </li>
+                <li class=" nav-item"><a href="practice"><i class="fa fa-file"></i><span class="menu-title"
+                            data-i18n="">Practices</span></a>
+                </li>
+                <li class=" nav-item"><a href="sttt"><i class="fa fa-book"></i><span class="menu-title"
+                            data-i18n="">Answer ST & TT</span></a>
+                </li>
+                <li class=" nav-item"><a href="glossary"><i class="fa fa-language"></i><span class="menu-title"
+                            data-i18n="">Glossaries</span></a>
                 </li>
             </ul>
         </div>
@@ -260,11 +277,11 @@
     <!-- BEGIN: Page JS-->
     <!-- END: Page JS-->
     <script>
-        function deleteUnit(id) {
-            if (confirm('Are you sure you want to delete this unit?')) {
-                window.location.replace("unit/delete/" + id);
-            }
+    function deleteUnit(id) {
+        if (confirm('Are you sure you want to delete this unit?')) {
+            window.location.replace("unit/delete/" + id);
         }
+    }
     </script>
 
 </body>

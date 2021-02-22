@@ -12,3 +12,6 @@ NOTE:
 ------
 PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
 WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+.main-menu.menu-light .navigation>li.active>a, .main-menu.menu-light .navigation>li.hover>a, .main-menu.menu-light .navigation>li.open>a, .main-menu.menu-light .navigation>li:hover>a {
+    color: #fa626b;
+}

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
+<!-- BEGIN: Head-->
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -10,7 +11,7 @@
     <meta name="keywords"
         content="admin template, Chameleon admin template, dashboard template, gradient admin template, responsive admin template, webapp, eCommerce dashboard, analytic dashboard">
     <meta name="author" content="ThemeSelect">
-    <title>VIP - Units</title>
+    <title>VIP - Learning Contents</title>
     <link rel="apple-touch-icon" href="<?=base_url()?>app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="<?=base_url()?>assets/images/favicon.ico">
     <link
@@ -39,6 +40,7 @@
 
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/css/style.css">
+
     <link rel="stylesheet" href="<?=base_url()?>app-assets/css/feather.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
         integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
@@ -89,7 +91,6 @@
     </nav>
     <!-- END: Header-->
 
-
     <!-- BEGIN: Main Menu-->
     <div class="main-menu menu-fixed menu-light menu-accordion    menu-shadow " data-scroll-to-active="true"
         data-img="<?=base_url()?>app-assets/images/backgrounds/02.jpg">
@@ -109,11 +110,11 @@
                 <li class=" nav-item"><a href="user"><i class="fa fa-user"></i><span class="menu-title"
                             data-i18n="">Users</span></a>
                 </li>
-                <li class=" nav-item active"><a href="unit"><i class="fa fa-folder"></i><span class="menu-title"
+                <li class=" nav-item"><a href="unit"><i class="fa fa-folder"></i><span class="menu-title"
                             data-i18n="">Units</span></a>
                 </li>
-                <li class=" nav-item"><a href="learning-content"><i class="fa fa-book-open"></i><span class="menu-title"
-                            data-i18n="">Learning Contents</span></a>
+                <li class=" nav-item active"><a href="learning-content"><i class="fa fa-book-open"></i><span
+                            class="menu-title" data-i18n="">Learning Contents</span></a>
                 </li>
                 <li class=" nav-item"><a href="lecture"><i class="fa fa-microphone"></i><span class="menu-title"
                             data-i18n="">Lectures</span></a>
@@ -140,7 +141,21 @@
             </div>
             <div class="content-header row">
                 <div class="content-header-left col-md-4 col-12 mb-2">
-                    <h3 class="content-header-title">Unit Management</h3>
+                    <h3 class="content-header-title">Learning Content Management</h3>
+                </div>
+                <div class="content-header-right col-md-8 col-12">
+                    <div class="breadcrumbs-top float-md-right">
+                        <div class="breadcrumb-wrapper mr-1">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a>Admin</a>
+                                </li>
+                                <li class="breadcrumb-item"><a>Learning Content Managment</a>
+                                </li>
+                                <li class="breadcrumb-item active"><a>Learning Content List</a>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -153,48 +168,57 @@
                             <div class="card">
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        <?= form_open('/unit/add') ?>
-                                        <div class="form-body">
-                                            <h4 class="form-section">
-                                                <i class="fa fa-folder"></i>Unit Create
-                                            </h4>
-                                            <div class="form-group">
-                                                <label for="number">Unit Number</label>
-                                                <input type="text" id="number" class="form-control"
-                                                    placeholder="Enter Unit Number" name="number">
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label for="title">Unit Title</label>
-                                                        <input type="text" id="title" class="form-control"
-                                                            placeholder="Enter Unit Title" name="title">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="description">Unit Description</label>
-                                                <textarea id="description" rows="5" class="form-control"
-                                                    name="description" placeholder="Enter Unit Description"></textarea>
-                                            </div>
+                                        <a type="button" class="btn btn-success" style="color: white"
+                                            href="learning-content/add">
+                                            <i class="fa fa-folder"></i> Create New Learning Content
+                                        </a>
+                                        <p>&nbsp;</p>
+                                        <div class="table-responsive">
+                                            <table class="table table-hover mb-0">
+
+                                                <thead class="text-white"
+                                                    style="background-color: rgba(97, 227, 181,100)">
+                                                    <tr>
+                                                        <th scope="col">ID</th>
+                                                        <th scope="col">Unit Number</th>
+                                                        <th scope="col">Title</th>
+                                                        <th scope="col">Content</th>
+                                                        <th scope="col">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php
+                                                    foreach ($data_learning_content as $learning_content) {
+                                                        echo '<tr>';
+                                                        echo '<th scope="row">' . $learning_content->id . '</th>';
+                                                        echo '<td>' . $learning_content->unit_number . '</td>';
+                                                        echo '<td>' . $learning_content->title . '</td>';
+                                                        echo '<td>' . $learning_content->content . '</td>';
+                                                        echo '<td style="white-space: nowrap">
+                                                                <a type="button" class="btn btn-info text-white" href="learning-content/edit/' . $learning_content->id . '"
+                                                                    title="Edit">
+                                                                    <span class="fa fa-edit"></span>
+                                                                </a>
+                                                                <a type="button" class="btn btn-danger text-white" href="javascript:deleteLearningContent(' . $learning_content->id . ');"
+                                                                    title="Delete">
+                                                                    <span class="fa fa-trash"></span>
+                                                                </a>
+                                                            </td>';
+                                                        echo '</tr>';
+                                                    }
+                                                    ?>
+                                                </tbody>
+
+                                            </table>
                                         </div>
 
-                                        <div class="form-actions">
-                                            <a type="button" class="btn btn-danger mr-1 text-white"
-                                                href='javascript:history.back(1);'>
-                                                <i class="fa fa-close"></i> Cancel
-                                            </a>
-                                            <button type="submit" class="btn btn-success">
-                                                <i class="fa fa-save"></i> Save
-                                            </button>
-                                        </div>
-                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                     </div>
+
                 </section>
                 <!-- // Basic form layout section end -->
             </div>
@@ -204,6 +228,8 @@
 
 
     <!-- BEGIN: Customizer-->
+    <!-- End: Customizer-->
+
 
     <!-- END: Footer-->
 
@@ -226,6 +252,13 @@
 
     <!-- BEGIN: Page JS-->
     <!-- END: Page JS-->
+    <script>
+    function deleteLearningContent(id) {
+        if (confirm('Are you sure you want to delete this learning content?')) {
+            window.location.replace("learning-content/delete/" + id);
+        }
+    }
+    </script>
 
 </body>
 <!-- END: Body-->

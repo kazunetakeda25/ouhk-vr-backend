@@ -10,7 +10,7 @@
     <meta name="keywords"
         content="admin template, Chameleon admin template, dashboard template, gradient admin template, responsive admin template, webapp, eCommerce dashboard, analytic dashboard">
     <meta name="author" content="ThemeSelect">
-    <title>VIP - Units</title>
+    <title>VIP - Learning Contents</title>
     <link rel="apple-touch-icon" href="<?=base_url()?>app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="<?=base_url()?>assets/images/favicon.ico">
     <link
@@ -109,11 +109,11 @@
                 <li class=" nav-item"><a href="user"><i class="fa fa-user"></i><span class="menu-title"
                             data-i18n="">Users</span></a>
                 </li>
-                <li class=" nav-item active"><a href="unit"><i class="fa fa-folder"></i><span class="menu-title"
+                <li class=" nav-item"><a href="unit"><i class="fa fa-folder"></i><span class="menu-title"
                             data-i18n="">Units</span></a>
                 </li>
-                <li class=" nav-item"><a href="learning-content"><i class="fa fa-book-open"></i><span class="menu-title"
-                            data-i18n="">Learning Contents</span></a>
+                <li class=" nav-item active"><a href="learning-content"><i class="fa fa-book-open"></i><span
+                            class="menu-title" data-i18n="">Learning Contents</span></a>
                 </li>
                 <li class=" nav-item"><a href="lecture"><i class="fa fa-microphone"></i><span class="menu-title"
                             data-i18n="">Lectures</span></a>
@@ -140,10 +140,9 @@
             </div>
             <div class="content-header row">
                 <div class="content-header-left col-md-4 col-12 mb-2">
-                    <h3 class="content-header-title">Unit Management</h3>
+                    <h3 class="content-header-title">Learning Content Management</h3>
                 </div>
             </div>
-
 
             <div class="content-body">
                 <!-- Basic form layout section start -->
@@ -153,29 +152,31 @@
                             <div class="card">
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        <?= form_open('/unit/add') ?>
+                                        <?= form_open('/learning-content/edit/' . $data_learning_content->id) ?>
                                         <div class="form-body">
                                             <h4 class="form-section">
-                                                <i class="fa fa-folder"></i>Unit Create
+                                                <i class="fa fa-folder"></i>Learning Content Edit
                                             </h4>
                                             <div class="form-group">
-                                                <label for="number">Unit Number</label>
-                                                <input type="text" id="number" class="form-control"
-                                                    placeholder="Enter Unit Number" name="number">
+                                                <label for="unit_number">Unit Number</label>
+                                                <input type="text" id="unit_number" class="form-control"
+                                                    placeholder="Enter Unit Number" name="unit_number"
+                                                    value="<?= $data_learning_content->unit_number ?>">
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label for="title">Unit Title</label>
+                                                        <label for="title">Learning Content Title</label>
                                                         <input type="text" id="title" class="form-control"
-                                                            placeholder="Enter Unit Title" name="title">
+                                                            placeholder="Enter Learning Content Title" name="title"
+                                                            value="<?= $data_learning_content->title ?>">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="description">Unit Description</label>
-                                                <textarea id="description" rows="5" class="form-control"
-                                                    name="description" placeholder="Enter Unit Description"></textarea>
+                                                <label for="content">Learning Content Data</label>
+                                                <textarea id="content" rows="5" class="form-control" name="content"
+                                                    placeholder="Enter Learning Content Data"><?= $data_learning_content->content ?></textarea>
                                             </div>
                                         </div>
 

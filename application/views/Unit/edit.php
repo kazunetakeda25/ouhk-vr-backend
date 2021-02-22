@@ -40,7 +40,9 @@
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/css/style.css">
     <link rel="stylesheet" href="<?=base_url()?>app-assets/css/feather.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+        integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+        crossorigin="anonymous" />
 
 
 </head>
@@ -104,11 +106,26 @@
         <div class="navigation-background"></div>
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class="nav-item"><a href="/user"><i class="fa fa-user"></i><span class="menu-title"
+                <li class=" nav-item"><a href="user"><i class="fa fa-user"></i><span class="menu-title"
                             data-i18n="">Users</span></a>
                 </li>
-                <li class="nav-item active"><a href="/unit"><i class="fa fa-folder"></i><span class="menu-title"
+                <li class=" nav-item active"><a href="unit"><i class="fa fa-folder"></i><span class="menu-title"
                             data-i18n="">Units</span></a>
+                </li>
+                <li class=" nav-item"><a href="learning-content"><i class="fa fa-book-open"></i><span class="menu-title"
+                            data-i18n="">Learning Contents</span></a>
+                </li>
+                <li class=" nav-item"><a href="lecture"><i class="fa fa-microphone"></i><span class="menu-title"
+                            data-i18n="">Lectures</span></a>
+                </li>
+                <li class=" nav-item"><a href="practice"><i class="fa fa-file"></i><span class="menu-title"
+                            data-i18n="">Practices</span></a>
+                </li>
+                <li class=" nav-item"><a href="sttt"><i class="fa fa-book"></i><span class="menu-title"
+                            data-i18n="">Answer ST & TT</span></a>
+                </li>
+                <li class=" nav-item"><a href="glossary"><i class="fa fa-language"></i><span class="menu-title"
+                            data-i18n="">Glossaries</span></a>
                 </li>
             </ul>
         </div>
@@ -143,26 +160,30 @@
                                             <div class="form-group">
                                                 <label for="number">Unit Number</label>
                                                 <input type="text" id="number" class="form-control"
-                                                    placeholder="Enter Unit Number" name="number" value="<?= $data_unit->number ?>">
+                                                    placeholder="Enter Unit Number" name="number"
+                                                    value="<?= $data_unit->number ?>">
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="title">Unit Title</label>
                                                         <input type="text" id="title" class="form-control"
-                                                            placeholder="Enter Unit Title" name="title" value="<?= $data_unit->title ?>">
+                                                            placeholder="Enter Unit Title" name="title"
+                                                            value="<?= $data_unit->title ?>">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="description">Unit Description</label>
                                                 <textarea id="description" rows="5" class="form-control"
-                                                    name="description" placeholder="Enter Unit Description"><?= $data_unit->description ?></textarea>
+                                                    name="description"
+                                                    placeholder="Enter Unit Description"><?= $data_unit->description ?></textarea>
                                             </div>
                                         </div>
 
                                         <div class="form-actions">
-                                            <a type="button" class="btn btn-danger mr-1 text-white" href='javascript:history.back(1);'>
+                                            <a type="button" class="btn btn-danger mr-1 text-white"
+                                                href='javascript:history.back(1);'>
                                                 <i class="fa fa-close"></i> Cancel
                                             </a>
                                             <button type="submit" class="btn btn-success">
