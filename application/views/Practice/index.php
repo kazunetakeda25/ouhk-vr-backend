@@ -182,6 +182,7 @@
                                                     <tr>
                                                         <th scope="col" class="d-none">ID</th>
                                                         <th scope="col">Unit Number</th>
+                                                        <th scope="col">Practice Number</th>
                                                         <th scope="col">Title</th>
                                                         <th scope="col">Action</th>
                                                     </tr>
@@ -192,6 +193,7 @@
                                                         echo '<tr>';
                                                         echo '<td class="d-none">' . $practice->id . '</td>';
                                                         echo '<th scope="row">' . $practice->unit_number . '</th>';
+                                                        echo '<td>' . $practice->number . '</td>';
                                                         echo '<td>' . $practice->title . '</td>';
                                                         echo '<td style="white-space: nowrap">
                                                                 <a type="button" class="btn btn-info text-white" href="practice/edit/' . $practice->id . '"

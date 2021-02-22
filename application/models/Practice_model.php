@@ -12,7 +12,7 @@ class Practice_model extends CI_Model
 
 	public function getAll() 
 	{
-		$this->db->select('id, unit_number, title');
+		$this->db->select('id, unit_number, number, title');
 		$this->db->from('tbl_practice');
 		$this->db->where("is_deleted", "0");
 		$this->db->order_by("unit_number", "asc");
@@ -25,6 +25,7 @@ class Practice_model extends CI_Model
 	{
 		$data = array(
 			'unit_number' => $practice['unit_number'],
+			'number' => $practice['number'],
 			'title' => $practice['title'],
 			'video' => $practice['video'], 
 			'created_at' => date("Y-m-d H:i:s")
@@ -36,7 +37,7 @@ class Practice_model extends CI_Model
 
 	public function getAllForUnit($unit_number) 
 	{
-		$this->db->select('id, unit_number, title');
+		$this->db->select('id, unit_number, number, title');
     	$this->db->from('tbl_practice');
 		$this->db->where('unit_number', $unit_number);
 		
@@ -46,7 +47,7 @@ class Practice_model extends CI_Model
 
 	public function get($id) 
 	{
-		$this->db->select('id, unit_number, title, video');
+		$this->db->select('id, unit_number, number, title, video');
     	$this->db->from('tbl_practice');
 		$this->db->where('id', $id);
 		

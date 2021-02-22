@@ -153,7 +153,7 @@
                             <div class="card">
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        <?= form_open_multipart('/practuce/add') ?>
+                                        <?= form_open_multipart('/sttt/add') ?>
                                         <div class="form-body">
                                             <h4 class="form-section">
                                                 <i class="fa fa-folder"></i>Answer ST and TT Create
