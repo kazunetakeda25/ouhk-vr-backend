@@ -34,6 +34,16 @@ class LearningContent_model extends CI_Model
 		return $this->db->insert_id();
 	}
 
+	public function getAllForUnit($unit_number) 
+	{
+		$this->db->select('id, unit_number, title, data');
+    	$this->db->from('tbl_learning_content');
+		$this->db->where('unit_number', $unit_number);
+		
+		$result = $this->db->get()->result();
+		return $result;
+	}
+
 	public function get($id) 
 	{
 		$this->db->select('id, unit_number, title, data');

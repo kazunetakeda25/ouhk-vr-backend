@@ -21,6 +21,16 @@ class LearningContent extends CI_Controller {
 		}
 	}
 
+	public function unitLearningContent($unit_number)
+	{
+		if ($this->session->userdata('logged_in') === true) {
+			$result['data_learning_content'] = $this->learningcontent_model->getAllForUnit($unit_number);
+            $this->load->view('Learning-Content/index', $result);
+		} else {
+			redirect('/login');
+		}
+	}
+
 	public function add() {
 		if ($this->session->userdata('logged_in') === true) {
 			$this->load->helper('form');

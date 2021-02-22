@@ -12,6 +12,7 @@ class Unit_model extends CI_Model
 
 	public function getAll() 
 	{
+		$this->db->select('id, number, title, description');
 		$this->db->from('tbl_unit');
 		$this->db->where("is_deleted", "0");
 		$this->db->order_by("number", "asc");
@@ -43,7 +44,7 @@ class Unit_model extends CI_Model
 
 	public function get($id) 
 	{
-		$this->db->select('*');
+		$this->db->select('id, number, title, description');
     	$this->db->from('tbl_unit');
 		$this->db->where('id', $id);
 		
