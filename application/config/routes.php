@@ -60,6 +60,25 @@ $route['dashboard'] = 'dashboard';
 
 $route['users'] = 'user/index';
 
+$route['unit'] = 'unit/index';
+$route['unit/add'] = 'unit/add';
+$route['unit/delete/(:num)'] = 'unit/delete/$1';
+$route['unit/edit/(:num)'] = 'unit/edit/$1';
+
+$route['learning-content'] = 'learningContent/index';
+
+$route['lecture'] = 'lecture/index';
+
+$route['practice'] = 'practice/index';
+
+$route['practice-glossary'] = 'practiceGlossary/index';
+
+$route['sttt'] = 'sttt/index';
+
+$route['video-online'] = 'videoonline/index';
+
+$route['forum'] = 'forum/index';
+
 $route['default_controller'] = 'auth/login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

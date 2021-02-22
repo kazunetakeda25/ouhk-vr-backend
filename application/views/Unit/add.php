@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
-<!-- BEGIN: Head-->
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -11,7 +10,7 @@
     <meta name="keywords"
         content="admin template, Chameleon admin template, dashboard template, gradient admin template, responsive admin template, webapp, eCommerce dashboard, analytic dashboard">
     <meta name="author" content="ThemeSelect">
-    <title>VIP - Users</title>
+    <title>VIP - Units</title>
     <link rel="apple-touch-icon" href="<?=base_url()?>app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="<?=base_url()?>assets/images/favicon.ico">
     <link
@@ -40,7 +39,6 @@
 
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/css/style.css">
-
     <link rel="stylesheet" href="<?=base_url()?>app-assets/css/feather.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -106,14 +104,12 @@
         <div class="navigation-background"></div>
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class=" nav-item active"><a href="/users"><i class="fa fa-user"></i><span class="menu-title"
+                <li class="nav-item"><a href="/user"><i class="fa fa-user"></i><span class="menu-title"
                             data-i18n="">Users</span></a>
                 </li>
-                <li class=" nav-item"><a href="/units"><i class="fa fa-folder"></i><span class="menu-title"
+                <li class="nav-item active"><a href="/unit"><i class="fa fa-folder"></i><span class="menu-title"
                             data-i18n="">Units</span></a>
                 </li>
-
-
             </ul>
         </div>
     </div>
@@ -127,21 +123,7 @@
             </div>
             <div class="content-header row">
                 <div class="content-header-left col-md-4 col-12 mb-2">
-                    <h3 class="content-header-title">User Management</h3>
-                </div>
-                <div class="content-header-right col-md-8 col-12">
-                    <div class="breadcrumbs-top float-md-right">
-                        <div class="breadcrumb-wrapper mr-1">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Admin</a>
-                                </li>
-                                <li class="breadcrumb-item"><a href="#">User Managment</a>
-                                </li>
-                                <li class="breadcrumb-item active"><a href="#">User List</a>
-                                </li>
-                            </ol>
-                        </div>
-                    </div>
+                    <h3 class="content-header-title">Unit Management</h3>
                 </div>
             </div>
 
@@ -154,58 +136,47 @@
                             <div class="card">
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-
-                                        <button type="submit" class="btn btn-success">
-                                            <i class="fa fa-folder"></i> Create New User
-                                        </button>
-                                        <p>&nbsp;</p>
-                                        <div class="table-responsive">
-                                            <table class="table table-hover mb-0">
-
-                                                <thead class="text-white"
-                                                    style="background-color: rgba(97, 227, 181,100)">
-                                                    <tr>
-                                                        <th scope="col">ID</th>
-                                                        <th scope="col">Name</th>
-                                                        <th scope="col">Email</th>
-                                                        <th scope="col">Role</th>
-                                                        <th scope="col">Status</th>
-                                                        <th scope="col">Register Date</th>
-                                                        <th scope="col">Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>單元1</td>
-                                                        <td>傳譯簡介</td>
-                                                        <td>傳譯簡介</td>
-                                                        <td>傳譯簡介</td>
-                                                        <td>傳譯簡介</td>
-                                                        <td style='white-space: nowrap'>
-                                                            <a type="button" class="btn btn-info text-white"
-                                                                title="Edit">
-                                                                <span class="fa fa-edit"></span>
-                                                            </a>
-                                                            <a type="button" class="btn btn-danger text-white"
-                                                                title="Delete">
-                                                                <span class="fa fa-trash"></span>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-
-                                                </tbody>
-
-                                            </table>
+                                        <?= form_open('/unit/add') ?>
+                                        <div class="form-body">
+                                            <h4 class="form-section">
+                                                <i class="fa fa-folder"></i>Unit Create
+                                            </h4>
+                                            <div class="form-group">
+                                                <label for="number">Unit Number</label>
+                                                <input type="text" id="number" class="form-control"
+                                                    placeholder="Enter Unit Number" name="number">
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="title">Unit Title</label>
+                                                        <input type="text" id="title" class="form-control"
+                                                            placeholder="Enter Unit Title" name="title">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="description">Unit Description</label>
+                                                <textarea id="description" rows="5" class="form-control"
+                                                    name="description" placeholder="Enter Unit Description"></textarea>
+                                            </div>
                                         </div>
 
+                                        <div class="form-actions">
+                                            <a type="button" class="btn btn-danger mr-1 text-white" href='javascript:history.back(1);'>
+                                                <i class="fa fa-close"></i> Cancel
+                                            </a>
+                                            <button type="submit" class="btn btn-success">
+                                                <i class="fa fa-save"></i> Save
+                                            </button>
+                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                     </div>
-
                 </section>
                 <!-- // Basic form layout section end -->
             </div>
@@ -213,10 +184,11 @@
     </div>
     <!-- END: Content-->
 
+
     <!-- BEGIN: Customizer-->
-    <!-- End: Customizer-->
 
     <!-- END: Footer-->
+
 
     <!-- BEGIN: Vendor JS-->
     <script src="<?=base_url()?>app-assets/vendors/js/vendors.min.js" type="text/javascript"></script>
@@ -239,5 +211,7 @@
 
 </body>
 <!-- END: Body-->
+
+<!-- Mirrored from themeselection.com/demo/chameleon-admin-template/html/ltr/vertical-menu-template/form-layout-basic.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Jan 2021 19:01:13 GMT -->
 
 </html>
