@@ -112,20 +112,21 @@
                 <li class=" nav-item"><a href="<?=base_url()?>unit"><i class="fa fa-folder"></i><span class="menu-title"
                             data-i18n="">Units</span></a>
                 </li>
-                <li class=" nav-item active"><a href="<?=base_url()?>learning-content"><i class="fa fa-book-open"></i><span
-                            class="menu-title" data-i18n="">Learning Contents</span></a>
+                <li class=" nav-item active"><a href="<?=base_url()?>learning-content"><i
+                            class="fa fa-book-open"></i><span class="menu-title" data-i18n="">Learning
+                            Contents</span></a>
                 </li>
-                <li class=" nav-item"><a href="<?=base_url()?>lecture"><i class="fa fa-microphone"></i><span class="menu-title"
-                            data-i18n="">Lectures</span></a>
+                <li class=" nav-item"><a href="<?=base_url()?>lecture"><i class="fa fa-microphone"></i><span
+                            class="menu-title" data-i18n="">Lectures</span></a>
                 </li>
-                <li class=" nav-item"><a href="<?=base_url()?>practice"><i class="fa fa-file"></i><span class="menu-title"
-                            data-i18n="">Practices</span></a>
+                <li class=" nav-item"><a href="<?=base_url()?>practice"><i class="fa fa-file"></i><span
+                            class="menu-title" data-i18n="">Practices</span></a>
                 </li>
                 <li class=" nav-item"><a href="<?=base_url()?>sttt"><i class="fa fa-book"></i><span class="menu-title"
                             data-i18n="">Answer ST & TT</span></a>
                 </li>
-                <li class=" nav-item"><a href="<?=base_url()?>glossary"><i class="fa fa-language"></i><span class="menu-title"
-                            data-i18n="">Glossaries</span></a>
+                <li class=" nav-item"><a href="<?=base_url()?>glossary"><i class="fa fa-language"></i><span
+                            class="menu-title" data-i18n="">Glossaries</span></a>
                 </li>
             </ul>
         </div>
@@ -160,8 +161,14 @@
                                             </h4>
                                             <div class="form-group">
                                                 <label for="unit_number">Unit Number</label>
-                                                <input type="text" id="unit_number" class="form-control"
-                                                    placeholder="Enter Unit Number" name="unit_number">
+                                                <select id="unit_number" name="unit_number" class="form-control">
+                                                    <option value="" selected disabled>Select Unit</option>
+                                                    <?php
+                                                        foreach ($data_unit as $unit) {
+                                                            echo '<option value="' . $unit->number . '">' . $unit->number . '</option>';
+                                                        }
+                                                        ?>
+                                                </select>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12">

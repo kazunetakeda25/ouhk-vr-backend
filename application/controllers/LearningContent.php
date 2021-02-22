@@ -9,6 +9,7 @@ class LearningContent extends CI_Controller {
 
 		$this->load->library(array('session'));
 		$this->load->model('learningcontent_model');
+		$this->load->model('unit_model');
 	}
 
 	public function index()
@@ -41,7 +42,8 @@ class LearningContent extends CI_Controller {
 			$this->form_validation->set_rules('data', 'Learning Content Data', 'required');
 			
 			if ($this->form_validation->run() == false) {
-				$this->load->view('Learning-Content/add');
+				$result['data_unit'] = $this->unit_model->getUnitList();
+				$this->load->view('Learning-Content/add', $result);
 			} else {
 				$unit_number = $this->input->post('unit_number');
 				$title = $this->input->post('title');
@@ -80,6 +82,7 @@ class LearningContent extends CI_Controller {
 			$this->form_validation->set_rules('data', 'Learning Content Data', 'required');
 			
 			if ($this->form_validation->run() == false) {
+				$result['data_unit'] = $this->unit_model->getUnitList();
 				$result['data_learning_content'] = $this->learningcontent_model->get($id);
 				$this->load->view('Learning-Content/edit', $result);
 			} else {

@@ -10,7 +10,7 @@
     <meta name="keywords"
         content="admin template, Chameleon admin template, dashboard template, gradient admin template, responsive admin template, webapp, eCommerce dashboard, analytic dashboard">
     <meta name="author" content="ThemeSelect">
-    <title>VIP - Learning Contents</title>
+    <title>VIP - Lectures</title>
     <link rel="apple-touch-icon" href="<?=base_url()?>app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="<?=base_url()?>assets/images/favicon.ico">
     <link
@@ -112,11 +112,11 @@
                 <li class=" nav-item"><a href="<?=base_url()?>unit"><i class="fa fa-folder"></i><span class="menu-title"
                             data-i18n="">Units</span></a>
                 </li>
-                <li class=" nav-item active"><a href="<?=base_url()?>learning-content"><i
+                <li class=" nav-item"><a href="<?=base_url()?>learning-content"><i
                             class="fa fa-book-open"></i><span class="menu-title" data-i18n="">Learning
                             Contents</span></a>
                 </li>
-                <li class=" nav-item"><a href="<?=base_url()?>lecture"><i class="fa fa-microphone"></i><span
+                <li class=" nav-item active"><a href="<?=base_url()?>lecture"><i class="fa fa-microphone"></i><span
                             class="menu-title" data-i18n="">Lectures</span></a>
                 </li>
                 <li class=" nav-item"><a href="<?=base_url()?>practice"><i class="fa fa-file"></i><span
@@ -141,7 +141,7 @@
             </div>
             <div class="content-header row">
                 <div class="content-header-left col-md-4 col-12 mb-2">
-                    <h3 class="content-header-title">Learning Content Management</h3>
+                    <h3 class="content-header-title">Lecture Management</h3>
                 </div>
             </div>
 
@@ -153,10 +153,10 @@
                             <div class="card">
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        <?= form_open('/learning-content/edit/' . $data_learning_content->id) ?>
+                                        <?= form_open_multipart('/lecture/edit/' . $data_lecture->id) ?>
                                         <div class="form-body">
                                             <h4 class="form-section">
-                                                <i class="fa fa-folder"></i>Learning Content Edit
+                                                <i class="fa fa-folder"></i>Lecture Edit
                                             </h4>
                                             <div class="form-group">
                                                 <label for="unit_number">Unit Number</label>
@@ -164,7 +164,7 @@
                                                     <option value="" disabled>Select Unit</option>
                                                     <?php
                                                         foreach ($data_unit as $unit) {
-                                                            echo '<option value="' . $unit->number . '" ' . ($unit->number == $data_learning_content->unit_number ? 'selected' : '') . '>' . $unit->number . '</option>';
+                                                            echo '<option value="' . $unit->number . '" ' . ($unit->number == $data_lecture->unit_number ? 'selected' : '') . '>' . $unit->number . '</option>';
                                                         }
                                                         ?>
                                                 </select>
@@ -172,18 +172,40 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label for="title">Learning Content Title</label>
+                                                        <label for="title">Lecture Title</label>
                                                         <input type="text" id="title" class="form-control"
-                                                            placeholder="Enter Learning Content Title" name="title"
-                                                            value="<?= $data_learning_content->title ?>">
+                                                            placeholder="Enter Lecture Title" name="title"
+                                                            value="<?= $data_lecture->title ?>">
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="data">Learning Content Data</label>
-                                                <textarea id="data" rows="5" class="form-control" name="data"
-                                                    placeholder="Enter Learning Content Data"><?= $data_learning_content->data ?></textarea>
+                                            <div class="form-group d-block" id="mp3_current_panel">
+                                                <label for="title">Lecture MP3 File</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control square" id="mp3_current"
+                                                        placeholder="Lecture MP3 File" name="mp3_current" readonly
+                                                        value="<?= $data_lecture->mp3 ?>">
+                                                    <div class="input-group-append">
+                                                        <a type="button" class="btn btn-info text-white"
+                                                            href="javascript:editLectureMp3Edit()">
+                                                            <i class="fa fa-edit"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
                                             </div>
+                                            <div class="form-group d-none" id="mp3_new_panel">
+                                                <label class="label-control">Lecture MP3 File</label>
+                                                <div>
+                                                    <label id="input" class="file center-block">
+                                                        <input type="file" id="mp3" name="mp3" accept=".mp3">
+                                                    </label>
+                                                </div>
+                                                <a type="button" class="btn btn-danger text-white"
+                                                    href="javascript:cancelLectureMp3Edit()">
+                                                    <i class="fa fa-times"></i>
+                                                </a>
+                                            </div>
+                                            <input type="hidden" name="change_mp3" id="change_mp3" value="0">
                                         </div>
 
                                         <div class="form-actions">
@@ -232,6 +254,19 @@
     <!-- END: Theme JS-->
 
     <!-- BEGIN: Page JS-->
+    <script>
+    function editLectureMp3Edit() {
+        $('#mp3_current_panel').removeClass('d-block').addClass('d-none');
+        $('#mp3_new_panel').removeClass('d-none').addClass('d-block');
+        $('#change_mp3').val('1');
+    }
+
+    function cancelLectureMp3Edit() {
+        $('#mp3_new_panel').removeClass('d-block').addClass('d-none');
+        $('#mp3_current_panel').removeClass('d-none').addClass('d-block');
+        $('#change_mp3').val('0');
+    }
+    </script>
     <!-- END: Page JS-->
 
 </body>

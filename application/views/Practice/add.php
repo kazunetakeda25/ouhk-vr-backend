@@ -10,7 +10,7 @@
     <meta name="keywords"
         content="admin template, Chameleon admin template, dashboard template, gradient admin template, responsive admin template, webapp, eCommerce dashboard, analytic dashboard">
     <meta name="author" content="ThemeSelect">
-    <title>VIP - Learning Contents</title>
+    <title>VIP - Lectures</title>
     <link rel="apple-touch-icon" href="<?=base_url()?>app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="<?=base_url()?>assets/images/favicon.ico">
     <link
@@ -112,11 +112,10 @@
                 <li class=" nav-item"><a href="<?=base_url()?>unit"><i class="fa fa-folder"></i><span class="menu-title"
                             data-i18n="">Units</span></a>
                 </li>
-                <li class=" nav-item active"><a href="<?=base_url()?>learning-content"><i
-                            class="fa fa-book-open"></i><span class="menu-title" data-i18n="">Learning
-                            Contents</span></a>
+                <li class=" nav-item"><a href="<?=base_url()?>learning-content"><i class="fa fa-book-open"></i><span
+                            class="menu-title" data-i18n="">Learning Contents</span></a>
                 </li>
-                <li class=" nav-item"><a href="<?=base_url()?>lecture"><i class="fa fa-microphone"></i><span
+                <li class=" nav-item active"><a href="<?=base_url()?>lecture"><i class="fa fa-microphone"></i><span
                             class="menu-title" data-i18n="">Lectures</span></a>
                 </li>
                 <li class=" nav-item"><a href="<?=base_url()?>practice"><i class="fa fa-file"></i><span
@@ -141,9 +140,10 @@
             </div>
             <div class="content-header row">
                 <div class="content-header-left col-md-4 col-12 mb-2">
-                    <h3 class="content-header-title">Learning Content Management</h3>
+                    <h3 class="content-header-title">Lecture Management</h3>
                 </div>
             </div>
+
 
             <div class="content-body">
                 <!-- Basic form layout section start -->
@@ -153,18 +153,18 @@
                             <div class="card">
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        <?= form_open('/learning-content/edit/' . $data_learning_content->id) ?>
+                                        <?= form_open_multipart('/lecture/add') ?>
                                         <div class="form-body">
                                             <h4 class="form-section">
-                                                <i class="fa fa-folder"></i>Learning Content Edit
+                                                <i class="fa fa-folder"></i>Lecture Create
                                             </h4>
                                             <div class="form-group">
                                                 <label for="unit_number">Unit Number</label>
                                                 <select id="unit_number" name="unit_number" class="form-control">
-                                                    <option value="" disabled>Select Unit</option>
+                                                    <option value="" selected disabled>Select Unit</option>
                                                     <?php
                                                         foreach ($data_unit as $unit) {
-                                                            echo '<option value="' . $unit->number . '" ' . ($unit->number == $data_learning_content->unit_number ? 'selected' : '') . '>' . $unit->number . '</option>';
+                                                            echo '<option value="' . $unit->number . '">' . $unit->number . '</option>';
                                                         }
                                                         ?>
                                                 </select>
@@ -172,36 +172,37 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label for="title">Learning Content Title</label>
+                                                        <label for="title">Lecture Title</label>
                                                         <input type="text" id="title" class="form-control"
-                                                            placeholder="Enter Learning Content Title" name="title"
-                                                            value="<?= $data_learning_content->title ?>">
+                                                            placeholder="Enter Lecture Title" name="title">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="data">Learning Content Data</label>
-                                                <textarea id="data" rows="5" class="form-control" name="data"
-                                                    placeholder="Enter Learning Content Data"><?= $data_learning_content->data ?></textarea>
+                                                <label class="label-control">Lecture MP3 File</label>
+                                                <div>
+                                                    <label id="input" class="file center-block">
+                                                        <input type="file" id="mp3" name="mp3" accept=".mp3">
+                                                    </label>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="form-actions">
-                                            <a type="button" class="btn btn-danger mr-1 text-white"
-                                                href='javascript:history.back(1);'>
-                                                <i class="fa fa-close"></i> Cancel
-                                            </a>
-                                            <button type="submit" class="btn btn-success">
-                                                <i class="fa fa-save"></i> Save
-                                            </button>
+                                            <div class="form-actions">
+                                                <a type="button" class="btn btn-danger mr-1 text-white"
+                                                    href='javascript:history.back(1);'>
+                                                    <i class="fa fa-close"></i> Cancel
+                                                </a>
+                                                <button type="submit" class="btn btn-success">
+                                                    <i class="fa fa-save"></i> Save
+                                                </button>
+                                            </div>
+                                            </form>
                                         </div>
-                                        </form>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                    </div>
+                        </div>
                 </section>
                 <!-- // Basic form layout section end -->
             </div>
