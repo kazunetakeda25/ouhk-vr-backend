@@ -56,8 +56,6 @@ $route['forgot-password'] = 'auth/forgotPassword';
 $route['reset-password'] = 'auth/resetPassword';
 $route['logout'] = 'auth/logout';
 
-$route['dashboard'] = 'dashboard';
-
 $route['user'] = 'user/index';
 $route['user/add'] = 'user/add';
 $route['user/delete/(:num)'] = 'user/delete/$1';
@@ -99,8 +97,6 @@ $route['sttt/practice/(:num)'] = 'sttt/practiceSTTT/$1';
 $route['sttt/add'] = 'sttt/add';
 $route['sttt/delete/(:num)'] = 'sttt/delete/$1';
 $route['sttt/edit/(:num)'] = 'sttt/edit/$1';
-
-$route['video-online'] = 'videoonline/index';
 
 $route['forum'] = 'forum/index';
 $route['forum/add'] = 'forum/add';
