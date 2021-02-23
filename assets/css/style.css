@@ -37,3 +37,8 @@ body.vertical-layout.vertical-menu.menu-expanded .main-menu .navigation>li:hover
     width: 30px;
     height: 30px;
 }
+
+.message.text-danger p {
+    font-size: 12px;
+    margin-bottom: 5px;
+}

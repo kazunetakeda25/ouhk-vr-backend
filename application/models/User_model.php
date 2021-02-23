@@ -59,16 +59,16 @@ class User_model extends CI_Model
 
 	public function sendVerificationCode($email)
 	{
-		$from = 'rey@criterion.net';
+		$from = 'ouhkedu@hotmail.com';
 
 		$this->load->library('email');
 
 		$config = array();
 		$config['protocol'] = 'smtp';
-		$config['smtp_host'] = 'smtp.mail.yahoo.com';
-		$config['smtp_user'] = 'youremail@yahoo.com';
-		$config['smtp_pass'] = 'yourpassword';
-		$config['smtp_port'] = 25;
+		$config['smtp_host'] = 'smtp.live.com';
+		$config['smtp_user'] = 'ouhkedu@hotmail.com';
+		$config['smtp_pass'] = 'OuRadi88';
+		$config['smtp_port'] = 587;
 		$this->email->initialize($config);
 
 		$this->email->from($from, 'VIP Admin');

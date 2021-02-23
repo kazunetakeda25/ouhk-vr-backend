@@ -23,6 +23,7 @@ class Auth extends CI_Controller
 			$this->form_validation->set_rules('password', 'Password', 'required');
 			
 			if ($this->form_validation->run() == false) {
+				$this->session->set_flashdata('message', validation_errors());
 				$this->load->view('Auth/login');
 			} else {
 				$email = $this->input->post('email');
@@ -41,6 +42,7 @@ class Auth extends CI_Controller
 					
 					redirect('/unit');
 				} else {
+					$this->session->set_flashdata('message', "Unable to login. Check if your user credential correct or check if you are Administrator.");
 					$this->load->view('Auth/login');
 				}
 			}
@@ -57,8 +59,10 @@ class Auth extends CI_Controller
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[tbl_user.email]');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]');
 		$this->form_validation->set_rules('password_confirm', 'Confirm Password', 'trim|required|min_length[6]|matches[password]');
-		
+
 		if ($this->form_validation->run() === false) {
+
+			$this->session->set_flashdata('message', validation_errors());
 			$this->load->view('Auth/register');
 		} else {
 			$username = $this->input->post('username');
@@ -66,8 +70,9 @@ class Auth extends CI_Controller
 			$password = $this->input->post('password');
 			
 			if ($this->user_model->createUser($username, $email, $password)) {
-				redirect('/unit');
+				redirect('/login');
 			} else {
+				$this->session->set_flashdata('message', "Same user with username or email already exists.");
 				$this->load->view('Auth/register');
 			}
 		}
@@ -84,14 +89,17 @@ class Auth extends CI_Controller
 			$this->form_validation->set_rules('email', 'Email', 'required');
 			
 			if ($this->form_validation->run() == false) {
+				$this->session->set_flashdata('message', validation_errors());
 				$this->load->view('Auth/forgot-password');
 			} else {
 				$email = $this->input->post('email');
 
 				$result = $this->user_model->sendVerificationCode($email);
-
-				if ($result !== true) {
+				if ($result == true) {
 					redirect('/reset-password');
+				} else {
+					$this->session->set_flashdata('message', "Unable to send verification code to your email.");
+					$this->load->view('Auth/forgot-password');
 				}
 			}
 		}
@@ -109,6 +117,7 @@ class Auth extends CI_Controller
 			$this->form_validation->set_rules('password_confirm', 'Confirm Password', 'trim|required|callback_check_equal_less['.$this->input->post('password').']');
 			
 			if ($this->form_validation->run() == false) {
+				$this->session->set_flashdata('message', validation_errors());
 				$this->load->view('Auth/reset-password');
 			} else {
 				$password = $this->input->post('password');
@@ -116,6 +125,9 @@ class Auth extends CI_Controller
 				$result = $this->user_model->resetPassword($password);
 				if ($result == true) {
 					redirect('/login');
+				} else {
+					$this->session->set_flashdata('message', "Unable to reset your password.");
+					$this->load->view('Auth/reset-password');
 				}
 			}
 		}

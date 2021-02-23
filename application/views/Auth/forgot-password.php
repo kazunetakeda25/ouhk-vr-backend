@@ -69,6 +69,11 @@
                                                     <i class="fa fa-email"></i>
                                                 </div>
                                             </fieldset>
+                                            <div class="form-group row">
+                                                <div class="col-12">
+                                                    <span class="message text-danger"><?php echo $this->session->flashdata('message'); ?></span>
+                                                </div>
+                                            </div>
                                             <a href="<?= base_url('login') ?>" class="btn btn-outline-primary float-left btn-inline">Back To Login</a>
                                             <button type="submit" class="btn btn-primary float-right btn-inline">Send Verification Code</button>
                                         </form>

@@ -8,7 +8,7 @@
     <meta name="description" content="Chameleon Admin is a modern Bootstrap 4 webapp &amp; admin dashboard html template with a large number of components, elegant design, clean and organized code.">
     <meta name="keywords" content="admin template, Chameleon admin template, dashboard template, gradient admin template, responsive admin template, webapp, eCommerce dashboard, analytic dashboard">
     <meta name="author" content="ThemeSelect">
-    <title>VIP - Answer ST and TT</title>
+    <title>VIP - Forum</title>
     <link rel="apple-touch-icon" href="<?= base_url() ?>app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="<?= base_url() ?>assets/images/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700" rel="stylesheet">
@@ -129,7 +129,7 @@
             </div>
             <div class="content-header row">
                 <div class="content-header-left col-md-4 col-12 mb-2">
-                    <h3 class="content-header-title">Interpreting Practice & Exercise Management</h3>
+                    <h3 class="content-header-title">Forum Management</h3>
                 </div>
             </div>
 
@@ -141,7 +141,7 @@
                             <div class="card">
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        <?= form_open_multipart(base_url() . 'sttt/edit/' . $data_sttt->id) ?>
+                                        <?= form_open_multipart(base_url() . 'forum/edit/' . $data_forum->id) ?>
                                         <div class="form-body">
                                             <h4 class="form-section">
                                                 <i class="fa fa-folder"></i>Answer ST and TT Edit
@@ -152,18 +152,7 @@
                                                     <option value="" disabled>Select Unit</option>
                                                     <?php
                                                     foreach ($data_unit as $unit) {
-                                                        echo '<option value="' . $unit->number . '" ' . ($unit->number == $data_sttt->unit_number ? 'selected' : '') . '>' . $unit->number . '</option>';
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="practice_number">Practice Number</label>
-                                                <select id="practice_number" name="practice_number" class="form-control">
-                                                    <option value="" disabled>Select Interpreting Practice & Exercise</option>
-                                                    <?php
-                                                    foreach ($data_practice as $practice) {
-                                                        echo '<option value="' . $practice->number . '" ' . ($practice->number == $data_sttt->practice_number ? 'selected' : '') . '>' . $practice->number . '</option>';
+                                                        echo '<option value="' . $unit->number . '" ' . ($unit->number == $data_forum->unit_number ? 'selected' : '') . '>' . $unit->number . '</option>';
                                                     }
                                                     ?>
                                                 </select>
@@ -171,18 +160,14 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label for="title">Answer ST and TT Title</label>
-                                                        <input type="text" id="title" class="form-control" placeholder="Enter Answer ST and TT Title" name="title" value="<?= $data_sttt->title ?>">
+                                                        <label for="title">Forum Title</label>
+                                                        <input type="text" id="title" class="form-control" placeholder="Enter Forum Title" name="title" value="<?= $data_forum->title ?>">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="original_text">Original Text</label>
-                                                <textarea id="original_text" rows="5" class="form-control" name="original_text" placeholder="Enter Original Text"><?= $data_sttt->original_text ?></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="translated_text">Translated Text</label>
-                                                <textarea id="translated_text" rows="5" class="form-control" name="translated_text" placeholder="Enter Translated Text"><?= $data_sttt->translated_text ?></textarea>
+                                                <label for="content">Forum Content</label>
+                                                <textarea id="content" rows="5" class="form-control" name="content" placeholder="Enter Forum Content"><?= $data_forum->content ?></textarea>
                                             </div>
                                         </div>
 

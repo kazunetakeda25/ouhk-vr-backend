@@ -16,7 +16,7 @@ class Glossary_model extends CI_Model
 		$this->db->from('tbl_glossary');
 		$this->db->where("is_deleted", "0");
 		$this->db->order_by("unit_number", "asc");
-		$this->db->order_by("unit_number", "asc");
+		$this->db->order_by("practice_number", "asc");
 		$this->db->order_by("id", "asc");
 		
 		return $this->db->get()->result();

@@ -114,9 +114,9 @@
                 </li>
                 <li class=" nav-item"><a href="<?= base_url() ?>sttt"><i class="fa fa-book"></i><span class="menu-title" data-i18n="">Answer ST & TT</span></a>
                 </li>
-                <li class=" nav-item active"><a href="<?= base_url() ?>glossary"><i class="fa fa-language"></i><span class="menu-title" data-i18n="">Glossaries</span></a>
+                <li class=" nav-item"><a href="<?= base_url() ?>glossary"><i class="fa fa-language"></i><span class="menu-title" data-i18n="">Glossaries</span></a>
                 </li>
-                <li class=" nav-item"><a href="<?= base_url() ?>forum"><i class="fa fa-comments"></i><span class="menu-title" data-i18n="">Forum</span></a>
+                <li class=" nav-item active"><a href="<?= base_url() ?>forum"><i class="fa fa-comments"></i><span class="menu-title" data-i18n="">Forum</span></a>
                 </li>
             </ul>
         </div>
@@ -130,7 +130,7 @@
             </div>
             <div class="content-header row">
                 <div class="content-header-left col-md-4 col-12 mb-2">
-                    <h3 class="content-header-title">Answer ST and TT Management</h3>
+                    <h3 class="content-header-title">Forum Management</h3>
                 </div>
                 <div class="content-header-right col-md-8 col-12">
                     <div class="breadcrumbs-top float-md-right">
@@ -138,9 +138,9 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a>Admin</a>
                                 </li>
-                                <li class="breadcrumb-item"><a>ST & TT Managment</a>
+                                <li class="breadcrumb-item"><a>Forum Managment</a>
                                 </li>
-                                <li class="breadcrumb-item active"><a>ST & TT List</a>
+                                <li class="breadcrumb-item active"><a>Forum List</a>
                                 </li>
                             </ol>
                         </div>
@@ -157,8 +157,8 @@
                             <div class="card">
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        <a type="button" class="btn btn-success" style="color: white" href="<?= base_url() ?>sttt/add">
-                                            <i class="fa fa-folder"></i> Create New ST & TT
+                                        <a type="button" class="btn btn-success" style="color: white" href="<?= base_url() ?>forum/add">
+                                            <i class="fa fa-folder"></i> Create New Forum
                                         </a>
                                         <p>&nbsp;</p>
                                         <div class="table-responsive">
@@ -168,25 +168,25 @@
                                                     <tr>
                                                         <th scope="col" class="d-none">ID</th>
                                                         <th scope="col">Unit Number</th>
-                                                        <th scope="col">Practice Number</th>
                                                         <th scope="col">Title</th>
+                                                        <th scope="col">Content</th>
                                                         <th scope="col">Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <?php
-                                                    foreach ($data_sttt as $sttt) {
+                                                    foreach ($data_forum as $forum) {
                                                         echo '<tr>';
-                                                        echo '<td class="d-none">' . $sttt->id . '</td>';
-                                                        echo '<th scope="row">' . $sttt->unit_number . '</th>';
-                                                        echo '<th scope="row">' . $sttt->practice_number . '</th>';
-                                                        echo '<td>' . $sttt->title . '</td>';
+                                                        echo '<td class="d-none">' . $forum->id . '</td>';
+                                                        echo '<th scope="row">' . $forum->unit_number . '</th>';
+                                                        echo '<td>' . $forum->title . '</td>';
+                                                        echo '<td>' . $forum->content . '</td>';
                                                         echo '<td style="white-space: nowrap">
-                                                                <a type="button" class="btn btn-info text-white" href="' . base_url() . 'sttt/edit/' . $sttt->id . '"
+                                                                <a type="button" class="btn btn-info text-white" href="' . base_url() . 'forum/edit/' . $forum->id . '"
                                                                     title="Edit">
                                                                     <span class="fa fa-edit"></span>
                                                                 </a>
-                                                                <a type="button" class="btn btn-danger text-white" href="javascript:deleteSTTT(' . $sttt->id . ');"
+                                                                <a type="button" class="btn btn-danger text-white" href="javascript:deleteForum(' . $forum->id . ');"
                                                                     title="Delete">
                                                                     <span class="fa fa-trash"></span>
                                                                 </a>
@@ -240,9 +240,9 @@
     <!-- BEGIN: Page JS-->
     <!-- END: Page JS-->
     <script>
-        function deleteSTTT(id) {
-            if (confirm('Are you sure you want to delete this answer ST & TT?')) {
-                window.location.replace("sttt/delete/" + id);
+        function deleteForum(id) {
+            if (confirm('Are you sure you want to delete this forum?')) {
+                window.location.replace("forum/delete/" + id);
             }
         }
     </script>

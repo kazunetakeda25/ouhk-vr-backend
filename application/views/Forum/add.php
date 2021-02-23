@@ -8,7 +8,7 @@
     <meta name="description" content="Chameleon Admin is a modern Bootstrap 4 webapp &amp; admin dashboard html template with a large number of components, elegant design, clean and organized code.">
     <meta name="keywords" content="admin template, Chameleon admin template, dashboard template, gradient admin template, responsive admin template, webapp, eCommerce dashboard, analytic dashboard">
     <meta name="author" content="ThemeSelect">
-    <title>VIP - Answer ST and TT</title>
+    <title>VIP - Forum</title>
     <link rel="apple-touch-icon" href="<?= base_url() ?>app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="<?= base_url() ?>assets/images/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700" rel="stylesheet">
@@ -128,7 +128,7 @@
             </div>
             <div class="content-header row">
                 <div class="content-header-left col-md-4 col-12 mb-2">
-                    <h3 class="content-header-title">Answer ST and TT Management</h3>
+                    <h3 class="content-header-title">Forum Management</h3>
                 </div>
             </div>
 
@@ -141,10 +141,10 @@
                             <div class="card">
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        <?= form_open_multipart(base_url() . 'sttt/add') ?>
+                                        <?= form_open_multipart(base_url() . 'forum/add') ?>
                                         <div class="form-body">
                                             <h4 class="form-section">
-                                                <i class="fa fa-folder"></i>Answer ST and TT Create
+                                                <i class="fa fa-folder"></i>Forum Create
                                             </h4>
                                             <div class="form-group">
                                                 <label for="unit_number">Unit Number</label>
@@ -157,32 +157,17 @@
                                                     ?>
                                                 </select>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="practice_number">Practice Number</label>
-                                                <select id="practice_number" name="practice_number" class="form-control">
-                                                    <option value="" selected disabled>Select Interpreting Practice and Exercise</option>
-                                                    <?php
-                                                    foreach ($data_practice as $practice) {
-                                                        echo '<option value="' . $practice->number . '">' . $practice->number . '</option>';
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label for="title">Answer ST and TT Title</label>
-                                                        <input type="text" id="title" class="form-control" placeholder="Enter Answer ST and TT Title" name="title">
+                                                        <label for="title">Forum Title</label>
+                                                        <input type="text" id="title" class="form-control" placeholder="Enter Forum Title" name="title">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="original_text">Original Text</label>
-                                                <textarea id="original_text" rows="5" class="form-control" name="original_text" placeholder="Enter Original Text"></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="translated_text">Translated Text</label>
-                                                <textarea id="translated_text" rows="5" class="form-control" name="translated_text" placeholder="Enter Translated Text"></textarea>
+                                                <label for="content">Forum Content</label>
+                                                <textarea id="content" rows="5" class="form-control" name="content" placeholder="Enter Forum Content"></textarea>
                                             </div>
 
                                             <div class="form-actions">

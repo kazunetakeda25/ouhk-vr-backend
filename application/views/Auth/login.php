@@ -74,6 +74,11 @@
                                                     <i class="fa fa-lock"></i>
                                                 </div>
                                             </fieldset>
+                                            <div class="form-group row">
+                                                <div class="col-12">
+                                                    <span class="message text-danger"><?php echo $this->session->flashdata('message'); ?></span>
+                                                </div>
+                                            </div>
                                             <div class="form-group d-flex justify-content-between align-items-center">
                                                 <div class="text-left">
                                                     <fieldset class="checkbox">

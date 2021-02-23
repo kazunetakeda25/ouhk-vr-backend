@@ -103,7 +103,7 @@ $route['sttt/edit/(:num)'] = 'sttt/edit/$1';
 $route['video-online'] = 'videoonline/index';
 
 $route['forum'] = 'forum/index';
-$route['forum/add'] = 'sttt/add';
+$route['forum/add'] = 'forum/add';
 $route['forum/delete/(:num)'] = 'forum/delete/$1';
 $route['forum/edit/(:num)'] = 'forum/edit/$1';
 

@@ -88,6 +88,11 @@
                                             </fieldset>
                                             <div class="form-group row">
                                                 <div class="col-12">
+                                                    <span class="message text-danger"><?php echo $this->session->flashdata('message'); ?></span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-12">
                                                     <fieldset class="checkbox">
                                                         <div class="vs-checkbox-con vs-checkbox-primary">
                                                             <input type="checkbox" checked>
