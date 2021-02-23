@@ -8,43 +8,100 @@ class API extends CI_Controller
 		parent::__construct();
 
         $this->load->library(array('session'));
+        $this->load->database();
+        
         $this->load->model('user_model');
+        $this->load->model('unit_model');
+        $this->load->model('learningcontent_model');
+        $this->load->model('lecture_model');
+        $this->load->model('practice_model');
+        $this->load->model('sttt_model');
 	}
 
-    public function login() {
-        $license = $this->input->post('license');
+    public function getUnits()
+    {
+        $this->db->select('id, number, title');
+		$this->db->from('tbl_unit');
+		$this->db->where("is_deleted", "0");
+		$this->db->order_by("number", "asc");
 
-        $res = array(
-            'status' => 0, 
-            'message' => 'Invalid License Key.', 
-            'name' => '', 
-            'email' => ''
-        );
+		return $this->db->get()->result();
+    }
 
-        $userId = $this->user_model->getUserIdFromLicense($license);
-        if ($userId == 0) {
-            echo json_encode($res);
-            return;
-        }
-        
-        $user = $this->user_model->getAnyUser($userId);
+    public function getUnitLearningContents()
+    {
+        $unitNumber = $this->input->post('unitNumber');
+        $this->db->select('id, unit_number, title, data');
+    	$this->db->from('tbl_learning_content');
+		$this->db->where('unit_number', $unitNumber);
+		
+		$result = $this->db->get()->result();
+		return $result;
+    }
 
-        if ($user->status == 'PENDING') {
-            $res['message'] = 'Your License is not approved yet.';
-            echo json_encode($res);
-            return;
-        }
+    public function getUnitLectures()
+    {
+        $unitNumber = $this->input->post('unitNumber');
+        $this->db->select('id, unit_number, title, mp3');
+    	$this->db->from('tbl_lecture');
+		$this->db->where('unit_number', $unitNumber);
+		
+		$result = $this->db->get()->result();
+		return $result;
+    }
 
-        if ($user->status == 'ACTIVE') {
-            $res['status'] = 1;
-            $res['message'] = 'Success';
-            $res['name'] = $user->name;
-            $res['email'] = $user->email;
-            echo json_encode($res);
-            return;
-        }
+    public function getUnitPractices()
+    {
+        $unitNumber = $this->input->post('unitNumber');
+        $this->db->select('id, unit_number, number, title, video');
+    	$this->db->from('tbl_practice');
+		$this->db->where('unit_number', $unitNumber);
+		
+		$result = $this->db->get()->result();
+		return $result;
+    }
 
-        echo json_encode($res);
-        return;
+    public function getPracticeGlossaries()
+    {
+        $practiceNumber = $this->input->post('practiceNumber');
+        $this->db->select('id, unit_number, practice_number, title, original_word, translated_word');
+    	$this->db->from('tbl_glossary');
+		$this->db->where('practice_number', $practiceNumber);
+		
+		$result = $this->db->get()->result();
+		return $result;
+    }
+
+    public function getPracticeAnswers()
+    {
+        $practiceNumber = $this->input->post('practiceNumber');
+        $this->db->select('id, unit_number, practice_number, title, original_text, translated_text');
+    	$this->db->from('tbl_sttt');
+		$this->db->where('practice_number', $practiceNumber);
+		
+		$result = $this->db->get()->result();
+		return $result;
+    }
+
+    public function getUnitAnswers()
+    {
+        $unitNumber = $this->input->post('unitNumber');
+        $this->db->select('id, unit_number, practice_number, title, original_text, translated_text');
+    	$this->db->from('tbl_sttt');
+		$this->db->where('unit_number', $unitNumber);
+		
+		$result = $this->db->get()->result();
+		return $result;
+    }
+
+    public function getUnitForums()
+    {
+        $unitNumber = $this->input->post('unitNumber');
+        $this->db->select('id, unit_number, title, content');
+    	$this->db->from('tbl_sttt');
+		$this->db->where('unit_number', $unitNumber);
+		
+		$result = $this->db->get()->result();
+		return $result;
     }
 }

@@ -107,6 +107,8 @@ $route['forum/add'] = 'forum/add';
 $route['forum/delete/(:num)'] = 'forum/delete/$1';
 $route['forum/edit/(:num)'] = 'forum/edit/$1';
 
+$route['setting'] = 'setting/index';
+
 $route['default_controller'] = 'auth/login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

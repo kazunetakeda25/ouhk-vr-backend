@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php if ($this->session->userdata('role') != 3) redirect(base_url() . 'unit/'); ?>
 <html class="loading" lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->
 
@@ -9,7 +10,7 @@
     <meta name="description" content="Chameleon Admin is a modern Bootstrap 4 webapp &amp; admin dashboard html template with a large number of components, elegant design, clean and organized code.">
     <meta name="keywords" content="admin template, Chameleon admin template, dashboard template, gradient admin template, responsive admin template, webapp, eCommerce dashboard, analytic dashboard">
     <meta name="author" content="ThemeSelect">
-    <title>VIP - Learning Contents</title>
+    <title>VIP - Settings</title>
     <link rel="apple-touch-icon" href="<?= base_url() ?>app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="<?= base_url() ?>assets/images/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700" rel="stylesheet">
@@ -86,6 +87,7 @@
     </nav>
     <!-- END: Header-->
 
+
     <!-- BEGIN: Main Menu-->
     <div class="main-menu menu-fixed menu-light menu-accordion    menu-shadow " data-scroll-to-active="true" data-img="<?= base_url() ?>app-assets/images/backgrounds/02.jpg">
         <div class="navbar-header">
@@ -105,7 +107,7 @@
                 <?php } ?>
                 <li class=" nav-item"><a href="<?= base_url() ?>unit"><i class="fa fa-folder"></i><span class="menu-title" data-i18n="">Units</span></a>
                 </li>
-                <li class=" nav-item active"><a href="<?= base_url() ?>learning-content"><i class="fa fa-book-open"></i><span class="menu-title" data-i18n="">Learning
+                <li class=" nav-item"><a href="<?= base_url() ?>learning-content"><i class="fa fa-book-open"></i><span class="menu-title" data-i18n="">Learning
                             Contents</span></a>
                 </li>
                 <li class=" nav-item"><a href="<?= base_url() ?>lecture"><i class="fa fa-microphone"></i><span class="menu-title" data-i18n="">Lectures</span></a>
@@ -118,7 +120,7 @@
                 </li>
                 <li class=" nav-item"><a href="<?= base_url() ?>forum"><i class="fa fa-comments"></i><span class="menu-title" data-i18n="">Forum</span></a>
                 </li>
-<li class=" nav-item"><a href="<?= base_url() ?>setting"><i class="fa fa-cog"></i><span class="menu-title" data-i18n="">Settings</span></a>
+                <li class=" nav-item active"><a href="<?= base_url() ?>setting"><i class="fa fa-cog"></i><span class="menu-title" data-i18n="">Settings</span></a>
                 </li>
             </ul>
         </div>
@@ -127,99 +129,14 @@
 
     <!-- BEGIN: Content-->
     <div class="app-content content">
-        <div class="content-wrapper">
-            <div class="content-wrapper-before" style="background-image: -webkit-gradient(linear,left top,right top,from(#a5e29c),to(#32cafe)) !important">
-            </div>
-            <div class="content-header row">
-                <div class="content-header-left col-md-4 col-12 mb-2">
-                    <h3 class="content-header-title">Learning Content Management</h3>
-                </div>
-                <div class="content-header-right col-md-8 col-12">
-                    <div class="breadcrumbs-top float-md-right">
-                        <div class="breadcrumb-wrapper mr-1">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a>Admin</a>
-                                </li>
-                                <li class="breadcrumb-item"><a>Learning Content Managment</a>
-                                </li>
-                                <li class="breadcrumb-item active"><a>Learning Content List</a>
-                                </li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-
-            <div class="content-body">
-                <!-- Basic form layout section start -->
-                <section id="basic-form-layouts">
-                    <div class="row match-height">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-content collapse show">
-                                    <div class="card-body">
-                                        <a type="button" class="btn btn-success" style="color: white" href="<?= base_url() ?>learning-content/add">
-                                            <i class="fa fa-folder"></i> Create New Learning Content
-                                        </a>
-                                        <p>&nbsp;</p>
-                                        <div class="table-responsive">
-                                            <table class="table table-hover mb-0">
-
-                                                <thead class="text-white" style="background-color: rgba(97, 227, 181,100)">
-                                                    <tr>
-                                                        <th scope="col" class="d-none">ID</th>
-                                                        <th scope="col">Unit Number</th>
-                                                        <th scope="col">Learning Content Title</th>
-                                                        <th scope="col">Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php
-                                                    foreach ($data_learning_content as $learning_content) {
-                                                        echo '<tr>';
-                                                        echo '<td class="d-none">' . $learning_content->id . '</td>';
-                                                        echo '<th scope="row">' . $learning_content->unit_number . '</th>';
-                                                        echo '<td>' . $learning_content->title . '</td>';
-                                                        echo '<td style="white-space: nowrap">
-                                                                <a type="button" class="btn btn-info text-white" href="' . base_url() . 'learning-content/edit/' . $learning_content->id . '"
-                                                                    title="Edit">
-                                                                    <span class="fa fa-edit"></span>
-                                                                </a>
-                                                                <a type="button" class="btn btn-danger text-white" href="javascript:deleteLearningContent(' . $learning_content->id . ');"
-                                                                    title="Delete">
-                                                                    <span class="fa fa-trash"></span>
-                                                                </a>
-                                                            </td>';
-                                                        echo '</tr>';
-                                                    }
-                                                    ?>
-                                                </tbody>
-
-                                            </table>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </section>
-                <!-- // Basic form layout section end -->
-            </div>
-        </div>
     </div>
     <!-- END: Content-->
-
 
     <!-- BEGIN: Customizer-->
     <!-- End: Customizer-->
 
-
     <!-- END: Footer-->
-
 
     <!-- BEGIN: Vendor JS-->
     <script src="<?= base_url() ?>app-assets/vendors/js/vendors.min.js" type="text/javascript"></script>
@@ -239,17 +156,8 @@
 
     <!-- BEGIN: Page JS-->
     <!-- END: Page JS-->
-    <script>
-        function deleteLearningContent(id) {
-            if (confirm('Are you sure you want to delete this learning content?')) {
-                window.location.replace("learning-content/delete/" + id);
-            }
-        }
-    </script>
 
 </body>
 <!-- END: Body-->
-
-<!-- Mirrored from themeselection.com/demo/chameleon-admin-template/html/ltr/vertical-menu-template/form-layout-basic.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Jan 2021 19:01:13 GMT -->
 
 </html>
