@@ -140,7 +140,7 @@
                             <div class="card">
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        <?= form_open_multipart('/user/add') ?>
+                                        <?= form_open_multipart(base_url() . 'user/add') ?>
                                         <div class="form-body">
                                             <h4 class="form-section">
                                                 <i class="fa fa-folder"></i>User Create

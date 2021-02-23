@@ -140,7 +140,7 @@
                             <div class="card">
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        <?= form_open('/learning-content/add') ?>
+                                        <?= form_open(base_url() . 'learning-content/add') ?>
                                         <div class="form-body">
                                             <h4 class="form-section">
                                                 <i class="fa fa-folder"></i>Learning Content Create

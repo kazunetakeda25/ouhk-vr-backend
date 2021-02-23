@@ -155,7 +155,7 @@
                             <div class="card">
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        <a type="button" class="btn btn-success" style="color: white" href="learning-content/add">
+                                        <a type="button" class="btn btn-success" style="color: white" href="<?= base_url() ?>learning-content/add">
                                             <i class="fa fa-folder"></i> Create New Learning Content
                                         </a>
                                         <p>&nbsp;</p>
@@ -178,7 +178,7 @@
                                                         echo '<th scope="row">' . $learning_content->unit_number . '</th>';
                                                         echo '<td>' . $learning_content->title . '</td>';
                                                         echo '<td style="white-space: nowrap">
-                                                                <a type="button" class="btn btn-info text-white" href="learning-content/edit/' . $learning_content->id . '"
+                                                                <a type="button" class="btn btn-info text-white" href="' . base_url() . 'learning-content/edit/' . $learning_content->id . '"
                                                                     title="Edit">
                                                                     <span class="fa fa-edit"></span>
                                                                 </a>

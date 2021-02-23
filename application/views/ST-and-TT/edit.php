@@ -139,7 +139,7 @@
                             <div class="card">
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        <?= form_open_multipart('/sttt/edit/' . $data_sttt->id) ?>
+                                        <?= form_open_multipart(base_url() . 'sttt/edit/' . $data_sttt->id) ?>
                                         <div class="form-body">
                                             <h4 class="form-section">
                                                 <i class="fa fa-folder"></i>Answer ST and TT Edit

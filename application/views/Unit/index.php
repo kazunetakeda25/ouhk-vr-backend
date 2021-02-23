@@ -178,25 +178,25 @@
                                                         echo '<td>' . $unit->title . '</td>';
                                                         echo '<td>' . $unit->description . '</td>';
                                                         echo '<td style="white-space: nowrap">
-                                                                <a type="button" class="btn btn-secondary text-white" href="learning-content/' . $unit->number . '"
+                                                                <a type="button" class="btn btn-secondary text-white" href="' . base_url() . 'learning-content/' . $unit->number . '"
                                                                     title="Learning Content">
                                                                     <img class="rounded-bottom"
                                                                         src="' . base_url() . 'assets/images/LC.png" alt="LC"
                                                                         height="20" width="20">
                                                                 </a>
-                                                                <a type="button" class="btn btn-secondary text-white" href="lecture/' . $unit->number . '"
+                                                                <a type="button" class="btn btn-secondary text-white" href="' . base_url() . 'lecture/' . $unit->number . '"
                                                                     title="Lecture">
                                                                     <img class="rounded-bottom"
                                                                         src="' . base_url() . 'assets/images/LE.png" alt="LE"
                                                                         height="20" width="15">
                                                                 </a>
-                                                                <a type="button" class="btn btn-secondary text-white" href="practice/' . $unit->number . '"
+                                                                <a type="button" class="btn btn-secondary text-white" href="' . base_url() . 'practice/' . $unit->number . '"
                                                                     title="Interpreting Practice and Exercise">
                                                                     <img class="rounded-bottom"
                                                                         src="' . base_url() . 'assets/images/IPE.png" alt="IPE"
                                                                         height="20" width="17">
                                                                 </a>
-                                                                <a type="button" class="btn btn-secondary text-white" href="sttt/' . $unit->number . '"
+                                                                <a type="button" class="btn btn-secondary text-white" href="' . base_url() . 'sttt/' . $unit->number . '"
                                                                     title="Answer ST & TT">
                                                                     <img class="rounded-bottom"
                                                                         src="' . base_url() . 'assets/images/STTT.png"
@@ -204,7 +204,7 @@
                                                                 </a>
                                                             </td>';
                                                         echo '<td style="white-space: nowrap">
-                                                                <a type="button" class="btn btn-info text-white" href="unit/edit/' . $unit->id . '"
+                                                                <a type="button" class="btn btn-info text-white" href="' . base_url() . 'unit/edit/' . $unit->id . '"
                                                                     title="Edit">
                                                                     <span class="fa fa-edit"></span>
                                                                 </a>

@@ -197,7 +197,7 @@
                                                             }
                                                             echo '<td>' . $user->created_at . '</td>';
                                                             echo '<td style="white-space: nowrap">
-                                                                <a type="button" class="btn btn-info text-white" href="user/edit/' . $user->id . '"
+                                                                <a type="button" class="btn btn-info text-white" href="' . base_url() . 'user/edit/' . $user->id . '"
                                                                     title="Edit">
                                                                     <span class="fa fa-edit"></span>
                                                                 </a>

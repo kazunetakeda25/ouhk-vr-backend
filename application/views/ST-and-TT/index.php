@@ -155,7 +155,7 @@
                             <div class="card">
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        <a type="button" class="btn btn-success" style="color: white" href="sttt/add">
+                                        <a type="button" class="btn btn-success" style="color: white" href="<?= base_url() ?>sttt/add">
                                             <i class="fa fa-folder"></i> Create New ST & TT
                                         </a>
                                         <p>&nbsp;</p>
@@ -180,7 +180,7 @@
                                                         echo '<th scope="row">' . $sttt->practice_number . '</th>';
                                                         echo '<td>' . $sttt->title . '</td>';
                                                         echo '<td style="white-space: nowrap">
-                                                                <a type="button" class="btn btn-info text-white" href="sttt/edit/' . $sttt->id . '"
+                                                                <a type="button" class="btn btn-info text-white" href="' . base_url() . 'sttt/edit/' . $sttt->id . '"
                                                                     title="Edit">
                                                                     <span class="fa fa-edit"></span>
                                                                 </a>

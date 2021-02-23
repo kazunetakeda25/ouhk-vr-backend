@@ -139,7 +139,7 @@
                             <div class="card">
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        <?= form_open('/learning-content/edit/' . $data_learning_content->id) ?>
+                                        <?= form_open(base_url() . 'learning-content/edit/' . $data_learning_content->id) ?>
                                         <div class="form-body">
                                             <h4 class="form-section">
                                                 <i class="fa fa-folder"></i>Learning Content Edit

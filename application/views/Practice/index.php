@@ -155,7 +155,7 @@
                             <div class="card">
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        <a type="button" class="btn btn-success" style="color: white" href="practice/add">
+                                        <a type="button" class="btn btn-success" style="color: white" href="<?= base_url() ?>practice/add">
                                             <i class="fa fa-folder"></i> Create New Practice
                                         </a>
                                         <p>&nbsp;</p>
@@ -180,7 +180,7 @@
                                                         echo '<th scope="row">' . $practice->number . '</th>';
                                                         echo '<td>' . $practice->title . '</td>';
                                                         echo '<td style="white-space: nowrap">
-                                                                <a type="button" class="btn btn-info text-white" href="practice/edit/' . $practice->id . '"
+                                                                <a type="button" class="btn btn-info text-white" href="' . base_url() . 'practice/edit/' . $practice->id . '"
                                                                     title="Edit">
                                                                     <span class="fa fa-edit"></span>
                                                                 </a>

@@ -138,7 +138,7 @@
                             <div class="card">
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        <?= form_open('/unit/edit/' . $data_unit->id) ?>
+                                        <?= form_open(base_url() . 'unit/edit/' . $data_unit->id) ?>
                                         <div class="form-body">
                                             <h4 class="form-section">
                                                 <i class="fa fa-folder"></i>Unit Edit

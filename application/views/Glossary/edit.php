@@ -139,7 +139,7 @@
                             <div class="card">
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        <?= form_open_multipart('/glossary/edit/' . $data_glossary->id) ?>
+                                        <?= form_open_multipart(base_url() . '/glossary/edit/' . $data_glossary->id) ?>
                                         <div class="form-body">
                                             <h4 class="form-section">
                                                 <i class="fa fa-folder"></i>Glossary Edit

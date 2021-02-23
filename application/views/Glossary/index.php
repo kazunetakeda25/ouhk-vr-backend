@@ -155,7 +155,7 @@
                             <div class="card">
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        <a type="button" class="btn btn-success" style="color: white" href="glossary/add">
+                                        <a type="button" class="btn btn-success" style="color: white" href="<?= base_url() ?>glossary/add">
                                             <i class="fa fa-folder"></i> Create New Glossary
                                         </a>
                                         <p>&nbsp;</p>
@@ -184,7 +184,7 @@
                                                         echo '<td>' . $glossary->original_word . '</td>';
                                                         echo '<td>' . $glossary->translated_word . '</td>';
                                                         echo '<td style="white-space: nowrap">
-                                                                <a type="button" class="btn btn-info text-white" href="glossary/edit/' . $glossary->id . '"
+                                                                <a type="button" class="btn btn-info text-white" href="' . base_url() . 'glossary/edit/' . $glossary->id . '"
                                                                     title="Edit">
                                                                     <span class="fa fa-edit"></span>
                                                                 </a>

@@ -155,7 +155,7 @@
                             <div class="card">
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        <a type="button" class="btn btn-success" style="color: white" href="lecture/add">
+                                        <a type="button" class="btn btn-success" style="color: white" href="<?= base_url() ?>lecture/add">
                                             <i class="fa fa-folder"></i> Create New Lecture
                                         </a>
                                         <p>&nbsp;</p>
@@ -178,7 +178,7 @@
                                                         echo '<th scope="row">' . $lecture->unit_number . '</th>';
                                                         echo '<td>' . $lecture->title . '</td>';
                                                         echo '<td style="white-space: nowrap">
-                                                                <a type="button" class="btn btn-info text-white" href="lecture/edit/' . $lecture->id . '"
+                                                                <a type="button" class="btn btn-info text-white" href="' . base_url() . 'lecture/edit/' . $lecture->id . '"
                                                                     title="Edit">
                                                                     <span class="fa fa-edit"></span>
                                                                 </a>
