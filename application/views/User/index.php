@@ -118,6 +118,8 @@
                 </li>
                 <li class=" nav-item"><a href="<?= base_url() ?>glossary"><i class="fa fa-language"></i><span class="menu-title" data-i18n="">Glossaries</span></a>
                 </li>
+                <li class=" nav-item"><a href="<?= base_url() ?>forum"><i class="fa fa-comments"></i><span class="menu-title" data-i18n="">Forum</span></a>
+                </li>
             </ul>
         </div>
     </div>

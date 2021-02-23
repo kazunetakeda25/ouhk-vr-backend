@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
+<!-- BEGIN: Head-->
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -8,7 +9,7 @@
     <meta name="description" content="Chameleon Admin is a modern Bootstrap 4 webapp &amp; admin dashboard html template with a large number of components, elegant design, clean and organized code.">
     <meta name="keywords" content="admin template, Chameleon admin template, dashboard template, gradient admin template, responsive admin template, webapp, eCommerce dashboard, analytic dashboard">
     <meta name="author" content="ThemeSelect">
-    <title>VIP - Lectures</title>
+    <title>VIP - Forum</title>
     <link rel="apple-touch-icon" href="<?= base_url() ?>app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="<?= base_url() ?>assets/images/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700" rel="stylesheet">
@@ -34,6 +35,7 @@
 
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/style.css">
+
     <link rel="stylesheet" href="<?= base_url() ?>app-assets/css/feather.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
 
@@ -84,7 +86,6 @@
     </nav>
     <!-- END: Header-->
 
-
     <!-- BEGIN: Main Menu-->
     <div class="main-menu menu-fixed menu-light menu-accordion    menu-shadow " data-scroll-to-active="true" data-img="<?= base_url() ?>app-assets/images/backgrounds/02.jpg">
         <div class="navbar-header">
@@ -104,15 +105,16 @@
                 <?php } ?>
                 <li class=" nav-item"><a href="<?= base_url() ?>unit"><i class="fa fa-folder"></i><span class="menu-title" data-i18n="">Units</span></a>
                 </li>
-                <li class=" nav-item"><a href="<?= base_url() ?>learning-content"><i class="fa fa-book-open"></i><span class="menu-title" data-i18n="">Learning Contents</span></a>
+                <li class=" nav-item"><a href="<?= base_url() ?>learning-content"><i class="fa fa-book-open"></i><span class="menu-title" data-i18n="">Learning
+                            Contents</span></a>
                 </li>
-                <li class=" nav-item active"><a href="<?= base_url() ?>lecture"><i class="fa fa-microphone"></i><span class="menu-title" data-i18n="">Lectures</span></a>
+                <li class=" nav-item"><a href="<?= base_url() ?>lecture"><i class="fa fa-microphone"></i><span class="menu-title" data-i18n="">Lectures</span></a>
                 </li>
                 <li class=" nav-item"><a href="<?= base_url() ?>practice"><i class="fa fa-file"></i><span class="menu-title small" data-i18n="">Interpreting <br>Practice & Exercise</span></a>
                 </li>
                 <li class=" nav-item"><a href="<?= base_url() ?>sttt"><i class="fa fa-book"></i><span class="menu-title" data-i18n="">Answer ST & TT</span></a>
                 </li>
-                <li class=" nav-item"><a href="<?= base_url() ?>glossary"><i class="fa fa-language"></i><span class="menu-title" data-i18n="">Glossaries</span></a>
+                <li class=" nav-item active"><a href="<?= base_url() ?>glossary"><i class="fa fa-language"></i><span class="menu-title" data-i18n="">Glossaries</span></a>
                 </li>
                 <li class=" nav-item"><a href="<?= base_url() ?>forum"><i class="fa fa-comments"></i><span class="menu-title" data-i18n="">Forum</span></a>
                 </li>
@@ -128,7 +130,21 @@
             </div>
             <div class="content-header row">
                 <div class="content-header-left col-md-4 col-12 mb-2">
-                    <h3 class="content-header-title">Lecture Management</h3>
+                    <h3 class="content-header-title">Answer ST and TT Management</h3>
+                </div>
+                <div class="content-header-right col-md-8 col-12">
+                    <div class="breadcrumbs-top float-md-right">
+                        <div class="breadcrumb-wrapper mr-1">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a>Admin</a>
+                                </li>
+                                <li class="breadcrumb-item"><a>ST & TT Managment</a>
+                                </li>
+                                <li class="breadcrumb-item active"><a>ST & TT List</a>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -141,54 +157,55 @@
                             <div class="card">
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        <?= form_open_multipart(base_url() . 'lecture/add') ?>
-                                        <div class="form-body">
-                                            <h4 class="form-section">
-                                                <i class="fa fa-folder"></i>Lecture Create
-                                            </h4>
-                                            <div class="form-group">
-                                                <label for="unit_number">Unit Number</label>
-                                                <select id="unit_number" name="unit_number" class="form-control">
-                                                    <option value="" selected disabled>Select Unit</option>
+                                        <a type="button" class="btn btn-success" style="color: white" href="<?= base_url() ?>sttt/add">
+                                            <i class="fa fa-folder"></i> Create New ST & TT
+                                        </a>
+                                        <p>&nbsp;</p>
+                                        <div class="table-responsive">
+                                            <table class="table table-hover mb-0">
+
+                                                <thead class="text-white" style="background-color: rgba(97, 227, 181,100)">
+                                                    <tr>
+                                                        <th scope="col" class="d-none">ID</th>
+                                                        <th scope="col">Unit Number</th>
+                                                        <th scope="col">Practice Number</th>
+                                                        <th scope="col">Title</th>
+                                                        <th scope="col">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
                                                     <?php
-                                                    foreach ($data_unit as $unit) {
-                                                        echo '<option value="' . $unit->number . '">' . $unit->number . '</option>';
+                                                    foreach ($data_sttt as $sttt) {
+                                                        echo '<tr>';
+                                                        echo '<td class="d-none">' . $sttt->id . '</td>';
+                                                        echo '<th scope="row">' . $sttt->unit_number . '</th>';
+                                                        echo '<th scope="row">' . $sttt->practice_number . '</th>';
+                                                        echo '<td>' . $sttt->title . '</td>';
+                                                        echo '<td style="white-space: nowrap">
+                                                                <a type="button" class="btn btn-info text-white" href="' . base_url() . 'sttt/edit/' . $sttt->id . '"
+                                                                    title="Edit">
+                                                                    <span class="fa fa-edit"></span>
+                                                                </a>
+                                                                <a type="button" class="btn btn-danger text-white" href="javascript:deleteSTTT(' . $sttt->id . ');"
+                                                                    title="Delete">
+                                                                    <span class="fa fa-trash"></span>
+                                                                </a>
+                                                            </td>';
+                                                        echo '</tr>';
                                                     }
                                                     ?>
-                                                </select>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label for="title">Lecture Title</label>
-                                                        <input type="text" id="title" class="form-control" placeholder="Enter Lecture Title" name="title">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="label-control">Lecture MP3 File</label>
-                                                <div>
-                                                    <label id="input" class="file center-block">
-                                                        <input type="file" id="mp3" name="mp3" accept=".mp3">
-                                                    </label>
-                                                </div>
-                                            </div>
+                                                </tbody>
 
-                                            <div class="form-actions">
-                                                <a type="button" class="btn btn-danger mr-1 text-white" href='javascript:history.back(1);'>
-                                                    <i class="fa fa-close"></i> Cancel
-                                                </a>
-                                                <button type="submit" class="btn btn-success">
-                                                    <i class="fa fa-save"></i> Save
-                                                </button>
-                                            </div>
-                                            </form>
+                                            </table>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
-
                         </div>
+
+                    </div>
+
                 </section>
                 <!-- // Basic form layout section end -->
             </div>
@@ -198,6 +215,8 @@
 
 
     <!-- BEGIN: Customizer-->
+    <!-- End: Customizer-->
+
 
     <!-- END: Footer-->
 
@@ -220,6 +239,13 @@
 
     <!-- BEGIN: Page JS-->
     <!-- END: Page JS-->
+    <script>
+        function deleteSTTT(id) {
+            if (confirm('Are you sure you want to delete this answer ST & TT?')) {
+                window.location.replace("sttt/delete/" + id);
+            }
+        }
+    </script>
 
 </body>
 <!-- END: Body-->

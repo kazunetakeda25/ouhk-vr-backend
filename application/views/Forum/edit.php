@@ -8,7 +8,7 @@
     <meta name="description" content="Chameleon Admin is a modern Bootstrap 4 webapp &amp; admin dashboard html template with a large number of components, elegant design, clean and organized code.">
     <meta name="keywords" content="admin template, Chameleon admin template, dashboard template, gradient admin template, responsive admin template, webapp, eCommerce dashboard, analytic dashboard">
     <meta name="author" content="ThemeSelect">
-    <title>VIP - Lectures</title>
+    <title>VIP - Answer ST and TT</title>
     <link rel="apple-touch-icon" href="<?= base_url() ?>app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="<?= base_url() ?>assets/images/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700" rel="stylesheet">
@@ -104,9 +104,10 @@
                 <?php } ?>
                 <li class=" nav-item"><a href="<?= base_url() ?>unit"><i class="fa fa-folder"></i><span class="menu-title" data-i18n="">Units</span></a>
                 </li>
-                <li class=" nav-item"><a href="<?= base_url() ?>learning-content"><i class="fa fa-book-open"></i><span class="menu-title" data-i18n="">Learning Contents</span></a>
+                <li class=" nav-item"><a href="<?= base_url() ?>learning-content"><i class="fa fa-book-open"></i><span class="menu-title" data-i18n="">Learning
+                            Contents</span></a>
                 </li>
-                <li class=" nav-item active"><a href="<?= base_url() ?>lecture"><i class="fa fa-microphone"></i><span class="menu-title" data-i18n="">Lectures</span></a>
+                <li class=" nav-item"><a href="<?= base_url() ?>lecture"><i class="fa fa-microphone"></i><span class="menu-title" data-i18n="">Lectures</span></a>
                 </li>
                 <li class=" nav-item"><a href="<?= base_url() ?>practice"><i class="fa fa-file"></i><span class="menu-title small" data-i18n="">Interpreting <br>Practice & Exercise</span></a>
                 </li>
@@ -114,7 +115,7 @@
                 </li>
                 <li class=" nav-item"><a href="<?= base_url() ?>glossary"><i class="fa fa-language"></i><span class="menu-title" data-i18n="">Glossaries</span></a>
                 </li>
-                <li class=" nav-item"><a href="<?= base_url() ?>forum"><i class="fa fa-comments"></i><span class="menu-title" data-i18n="">Forum</span></a>
+                <li class=" nav-item active"><a href="<?= base_url() ?>forum"><i class="fa fa-comments"></i><span class="menu-title" data-i18n="">Forum</span></a>
                 </li>
             </ul>
         </div>
@@ -128,10 +129,9 @@
             </div>
             <div class="content-header row">
                 <div class="content-header-left col-md-4 col-12 mb-2">
-                    <h3 class="content-header-title">Lecture Management</h3>
+                    <h3 class="content-header-title">Interpreting Practice & Exercise Management</h3>
                 </div>
             </div>
-
 
             <div class="content-body">
                 <!-- Basic form layout section start -->
@@ -141,18 +141,29 @@
                             <div class="card">
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        <?= form_open_multipart(base_url() . 'lecture/add') ?>
+                                        <?= form_open_multipart(base_url() . 'sttt/edit/' . $data_sttt->id) ?>
                                         <div class="form-body">
                                             <h4 class="form-section">
-                                                <i class="fa fa-folder"></i>Lecture Create
+                                                <i class="fa fa-folder"></i>Answer ST and TT Edit
                                             </h4>
                                             <div class="form-group">
                                                 <label for="unit_number">Unit Number</label>
                                                 <select id="unit_number" name="unit_number" class="form-control">
-                                                    <option value="" selected disabled>Select Unit</option>
+                                                    <option value="" disabled>Select Unit</option>
                                                     <?php
                                                     foreach ($data_unit as $unit) {
-                                                        echo '<option value="' . $unit->number . '">' . $unit->number . '</option>';
+                                                        echo '<option value="' . $unit->number . '" ' . ($unit->number == $data_sttt->unit_number ? 'selected' : '') . '>' . $unit->number . '</option>';
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="practice_number">Practice Number</label>
+                                                <select id="practice_number" name="practice_number" class="form-control">
+                                                    <option value="" disabled>Select Interpreting Practice & Exercise</option>
+                                                    <?php
+                                                    foreach ($data_practice as $practice) {
+                                                        echo '<option value="' . $practice->number . '" ' . ($practice->number == $data_sttt->practice_number ? 'selected' : '') . '>' . $practice->number . '</option>';
                                                     }
                                                     ?>
                                                 </select>
@@ -160,35 +171,36 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label for="title">Lecture Title</label>
-                                                        <input type="text" id="title" class="form-control" placeholder="Enter Lecture Title" name="title">
+                                                        <label for="title">Answer ST and TT Title</label>
+                                                        <input type="text" id="title" class="form-control" placeholder="Enter Answer ST and TT Title" name="title" value="<?= $data_sttt->title ?>">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="label-control">Lecture MP3 File</label>
-                                                <div>
-                                                    <label id="input" class="file center-block">
-                                                        <input type="file" id="mp3" name="mp3" accept=".mp3">
-                                                    </label>
-                                                </div>
+                                                <label for="original_text">Original Text</label>
+                                                <textarea id="original_text" rows="5" class="form-control" name="original_text" placeholder="Enter Original Text"><?= $data_sttt->original_text ?></textarea>
                                             </div>
-
-                                            <div class="form-actions">
-                                                <a type="button" class="btn btn-danger mr-1 text-white" href='javascript:history.back(1);'>
-                                                    <i class="fa fa-close"></i> Cancel
-                                                </a>
-                                                <button type="submit" class="btn btn-success">
-                                                    <i class="fa fa-save"></i> Save
-                                                </button>
+                                            <div class="form-group">
+                                                <label for="translated_text">Translated Text</label>
+                                                <textarea id="translated_text" rows="5" class="form-control" name="translated_text" placeholder="Enter Translated Text"><?= $data_sttt->translated_text ?></textarea>
                                             </div>
-                                            </form>
                                         </div>
+
+                                        <div class="form-actions">
+                                            <a type="button" class="btn btn-danger mr-1 text-white" href='javascript:history.back(1);'>
+                                                <i class="fa fa-close"></i> Cancel
+                                            </a>
+                                            <button type="submit" class="btn btn-success">
+                                                <i class="fa fa-save"></i> Save
+                                            </button>
+                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
+
+                    </div>
                 </section>
                 <!-- // Basic form layout section end -->
             </div>
