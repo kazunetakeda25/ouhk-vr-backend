@@ -26,9 +26,16 @@ class Lecture_model extends CI_Model
 		$data = array(
 			'unit_number' => $lecture['unit_number'],
 			'title' => $lecture['title'],
-			'mp3' => $lecture['mp3'], 
 			'created_at' => date("Y-m-d H:i:s")
 		);
+
+		if ($lecture['mp3'] != null) {
+			$data['mp3'] = $lecture['mp3'];
+		}
+
+		if ($lecture['mp4'] != null) {
+			$data['mp4'] = $lecture['mp4'];
+		}
 
 		$this->db->insert('tbl_lecture', $data);
 		return $this->db->insert_id();
@@ -46,7 +53,7 @@ class Lecture_model extends CI_Model
 
 	public function get($id) 
 	{
-		$this->db->select('id, unit_number, title, mp3');
+		$this->db->select('id, unit_number, title, mp3, mp4');
     	$this->db->from('tbl_lecture');
 		$this->db->where('id', $id);
 		

@@ -116,7 +116,7 @@
                 </li>
                 <li class=" nav-item"><a href="<?= base_url() ?>forum"><i class="fa fa-comments"></i><span class="menu-title" data-i18n="">Forum</span></a>
                 </li>
-<li class=" nav-item"><a href="<?= base_url() ?>setting"><i class="fa fa-cog"></i><span class="menu-title" data-i18n="">Settings</span></a>
+                <li class=" nav-item"><a href="<?= base_url() ?>setting"><i class="fa fa-cog"></i><span class="menu-title" data-i18n="">Settings</span></a>
                 </li>
             </ul>
         </div>
@@ -172,6 +172,14 @@
                                                 <div>
                                                     <label id="input" class="file center-block">
                                                         <input type="file" id="mp3" name="mp3" accept=".mp3">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="label-control">Lecture MP4 File</label>
+                                                <div>
+                                                    <label id="input" class="file center-block">
+                                                        <input type="file" id="mp4" name="mp4" accept=".mp4">
                                                     </label>
                                                 </div>
                                             </div>

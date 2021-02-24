@@ -117,7 +117,7 @@
                 </li>
                 <li class=" nav-item"><a href="<?= base_url() ?>forum"><i class="fa fa-comments"></i><span class="menu-title" data-i18n="">Forum</span></a>
                 </li>
-<li class=" nav-item"><a href="<?= base_url() ?>setting"><i class="fa fa-cog"></i><span class="menu-title" data-i18n="">Settings</span></a>
+                <li class=" nav-item"><a href="<?= base_url() ?>setting"><i class="fa fa-cog"></i><span class="menu-title" data-i18n="">Settings</span></a>
                 </li>
             </ul>
         </div>
@@ -172,7 +172,7 @@
                                                 <div class="input-group">
                                                     <input type="text" class="form-control square" id="mp3_current" placeholder="Lecture MP3 File" name="mp3_current" readonly value="<?= $data_lecture->mp3 ?>">
                                                     <div class="input-group-append">
-                                                        <a type="button" class="btn btn-info text-white" href="javascript:editLectureMp3Edit()">
+                                                        <a type="button" class="btn btn-info text-white" href="javascript:editMp3()">
                                                             <i class="fa fa-edit"></i>
                                                         </a>
                                                     </div>
@@ -185,11 +185,34 @@
                                                         <input type="file" id="mp3" name="mp3" accept=".mp3">
                                                     </label>
                                                 </div>
-                                                <a type="button" class="btn btn-danger text-white" href="javascript:cancelLectureMp3Edit()">
+                                                <a type="button" class="btn btn-danger text-white" href="javascript:cancelEditMp3()">
                                                     <i class="fa fa-times"></i>
                                                 </a>
                                             </div>
                                             <input type="hidden" name="change_mp3" id="change_mp3" value="0">
+                                            <div class="form-group d-block" id="mp4_current_panel">
+                                                <label for="mp4_current">Lecture MP4 File</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control square" id="mp4_current" placeholder="Lecture MP4 File" name="mp4_current" readonly value="<?= $data_lecture->mp4 ?>">
+                                                    <div class="input-group-append">
+                                                        <a type="button" class="btn btn-info text-white" href="javascript:editMp4()">
+                                                            <i class="fa fa-edit"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group d-none" id="mp4_new_panel">
+                                                <label class="label-control">Lecture MP4 File</label>
+                                                <div>
+                                                    <label id="input" class="file center-block">
+                                                        <input type="file" id="mp4" name="mp4" accept=".mp4">
+                                                    </label>
+                                                </div>
+                                                <a type="button" class="btn btn-danger text-white" href="javascript:cancelEditMp4()">
+                                                    <i class="fa fa-times"></i>
+                                                </a>
+                                            </div>
+                                            <input type="hidden" name="change_mp4" id="change_mp4" value="0">
                                         </div>
 
                                         <div class="form-actions">
@@ -238,16 +261,28 @@
 
     <!-- BEGIN: Page JS-->
     <script>
-        function editLectureMp3Edit() {
+        function editMp3() {
             $('#mp3_current_panel').removeClass('d-block').addClass('d-none');
             $('#mp3_new_panel').removeClass('d-none').addClass('d-block');
             $('#change_mp3').val('1');
         }
 
-        function cancelLectureMp3Edit() {
+        function cancelEditMp3() {
             $('#mp3_new_panel').removeClass('d-block').addClass('d-none');
             $('#mp3_current_panel').removeClass('d-none').addClass('d-block');
             $('#change_mp3').val('0');
+        }
+
+        function editMp4() {
+            $('#mp4_current_panel').removeClass('d-block').addClass('d-none');
+            $('#mp4_new_panel').removeClass('d-none').addClass('d-block');
+            $('#change_mp4').val('1');
+        }
+
+        function cancelEditMp4() {
+            $('#mp4_new_panel').removeClass('d-block').addClass('d-none');
+            $('#mp4_current_panel').removeClass('d-none').addClass('d-block');
+            $('#change_mp4').val('0');
         }
     </script>
     <!-- END: Page JS-->
