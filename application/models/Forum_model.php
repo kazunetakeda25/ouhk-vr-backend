@@ -12,11 +12,12 @@ class Forum_model extends CI_Model
 
 	public function getAll() 
 	{
-		$this->db->select('id, unit_number, title, content');
+		$this->db->select('tbl_forum.id, tbl_forum.unit_number, tbl_forum.title, tbl_forum.content, count(distinct tbl_forum_comment.id) as comments, sum(distinct tbl_forum_comment.like) as likes');
 		$this->db->from('tbl_forum');
-		$this->db->where("is_deleted", "0");
-		$this->db->order_by("unit_number", "asc");
-		$this->db->order_by("id", "asc");
+		$this->db->join('tbl_forum_comment', 'tbl_forum_comment.forum_id = tbl_forum.id', 'left');
+		$this->db->where("tbl_forum.is_deleted", "0");
+		$this->db->group_by("tbl_forum.id");
+		$this->db->order_by("tbl_forum.id", "asc");
 		
 		return $this->db->get()->result();
 	}

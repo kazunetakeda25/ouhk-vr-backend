@@ -172,6 +172,8 @@
                                                         <th scope="col">Unit Number</th>
                                                         <th scope="col">Title</th>
                                                         <th scope="col">Content</th>
+                                                        <th scope="col">Comments</th>
+                                                        <th scope="col">Likes</th>
                                                         <th scope="col">Action</th>
                                                     </tr>
                                                 </thead>
@@ -183,6 +185,8 @@
                                                         echo '<th scope="row">' . $forum->unit_number . '</th>';
                                                         echo '<td>' . $forum->title . '</td>';
                                                         echo '<td>' . $forum->content . '</td>';
+                                                        echo '<td>' . $forum->comments . '</td>';
+                                                        echo '<td>' . $forum->likes . '</td>';
                                                         echo '<td style="white-space: nowrap">
                                                                 <a type="button" class="btn btn-info text-white" href="' . base_url() . 'forum/edit/' . $forum->id . '"
                                                                     title="Edit">
