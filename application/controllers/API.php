@@ -25,7 +25,11 @@ class API extends CI_Controller
 		$this->db->where("is_deleted", "0");
 		$this->db->order_by("number", "asc");
 
-		return $this->db->get()->result();
+		$result = $this->db->get()->result();
+        
+        $data = new stdClass();
+        $data->list = $result;
+        echo json_encode($data, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
     }
 
     public function getUnitLearningContents()
@@ -36,7 +40,10 @@ class API extends CI_Controller
 		$this->db->where('unit_number', $unitNumber);
 		
 		$result = $this->db->get()->result();
-		return $result;
+        
+        $data = new stdClass();
+        $data->list = $result;
+        echo json_encode($data, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
     }
 
     public function getUnitLectures()
@@ -47,7 +54,10 @@ class API extends CI_Controller
 		$this->db->where('unit_number', $unitNumber);
 		
 		$result = $this->db->get()->result();
-		return $result;
+        
+        $data = new stdClass();
+        $data->list = $result;
+        echo json_encode($data, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
     }
 
     public function getUnitPractices()
@@ -58,7 +68,10 @@ class API extends CI_Controller
 		$this->db->where('unit_number', $unitNumber);
 		
 		$result = $this->db->get()->result();
-		return $result;
+        
+        $data = new stdClass();
+        $data->list = $result;
+        echo json_encode($data, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
     }
 
     public function getPracticeGlossaries()
@@ -69,7 +82,10 @@ class API extends CI_Controller
 		$this->db->where('practice_number', $practiceNumber);
 		
 		$result = $this->db->get()->result();
-		return $result;
+        
+        $data = new stdClass();
+        $data->list = $result;
+        echo json_encode($data, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
     }
 
     public function getPracticeAnswers()
@@ -80,7 +96,10 @@ class API extends CI_Controller
 		$this->db->where('practice_number', $practiceNumber);
 		
 		$result = $this->db->get()->result();
-		return $result;
+        
+        $data = new stdClass();
+        $data->list = $result;
+        echo json_encode($data, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
     }
 
     public function getUnitAnswers()
@@ -91,7 +110,10 @@ class API extends CI_Controller
 		$this->db->where('unit_number', $unitNumber);
 		
 		$result = $this->db->get()->result();
-		return $result;
+        
+        $data = new stdClass();
+        $data->list = $result;
+        echo json_encode($data, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
     }
 
     public function getUnitForums()
@@ -102,6 +124,9 @@ class API extends CI_Controller
 		$this->db->where('unit_number', $unitNumber);
 		
 		$result = $this->db->get()->result();
-		return $result;
+        
+        $data = new stdClass();
+        $data->list = $result;
+        echo json_encode($data, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
     }
 }
