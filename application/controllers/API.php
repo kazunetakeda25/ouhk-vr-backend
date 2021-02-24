@@ -114,10 +114,11 @@ class API extends CI_Controller
         $this->db->order_by("id", "asc");
 
         $result = $this->db->get()->result();
-
-        $data = new stdClass();
-        $data->list = $result;
-        echo json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        if (count($result) > 0) {
+            echo json_encode($result[0], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        } else {
+            echo json_encode(null, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        }
     }
 
     public function getUnitAnswer()
