@@ -140,6 +140,22 @@ class API extends CI_Controller
         }
     }
 
+    public function getForums()
+    {
+        $this->db->select('tbl_forum.id, tbl_forum.unit_number, tbl_forum.title, tbl_forum.content, count(distinct tbl_forum_comment.id) as comments, sum(distinct tbl_forum_comment.like) as likes');
+		$this->db->from('tbl_forum');
+		$this->db->join('tbl_forum_comment', 'tbl_forum_comment.forum_id = tbl_forum.id', 'left');
+		$this->db->where("tbl_forum.is_deleted", "0");
+		$this->db->group_by("tbl_forum.id");
+		$this->db->order_by("tbl_forum.id", "asc");
+
+        $result = $this->db->get()->result();
+
+        $data = new stdClass();
+        $data->list = $result;
+        echo json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    }
+
     public function getUnitForums()
     {
         $unitNumber = $this->input->post('unitNumber');
