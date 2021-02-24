@@ -117,7 +117,7 @@
                 </li>
                 <li class=" nav-item"><a href="<?= base_url() ?>forum"><i class="fa fa-comments"></i><span class="menu-title" data-i18n="">Forum</span></a>
                 </li>
-<li class=" nav-item"><a href="<?= base_url() ?>setting"><i class="fa fa-cog"></i><span class="menu-title" data-i18n="">Settings</span></a>
+                <li class=" nav-item"><a href="<?= base_url() ?>setting"><i class="fa fa-cog"></i><span class="menu-title" data-i18n="">Settings</span></a>
                 </li>
             </ul>
         </div>
@@ -175,29 +175,103 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group d-block" id="video_current_panel">
-                                                <label for="title">Non-VR Video File</label>
+                                            <!-- Ex1. MP3 -->
+                                            <div class="form-group d-block" id="ex1_mp3_current_panel">
+                                                <label for="title">Exercise 1. VR MP3 File</label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control square" id="video_current" placeholder="Practice Video File" name="video_current" readonly value="<?= $data_practice->video ?>">
+                                                    <input type="text" class="form-control square" id="ex1_mp3_current" placeholder="VR MP3 File" name="ex1_mp3_current" readonly value="<?= $data_practice->ex1_mp3 ?>">
                                                     <div class="input-group-append">
-                                                        <a type="button" class="btn btn-info text-white" href="javascript:editPracticeVideoEdit()">
+                                                        <a type="button" class="btn btn-info text-white" href="javascript:editEx1Mp3()">
                                                             <i class="fa fa-edit"></i>
                                                         </a>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group d-none" id="video_new_panel">
-                                                <label class="label-control">Non-VR Video File</label>
+                                            <div class="form-group d-none" id="ex1_mp3_new_panel">
+                                                <label class="label-control">Exercise 1. VR MP3 File</label>
                                                 <div>
                                                     <label id="input" class="file center-block">
-                                                        <input type="file" id="video" name="video" accept=".mp4">
+                                                        <input type="file" id="ex1_mp3" name="ex1_mp3" accept=".mp3">
                                                     </label>
                                                 </div>
-                                                <a type="button" class="btn btn-danger text-white" href="javascript:cancelPracticeVideoEdit()">
+                                                <a type="button" class="btn btn-danger text-white" href="javascript:cancelEditEx1Mp3()">
                                                     <i class="fa fa-times"></i>
                                                 </a>
                                             </div>
-                                            <input type="hidden" name="change_video" id="change_video" value="0">
+                                            <input type="hidden" name="change_ex1_mp3" id="change_ex1_mp3" value="0">
+                                            <!-- Ex1. MP4 -->
+                                            <div class="form-group d-block" id="ex1_mp4_current_panel">
+                                                <label for="title">Exercise 1. Non-VR MP4 File</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control square" id="ex1_mp4_current" placeholder="Non-VR MP4 File" name="ex1_mp4_current" readonly value="<?= $data_practice->ex1_mp4 ?>">
+                                                    <div class="input-group-append">
+                                                        <a type="button" class="btn btn-info text-white" href="javascript:editEx1Mp4()">
+                                                            <i class="fa fa-edit"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group d-none" id="ex1_mp4_new_panel">
+                                                <label class="label-control">Exercise 1. Non-VR MP4 File</label>
+                                                <div>
+                                                    <label id="input" class="file center-block">
+                                                        <input type="file" id="ex1_mp4" name="ex1_mp4" accept=".mp4">
+                                                    </label>
+                                                </div>
+                                                <a type="button" class="btn btn-danger text-white" href="javascript:cancelEditEx1Mp4()">
+                                                    <i class="fa fa-times"></i>
+                                                </a>
+                                            </div>
+                                            <input type="hidden" name="change_ex1_mp4" id="change_ex1_mp4" value="0">
+                                            <!-- Ex2. MP3 -->
+                                            <div class="form-group d-block" id="ex2_mp3_current_panel">
+                                                <label for="title">Exercise 2. VR MP3 File</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control square" id="ex2_mp3_current" placeholder="VR MP3 File" name="ex2_mp3_current" readonly value="<?= $data_practice->ex2_mp3 ?>">
+                                                    <div class="input-group-append">
+                                                        <a type="button" class="btn btn-info text-white" href="javascript:editEx2Mp3()">
+                                                            <i class="fa fa-edit"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group d-none" id="ex2_mp3_new_panel">
+                                                <label class="label-control">Exercise 2. VR MP3 File</label>
+                                                <div>
+                                                    <label id="input" class="file center-block">
+                                                        <input type="file" id="ex2_mp3" name="ex2_mp3" accept=".mp3">
+                                                    </label>
+                                                </div>
+                                                <a type="button" class="btn btn-danger text-white" href="javascript:cancelEditEx2Mp3()">
+                                                    <i class="fa fa-times"></i>
+                                                </a>
+                                            </div>
+                                            <input type="hidden" name="change_ex2_mp3" id="change_ex2_mp3" value="0">
+                                            <!-- Ex2. MP4 -->
+                                            <div class="form-group d-block" id="ex2_mp4_current_panel">
+                                                <label for="title">Exercise 2. Non-VR MP4 File</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control square" id="ex2_mp4_current" placeholder="Non-VR MP4 File" name="ex2_mp4_current" readonly value="<?= $data_practice->ex2_mp4 ?>">
+                                                    <div class="input-group-append">
+                                                        <a type="button" class="btn btn-info text-white" href="javascript:editEx2Mp4()">
+                                                            <i class="fa fa-edit"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group d-none" id="ex2_mp4_new_panel">
+                                                <label class="label-control">Exercise 2. Non-VR MP4 File</label>
+                                                <div>
+                                                    <label id="input" class="file center-block">
+                                                        <input type="file" id="ex2_mp4" name="ex2_mp4" accept=".mp4">
+                                                    </label>
+                                                </div>
+                                                <a type="button" class="btn btn-danger text-white" href="javascript:cancelEditEx2Mp4()">
+                                                    <i class="fa fa-times"></i>
+                                                </a>
+                                            </div>
+                                            <input type="hidden" name="change_ex2_mp4" id="change_ex2_mp4" value="0">
+
                                         </div>
 
                                         <div class="form-actions">
@@ -246,16 +320,52 @@
 
     <!-- BEGIN: Page JS-->
     <script>
-        function editPracticeVideoEdit() {
-            $('#video_current_panel').removeClass('d-block').addClass('d-none');
-            $('#video_new_panel').removeClass('d-none').addClass('d-block');
-            $('#change_video').val('1');
+        function editEx1Mp3() {
+            $('#ex1_mp3_current_panel').removeClass('d-block').addClass('d-none');
+            $('#ex1_mp3_new_panel').removeClass('d-none').addClass('d-block');
+            $('#change_ex1_mp3').val('1');
         }
 
-        function cancelPracticeVideoEdit() {
-            $('#video_new_panel').removeClass('d-block').addClass('d-none');
-            $('#video_current_panel').removeClass('d-none').addClass('d-block');
-            $('#change_video').val('0');
+        function cancelEditEx1Mp3() {
+            $('#ex1_mp3_new_panel').removeClass('d-block').addClass('d-none');
+            $('#ex1_mp3_current_panel').removeClass('d-none').addClass('d-block');
+            $('#change_ex1_mp3').val('0');
+        }
+
+        function editEx1Mp4() {
+            $('#ex1_mp4_current_panel').removeClass('d-block').addClass('d-none');
+            $('#ex1_mp4_new_panel').removeClass('d-none').addClass('d-block');
+            $('#change_ex1_mp4').val('1');
+        }
+
+        function cancelEditEx1Mp4() {
+            $('#ex1_mp4_new_panel').removeClass('d-block').addClass('d-none');
+            $('#ex1_mp4_current_panel').removeClass('d-none').addClass('d-block');
+            $('#change_ex1_mp4').val('0');
+        }
+
+        function editEx2Mp3() {
+            $('#ex2_mp3_current_panel').removeClass('d-block').addClass('d-none');
+            $('#ex2_mp3_new_panel').removeClass('d-none').addClass('d-block');
+            $('#change_ex2_mp3').val('1');
+        }
+
+        function cancelEditEx2Mp3() {
+            $('#ex2_mp3_new_panel').removeClass('d-block').addClass('d-none');
+            $('#ex2_mp3_current_panel').removeClass('d-none').addClass('d-block');
+            $('#change_ex2_mp3').val('0');
+        }
+
+        function editEx2Mp4() {
+            $('#ex2_mp4_current_panel').removeClass('d-block').addClass('d-none');
+            $('#ex2_mp4_new_panel').removeClass('d-none').addClass('d-block');
+            $('#change_ex2_mp4').val('1');
+        }
+
+        function cancelEditEx2Mp4() {
+            $('#ex2_mp4_new_panel').removeClass('d-block').addClass('d-none');
+            $('#ex2_mp4_current_panel').removeClass('d-none').addClass('d-block');
+            $('#change_ex2_mp4').val('0');
         }
     </script>
     <!-- END: Page JS-->

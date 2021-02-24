@@ -48,7 +48,7 @@ class Lecture extends CI_Controller
 			} else {
 				$unit_number = $this->input->post('unit_number');
 				$title = $this->input->post('title');
-				
+
 				$array = array(
 					'unit_number' => $unit_number,
 					'title' => $title,
@@ -60,7 +60,9 @@ class Lecture extends CI_Controller
 					$mp3_path = 'uploads/audio/' . $name;
 					move_uploaded_file($tmp_name, $mp3_path);
 					$array['mp3'] = $mp3_path;
-				} else if ($_FILES['mp4'] != null && $_FILES['mp4']['error'] == UPLOAD_ERR_OK) {
+				}
+
+				if ($_FILES['mp4'] != null && $_FILES['mp4']['error'] == UPLOAD_ERR_OK) {
 					$tmp_name = $_FILES["mp4"]["tmp_name"];
 					$name = basename($_FILES["mp4"]["name"]);
 					$mp4_path = 'uploads/video/' . $name;
@@ -116,7 +118,9 @@ class Lecture extends CI_Controller
 					$mp3_path = 'uploads/audio/' . $name;
 					move_uploaded_file($tmp_name, $mp3_path);
 					$array['mp3'] = $mp3_path;
-				} else if ($change_mp4 == 1 && $_FILES['mp4']['error'] == UPLOAD_ERR_OK) {
+				}
+
+				if ($change_mp4 == 1 && $_FILES['mp4']['error'] == UPLOAD_ERR_OK) {
 					$tmp_name = $_FILES["mp4"]["tmp_name"];
 					$name = basename($_FILES["mp4"]["name"]);
 					$mp4_path = 'uploads/video/' . $name;

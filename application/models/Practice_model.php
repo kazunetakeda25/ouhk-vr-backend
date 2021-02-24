@@ -27,9 +27,24 @@ class Practice_model extends CI_Model
 			'unit_number' => $practice['unit_number'],
 			'number' => $practice['number'],
 			'title' => $practice['title'],
-			'video' => $practice['video'], 
 			'created_at' => date("Y-m-d H:i:s")
 		);
+
+		if ($practice['ex1_mp3'] != null) {
+			$data['ex1_mp3'] = $practice['ex1_mp3'];
+		}
+
+		if ($practice['ex1_mp4'] != null) {
+			$data['ex1_mp4'] = $practice['ex1_mp4'];
+		}
+
+		if ($practice['ex2_mp3'] != null) {
+			$data['ex2_mp3'] = $practice['ex2_mp3'];
+		}
+
+		if ($practice['ex2_mp4'] != null) {
+			$data['ex2_mp4'] = $practice['ex2_mp4'];
+		}
 
 		$this->db->insert('tbl_practice', $data);
 		return $this->db->insert_id();
@@ -47,7 +62,7 @@ class Practice_model extends CI_Model
 
 	public function get($id) 
 	{
-		$this->db->select('id, unit_number, number, title, video');
+		$this->db->select('id, unit_number, number, title, ex1_mp3, ex1_mp4, ex2_mp3, ex2_mp4');
     	$this->db->from('tbl_practice');
 		$this->db->where('id', $id);
 		

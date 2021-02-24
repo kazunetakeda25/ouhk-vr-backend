@@ -163,7 +163,7 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="number">Practice Number</label>
-                                                        <input type="text" id="number" class="form-control" placeholder="Enter Interpreting Practice and Exercise Number" name="number">
+                                                        <input type="text" id="number" class="form-control" placeholder="Enter Practice Number" name="number">
                                                     </div>
                                                 </div>
                                             </div>
@@ -171,15 +171,39 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="title">Practice Title</label>
-                                                        <input type="text" id="title" class="form-control" placeholder="Enter Interpreting Practice and Exercise Title" name="title">
+                                                        <input type="text" id="title" class="form-control" placeholder="Enter Practice Title" name="title">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="label-control">Non-VR Video File</label>
+                                                <label class="label-control">Exercise 1. VR MP3 File</label>
                                                 <div>
                                                     <label id="input" class="file center-block">
-                                                        <input type="file" id="video" name="video" accept=".mp4">
+                                                        <input type="file" id="ex1_mp3" name="ex1_mp3" accept=".mp3">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="label-control">Exercise 1. Non-VR MP4 File</label>
+                                                <div>
+                                                    <label id="input" class="file center-block">
+                                                        <input type="file" id="ex1_mp4" name="ex1_mp4" accept=".mp4">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="label-control">Exercise 2. VR MP3 File</label>
+                                                <div>
+                                                    <label id="input" class="file center-block">
+                                                        <input type="file" id="ex2_mp3" name="ex2_mp3" accept=".mp3">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="label-control">Exercise 2. Non-VR MP4 File</label>
+                                                <div>
+                                                    <label id="input" class="file center-block">
+                                                        <input type="file" id="ex2_mp4" name="ex2_mp4" accept=".mp4">
                                                     </label>
                                                 </div>
                                             </div>
