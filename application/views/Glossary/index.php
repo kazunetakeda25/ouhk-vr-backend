@@ -169,9 +169,8 @@
                                                 <thead class="text-white" style="background-color: rgba(97, 227, 181,100)">
                                                     <tr>
                                                         <th scope="col" class="d-none">ID</th>
-                                                        <th scope="col">Unit Number</th>
+                                                        <th scope="col">ID</th>
                                                         <th scope="col">Practice Number</th>
-                                                        <th scope="col">Title</th>
                                                         <th scope="col">Original Word</th>
                                                         <th scope="col">Translated Word</th>
                                                         <th scope="col">Action</th>
@@ -181,10 +180,8 @@
                                                     <?php
                                                     foreach ($data_glossary as $glossary) {
                                                         echo '<tr>';
-                                                        echo '<td class="d-none">' . $glossary->id . '</td>';
-                                                        echo '<th scope="row">' . $glossary->unit_number . '</th>';
+                                                        echo '<th scope="row">' . $glossary->id . '</th>';
                                                         echo '<th scope="row">' . $glossary->practice_number . '</th>';
-                                                        echo '<td>' . $glossary->title . '</td>';
                                                         echo '<td>' . $glossary->original_word . '</td>';
                                                         echo '<td>' . $glossary->translated_word . '</td>';
                                                         echo '<td style="white-space: nowrap">

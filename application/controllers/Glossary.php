@@ -48,27 +48,20 @@ class Glossary extends CI_Controller {
 			$this->load->helper('form');
 			$this->load->library('form_validation');
 			
-			$this->form_validation->set_rules('unit_number', 'Unit Number', 'required');
 			$this->form_validation->set_rules('practice_number', 'Practice Number', 'required');
-			$this->form_validation->set_rules('title', 'Glossary Title', 'required');
 			$this->form_validation->set_rules('original_word', 'Original Word', 'required');
 			$this->form_validation->set_rules('translated_word', 'Translated Word', 'required');
 			
 			if ($this->form_validation->run() == false || $_FILES === null) {
-				$result['data_unit'] = $this->unit_model->getUnitList();
 				$result['data_practice'] = $this->practice_model->getPracticeList();
 				$this->load->view('Glossary/add', $result);
 			} else {
-				$unit_number = $this->input->post('unit_number');
 				$practice_number = $this->input->post('practice_number');
-				$title = $this->input->post('title');
 				$original_word = $this->input->post('original_word');
 				$translated_word = $this->input->post('translated_word');
 				
 				$array = array(
-					'unit_number' => $unit_number, 
 					'practice_number' => $practice_number, 
-					'title' => $title, 
 					'original_word' => $original_word, 
 					'translated_word' => $translated_word
 				);
@@ -95,28 +88,21 @@ class Glossary extends CI_Controller {
 			$this->load->helper('form');
 			$this->load->library('form_validation');
 			
-			$this->form_validation->set_rules('unit_number', 'Unit Number', 'required');
 			$this->form_validation->set_rules('practice_number', 'Practice Number', 'required');
-			$this->form_validation->set_rules('title', 'Glossary Title', 'required');
 			$this->form_validation->set_rules('original_word', 'Original Word', 'required');
 			$this->form_validation->set_rules('translated_word', 'Translated Word', 'required');
 			
 			if ($this->form_validation->run() == false) {
-				$result['data_unit'] = $this->unit_model->getUnitList();
 				$result['data_practice'] = $this->practice_model->getPracticeList();
 				$result['data_glossary'] = $this->glossary_model->get($id);
 				$this->load->view('Glossary/edit', $result);
 			} else {
-				$unit_number = $this->input->post('unit_number');
 				$practice_number = $this->input->post('practice_number');
-				$title = $this->input->post('title');
 				$original_word = $this->input->post('original_word');
 				$translated_word = $this->input->post('translated_word');
 				
 				$array = array(
-					'unit_number' => $unit_number, 
 					'practice_number' => $practice_number, 
-					'title' => $title, 
 					'original_word' => $original_word, 
 					'translated_word' => $translated_word
 				);

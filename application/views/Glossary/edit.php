@@ -149,17 +149,6 @@
                                                 <i class="fa fa-folder"></i>Glossary Edit
                                             </h4>
                                             <div class="form-group">
-                                                <label for="unit_number">Unit Number</label>
-                                                <select id="unit_number" name="unit_number" class="form-control">
-                                                    <option value="" disabled>Select Unit</option>
-                                                    <?php
-                                                    foreach ($data_unit as $unit) {
-                                                        echo '<option value="' . $unit->number . '" ' . ($unit->number == $data_glossary->unit_number ? 'selected' : '') . '>' . $unit->number . '</option>';
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
                                                 <label for="practice_number">Practice Number</label>
                                                 <select id="practice_number" name="practice_number" class="form-control">
                                                     <option value="" disabled>Select Interpreting Practice & Exercise
@@ -170,14 +159,6 @@
                                                     }
                                                     ?>
                                                 </select>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label for="title">Glossary Title</label>
-                                                        <input type="text" id="title" class="form-control" placeholder="Enter Glossary Title" name="title" value="<?= $data_glossary->title ?>">
-                                                    </div>
-                                                </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="original_word">Original Word</label>

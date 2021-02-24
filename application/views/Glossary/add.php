@@ -149,17 +149,6 @@
                                                 <i class="fa fa-folder"></i>Glossary Create
                                             </h4>
                                             <div class="form-group">
-                                                <label for="unit_number">Unit Number</label>
-                                                <select id="unit_number" name="unit_number" class="form-control">
-                                                    <option value="" selected disabled>Select Unit</option>
-                                                    <?php
-                                                    foreach ($data_unit as $unit) {
-                                                        echo '<option value="' . $unit->number . '">' . $unit->number . '</option>';
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
                                                 <label for="practice_number">Practice Number</label>
                                                 <select id="practice_number" name="practice_number" class="form-control">
                                                     <option value="" selected disabled>Select Interpreting Practice and
@@ -171,20 +160,12 @@
                                                     ?>
                                                 </select>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label for="title">Glossary Title</label>
-                                                        <input type="text" id="title" class="form-control" placeholder="Enter Answer ST and TT Title" name="title">
-                                                    </div>
-                                                </div>
-                                            </div>
                                             <div class="form-group">
                                                 <label for="original_word">Original Word</label>
                                                 <textarea id="original_word" rows="5" class="form-control" name="original_word" placeholder="Enter Original Word"></textarea>
                                             </div>
                                             <div class="form-group">
-                                                <label for="translated_word">Translated Text</label>
+                                                <label for="translated_word">Translated Word</label>
                                                 <textarea id="translated_word" rows="5" class="form-control" name="translated_word" placeholder="Enter Translated Word"></textarea>
                                             </div>
 
