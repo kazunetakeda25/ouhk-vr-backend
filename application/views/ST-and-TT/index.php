@@ -169,7 +169,6 @@
                                                 <thead class="text-white" style="background-color: rgba(97, 227, 181,100)">
                                                     <tr>
                                                         <th scope="col" class="d-none">ID</th>
-                                                        <th scope="col">Unit Number</th>
                                                         <th scope="col">Practice Number</th>
                                                         <th scope="col">Title</th>
                                                         <th scope="col">Action</th>
@@ -180,7 +179,6 @@
                                                     foreach ($data_sttt as $sttt) {
                                                         echo '<tr>';
                                                         echo '<td class="d-none">' . $sttt->id . '</td>';
-                                                        echo '<th scope="row">' . $sttt->unit_number . '</th>';
                                                         echo '<th scope="row">' . $sttt->practice_number . '</th>';
                                                         echo '<td>' . $sttt->title . '</td>';
                                                         echo '<td style="white-space: nowrap">

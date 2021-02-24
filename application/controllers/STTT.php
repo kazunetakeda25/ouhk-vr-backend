@@ -48,28 +48,26 @@ class STTT extends CI_Controller {
 			$this->load->helper('form');
 			$this->load->library('form_validation');
 			
-			$this->form_validation->set_rules('unit_number', 'Unit Number', 'required');
 			$this->form_validation->set_rules('practice_number', 'Practice Number', 'required');
 			$this->form_validation->set_rules('title', 'Answer ST and TT Title', 'required');
-			$this->form_validation->set_rules('original_text', 'Original Text', 'required');
-			$this->form_validation->set_rules('translated_text', 'Translated Text', 'required');
 			
 			if ($this->form_validation->run() == false || $_FILES === null) {
-				$result['data_unit'] = $this->unit_model->getUnitList();
-				$result['data_practice'] = $this->practice_model->getPracticeList();
+				$result['data_practice'] = $this->practice_model->getPracticeListForContent('tbl_sttt');
 				$this->load->view('ST-and-TT/add', $result);
 			} else {
-				$unit_number = $this->input->post('unit_number');
 				$practice_number = $this->input->post('practice_number');
 				$title = $this->input->post('title');
-				$original_text = $this->input->post('original_text');
-				$translated_text = $this->input->post('translated_text');
+				$ex1_answer_original = $this->input->post('ex1_answer_original');
+				$ex1_answer_translated = $this->input->post('ex1_answer_translated');
+				$ex2_answer_original = $this->input->post('ex2_answer_original');
+				$ex2_answer_translated = $this->input->post('ex2_answer_translated');
 				$array = array(
-					'unit_number' => $unit_number, 
 					'practice_number' => $practice_number, 
 					'title' => $title, 
-					'original_text' => $original_text, 
-					'translated_text' => $translated_text
+					'ex1_answer_original' => $ex1_answer_original, 
+					'ex1_answer_translated' => $ex1_answer_translated,
+					'ex2_answer_original' => $ex2_answer_original, 
+					'ex2_answer_translated' => $ex2_answer_translated
 				);
 					
 				$result = $this->sttt_model->add($array);
@@ -94,29 +92,27 @@ class STTT extends CI_Controller {
 			$this->load->helper('form');
 			$this->load->library('form_validation');
 			
-			$this->form_validation->set_rules('unit_number', 'Unit Number', 'required');
 			$this->form_validation->set_rules('practice_number', 'Practice Number', 'required');
 			$this->form_validation->set_rules('title', 'Answer ST and TT Title', 'required');
-			$this->form_validation->set_rules('original_text', 'Original Text', 'required');
-			$this->form_validation->set_rules('translated_text', 'Translated Text', 'required');
 			
 			if ($this->form_validation->run() == false) {
-				$result['data_unit'] = $this->unit_model->getUnitList();
-				$result['data_practice'] = $this->practice_model->getPracticeList();
+				$result['data_practice'] = $this->practice_model->getPracticeListForContent('tbl_sttt', $id);
 				$result['data_sttt'] = $this->sttt_model->get($id);
 				$this->load->view('ST-and-TT/edit', $result);
 			} else {
-				$unit_number = $this->input->post('unit_number');
 				$practice_number = $this->input->post('practice_number');
 				$title = $this->input->post('title');
-				$original_text = $this->input->post('original_text');
-				$translated_text = $this->input->post('translated_text');
+				$ex1_answer_original = $this->input->post('ex1_answer_original');
+				$ex1_answer_translated = $this->input->post('ex1_answer_translated');
+				$ex2_answer_original = $this->input->post('ex2_answer_original');
+				$ex2_answer_translated = $this->input->post('ex2_answer_translated');
 				$array = array(
-					'unit_number' => $unit_number, 
 					'practice_number' => $practice_number, 
 					'title' => $title, 
-					'original_text' => $original_text, 
-					'translated_text' => $translated_text
+					'ex1_answer_original' => $ex1_answer_original, 
+					'ex1_answer_translated' => $ex1_answer_translated,
+					'ex2_answer_original' => $ex2_answer_original, 
+					'ex2_answer_translated' => $ex2_answer_translated
 				);
 				
 				$result = $this->sttt_model->update($id, $array);

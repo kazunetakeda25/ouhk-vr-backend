@@ -149,17 +149,6 @@
                                                 <i class="fa fa-folder"></i>Answer ST and TT Create
                                             </h4>
                                             <div class="form-group">
-                                                <label for="unit_number">Unit Number</label>
-                                                <select id="unit_number" name="unit_number" class="form-control">
-                                                    <option value="" selected disabled>Select Unit</option>
-                                                    <?php
-                                                    foreach ($data_unit as $unit) {
-                                                        echo '<option value="' . $unit->number . '">' . $unit->number . '</option>';
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
                                                 <label for="practice_number">Practice Number</label>
                                                 <select id="practice_number" name="practice_number" class="form-control">
                                                     <option value="" selected disabled>Select Interpreting Practice and Exercise</option>
@@ -179,12 +168,21 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="original_text">Original Text</label>
-                                                <textarea id="original_text" rows="5" class="form-control" name="original_text" placeholder="Enter Original Text"></textarea>
+                                                <label for="ex1_answer_original">Ex1. Original Answer</label>
+                                                <textarea id="ex1_answer_original" rows="5" class="form-control" name="ex1_answer_original" placeholder="Enter Exercise 1 Original Answer"></textarea>
                                             </div>
                                             <div class="form-group">
-                                                <label for="translated_text">Translated Text</label>
-                                                <textarea id="translated_text" rows="5" class="form-control" name="translated_text" placeholder="Enter Translated Text"></textarea>
+                                                <label for="ex1_answer_translated">Ex1. Translated Answer</label>
+                                                <textarea id="ex1_answer_translated" rows="5" class="form-control" name="ex1_answer_translated" placeholder="Enter Exercise 1 Translated Answer"></textarea>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="ex2_answer_original">Ex2. Original Answer</label>
+                                                <textarea id="ex2_answer_original" rows="5" class="form-control" name="ex2_answer_original" placeholder="Enter Exercise 2 Original Answer"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ex2_answer_translated">Ex2. Translated Answer</label>
+                                                <textarea id="ex2_answer_translated" rows="5" class="form-control" name="ex2_answer_translated" placeholder="Enter Exercise 2 Translated Answer"></textarea>
                                             </div>
 
                                             <div class="form-actions">

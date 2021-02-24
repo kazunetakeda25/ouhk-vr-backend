@@ -12,12 +12,10 @@ class STTT_model extends CI_Model
 
 	public function getAll() 
 	{
-		$this->db->select('id, unit_number, practice_number, title');
+		$this->db->select('id, practice_number, title');
 		$this->db->from('tbl_sttt');
 		$this->db->where("is_deleted", "0");
-		$this->db->order_by("unit_number", "asc");
-		$this->db->order_by("unit_number", "asc");
-		$this->db->order_by("id", "asc");
+		$this->db->order_by("practice_number", "asc");
 		
 		return $this->db->get()->result();
 	}
@@ -25,11 +23,12 @@ class STTT_model extends CI_Model
 	public function add($sttt) 
 	{
 		$data = array(
-			'unit_number' => $sttt['unit_number'],
 			'practice_number' => $sttt['practice_number'],
 			'title' => $sttt['title'],
-			'original_text' => $sttt['original_text'], 
-			'translated_text' => $sttt['translated_text'], 
+			'ex1_answer_original' => $sttt['ex1_answer_original'], 
+			'ex1_answer_translated' => $sttt['ex1_answer_translated'], 
+			'ex2_answer_original' => $sttt['ex2_answer_original'], 
+			'ex2_answer_translated' => $sttt['ex2_answer_translated'], 
 			'created_at' => date("Y-m-d H:i:s")
 		);
 
@@ -39,9 +38,11 @@ class STTT_model extends CI_Model
 
 	public function getAllForUnit($unit_number) 
 	{
-		$this->db->select('id, unit_number, practice_number, title');
+		$this->db->select('tbl_sttt.id, tbl_sttt.practice_number, tbl_sttt.title');
     	$this->db->from('tbl_sttt');
-		$this->db->where('unit_number', $unit_number);
+		$this->db->join('tbl_practice', 'tbl_practice.unit_number = ' . $unit_number, 'left');
+		$this->db->where('tbl_practice.unit_number', $unit_number);
+		$this->db->order_by("practice_number", "asc");
 		
 		$result = $this->db->get()->result();
 		return $result;
@@ -49,9 +50,10 @@ class STTT_model extends CI_Model
 
 	public function getAllForPractice($practice_number) 
 	{
-		$this->db->select('id, unit_number, practice_number, title');
+		$this->db->select('id, practice_number, title');
     	$this->db->from('tbl_sttt');
 		$this->db->where('practice_number', $practice_number);
+		$this->db->order_by("practice_number", "asc");
 		
 		$result = $this->db->get()->result();
 		return $result;
@@ -59,7 +61,7 @@ class STTT_model extends CI_Model
 
 	public function get($id) 
 	{
-		$this->db->select('id, unit_number, practice_number, title, original_text, translated_text');
+		$this->db->select('id, practice_number, title, ex1_answer_original, ex1_answer_translated, ex2_answer_original, ex2_answer_translated');
     	$this->db->from('tbl_sttt');
 		$this->db->where('id', $id);
 		
@@ -82,5 +84,3 @@ class STTT_model extends CI_Model
 		return $this->db->affected_rows();
 	}
 }
-
-?>
