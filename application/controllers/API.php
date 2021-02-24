@@ -32,7 +32,7 @@ class API extends CI_Controller
         echo json_encode($data, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
     }
 
-    public function getUnitLearningContents()
+    public function getUnitLearningContent()
     {
         $unitNumber = $this->input->post('unitNumber');
         $this->db->select('id, unit_number, title, data');
@@ -40,24 +40,26 @@ class API extends CI_Controller
 		$this->db->where('unit_number', $unitNumber);
 		
 		$result = $this->db->get()->result();
-        
-        $data = new stdClass();
-        $data->list = $result;
-        echo json_encode($data, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+        if (count($result) > 0) {
+            echo json_encode($result[0], JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+        } else {
+            echo json_encode(null, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+        }
     }
 
-    public function getUnitLectures()
+    public function getUnitLecture()
     {
         $unitNumber = $this->input->post('unitNumber');
-        $this->db->select('id, unit_number, title, mp3');
+        $this->db->select('id, unit_number, title, mp3, mp4');
     	$this->db->from('tbl_lecture');
 		$this->db->where('unit_number', $unitNumber);
 		
 		$result = $this->db->get()->result();
-        
-        $data = new stdClass();
-        $data->list = $result;
-        echo json_encode($data, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+        if (count($result) > 0) {
+            echo json_encode($result[0], JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+        } else {
+            echo json_encode(null, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+        }
     }
 
     public function getUnitPractices()
