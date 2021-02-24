@@ -41,7 +41,7 @@ class Lecture extends CI_Controller {
 			$this->form_validation->set_rules('title', 'Lecture Title', 'required');
 			
 			if ($this->form_validation->run() == false || $_FILES === null) {
-				$result['data_unit'] = $this->unit_model->getUnitList();
+				$result['data_unit'] = $this->unit_model->getUnitListForContent('tbl_lecture');
 				$this->load->view('Lecture/add', $result);
 			} else {
 				$unit_number = $this->input->post('unit_number');
@@ -84,7 +84,7 @@ class Lecture extends CI_Controller {
 			$this->form_validation->set_rules('title', 'Lecture Title', 'required');
 			
 			if ($this->form_validation->run() == false) {
-				$result['data_unit'] = $this->unit_model->getUnitList();
+				$result['data_unit'] = $this->unit_model->getUnitListForContent('tbl_lecture', $id);
 				$result['data_lecture'] = $this->lecture_model->get($id);
 				$this->load->view('Lecture/edit', $result);
 			} else {

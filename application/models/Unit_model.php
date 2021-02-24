@@ -80,4 +80,37 @@ class Unit_model extends CI_Model
 
 		return $this->db->get()->result();
 	}
+
+	public function getUnitListForContent($table_name, $edit_id = null)
+	{
+		$this->db->select('number');
+		$this->db->from('tbl_unit');
+		$this->db->where("is_deleted", "0");
+		$this->db->order_by("number", "asc");
+
+		$numberArray = array();
+
+		$units = $this->db->get()->result();
+		foreach ($units as $unit) {
+			$this->db->select('id, unit_number');
+			$this->db->from($table_name);
+			$this->db->where("is_deleted", "0");
+			$this->db->where("unit_number", $unit->number);
+
+			$result = $this->db->get()->result();
+			if (count($result) == 0) {
+				$number = new stdClass();
+				$number->number = $unit->number;
+				array_push($numberArray, $number);
+			} else {
+				if ($edit_id != null && $result[0]->id == $edit_id) {
+					$number = new stdClass();
+					$number->number = $result[0]->unit_number;
+					array_push($numberArray, $number);
+				}
+			}
+		}
+
+		return $numberArray;
+	}
 }

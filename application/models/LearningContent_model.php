@@ -23,6 +23,14 @@ class LearningContent_model extends CI_Model
 
 	public function add($learning_content) 
 	{
+		$this->db->select('unit_number');
+    	$this->db->from('tbl_learning_content');
+		$this->db->where('unit_number', $learning_content['unit_number']);
+		
+		$result = $this->db->get()->result();
+		if (count($result) > 0)
+			return 0;
+
 		$data = array(
 			'unit_number' => $learning_content['unit_number'],
 			'title' => $learning_content['title'],
@@ -34,14 +42,13 @@ class LearningContent_model extends CI_Model
 		return $this->db->insert_id();
 	}
 
-	public function getAllForUnit($unit_number) 
+	public function getForUnit($unit_number) 
 	{
 		$this->db->select('id, unit_number, title, data');
     	$this->db->from('tbl_learning_content');
 		$this->db->where('unit_number', $unit_number);
 		
-		$result = $this->db->get()->result();
-		return $result;
+		return $this->db->get()->result();
 	}
 
 	public function get($id) 
@@ -69,5 +76,3 @@ class LearningContent_model extends CI_Model
 		return $this->db->affected_rows();
 	}
 }
-
-?>

@@ -42,7 +42,7 @@ class Practice extends CI_Controller {
 			$this->form_validation->set_rules('title', 'Practice Title', 'required');
 			
 			if ($this->form_validation->run() == false || $_FILES === null) {
-				$result['data_unit'] = $this->unit_model->getUnitList();
+				$result['data_unit'] = $this->unit_model->getUnitListForContent('tbl_practice');
 				$this->load->view('Practice/add', $result);
 			} else {
 				$unit_number = $this->input->post('unit_number');
@@ -88,7 +88,7 @@ class Practice extends CI_Controller {
 			$this->form_validation->set_rules('title', 'Practice Title', 'required');
 			
 			if ($this->form_validation->run() == false) {
-				$result['data_unit'] = $this->unit_model->getUnitList();
+				$result['data_unit'] = $this->unit_model->getUnitListForContent('tbl_practice', $id);
 				$result['data_practice'] = $this->practice_model->get($id);
 				$this->load->view('Practice/edit', $result);
 			} else {
