@@ -81,6 +81,12 @@ class User_model extends CI_Model
 			return -1;
 		}
 
+		$code = strtoupper($this->generateCode(8));
+		$data = array(
+			'code' => $code
+		);
+		$this->update($user_id, $data);
+
 		$this->email->message('
 		<!DOCTYPE html
 			PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -96,15 +102,9 @@ class User_model extends CI_Model
 			<br>
 			<br>
 			<br>
-			<b>Please click below link to reset your password.</b>
+			<b>Please copy below code and paste it in your app to reset your password.</b>
 			<br>
-			<a href="http://localhost/ouhk-vr-backend/reset-password/?hash=wjtgklwhjiohn23512hig8njiejgklwerwerj">Reset
-				Password</a>
-			<br>
-			<br>
-			<b>If you cannot open above link from your email inbox, please copy below url in your browser manually.</b>
-			<br>
-			http://localhost/ouhk-vr-backend/reset-password/?hash=wjtgklwhjiohn23512hig8njiejgklwerwerj
+			' . $code . '
 			<br>
 			<br>
 			<br>
@@ -118,7 +118,58 @@ class User_model extends CI_Model
 		</html>
 		');
 
+		// $this->email->message('
+		// <!DOCTYPE html
+		// 	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+		// <html xmlns="http://www.w3.org/1999/xhtml">
+
+		// <head>
+		// 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		// </head>
+
+		// <body>
+
+		// 	Hi, <b>reysa</b>!
+		// 	<br>
+		// 	<br>
+		// 	<br>
+		// 	<b>Please click below link to reset your password.</b>
+		// 	<br>
+		// 	<a href="http://localhost/ouhk-vr-backend/reset-password/?hash=wjtgklwhjiohn23512hig8njiejgklwerwerj">Reset
+		// 		Password</a>
+		// 	<br>
+		// 	<br>
+		// 	<b>If you cannot open above link from your email inbox, please copy below url in your browser manually.</b>
+		// 	<br>
+		// 	http://localhost/ouhk-vr-backend/reset-password/?hash=wjtgklwhjiohn23512hig8njiejgklwerwerj
+		// 	<br>
+		// 	<br>
+		// 	<br>
+		// 	Best,
+		// 	<br>
+		// 	VIP Developer Team
+		// 	<br>
+
+		// </body>
+
+		// </html>
+		// ');
+
 		return $this->email->send();
+	}
+
+	private function generateCode($digits)
+	{
+		$permitted_chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+		$input_length = strlen($permitted_chars);
+		$random_string = '';
+		for ($i = 0; $i < $digits; $i++) {
+			$random_character = $permitted_chars[mt_rand(0, $input_length - 1)];
+			$random_string .= $random_character;
+		}
+
+		return $random_string;
 	}
 
 	private function hashPassword($password)
@@ -129,6 +180,27 @@ class User_model extends CI_Model
 	private function verifyPasswordHash($password, $hash)
 	{
 		return password_verify($password, $hash);
+	}
+
+	public function resetPassword($id, $code, $password)
+	{
+		$this->db->select('code');
+		$this->db->from('tbl_user');
+		$this->db->where('code', $code);
+		$this->db->where('id', $id);
+		$this->db->where('is_deleted', 0);
+
+		$result = $this->db->get()->result();
+		if ($result != null && count($result) > 0) {
+			$data = array(
+				'password'   => $this->hashPassword($password),
+				'updated_at' => date('Y-m-j H:i:s'),
+			);
+
+			return $this->update($id, $data);
+		}
+
+		return false;
 	}
 
 	public function getAll()

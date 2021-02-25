@@ -18,6 +18,67 @@ class API extends CI_Controller
         $this->load->model('sttt_model');
     }
 
+    public function login() 
+	{
+        $email = $this->input->post('email');
+        $password = $this->input->post('password');
+
+        if ($this->user_model->resolveLogin($email, $password)) {
+            $user_id = $this->user_model->getUserIdFromEmail($email);
+            $user = $this->user_model->getUser($user_id);
+
+            $result = new stdClass();
+            $result->id = $user->id;
+            $result->username = $user->username;
+            $result->email = $user->email;
+            
+            echo json_encode($result, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        } else {
+            echo json_encode(null, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        }
+	}
+
+    public function register()
+    {
+        $username = $this->input->post('username');
+        $email    = $this->input->post('email');
+        $password = $this->input->post('password');
+        
+        $result = new stdClass();
+
+        if ($this->user_model->createUser($username, $email, $password)) {    
+            $result->success = true;
+        } else {
+            $result->success = false;
+        }
+
+        echo json_encode($result, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    }
+
+    public function forgotPassword() 
+	{
+		$email = $this->input->post('email');
+
+        $result = $this->user_model->sendVerificationCode($email);
+        $data = new stdClass();
+        $data->success = $result;
+
+        echo json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+	}
+
+	public function resetPassword() 
+	{
+        $id = $this->input->post('id');
+        $code = $this->input->post('code');
+		$password = $this->input->post('password');
+
+        $result = $this->user_model->resetPassword($id, $code, $password);
+        $data = new stdClass();
+        $data->success = $result;
+
+        echo json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+	}
+
     public function getUnits()
     {
         $this->db->select('id, number, title');
