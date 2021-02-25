@@ -32,7 +32,7 @@ class Forum extends CI_Controller {
 			$this->form_validation->set_rules('content', 'Forum Content', 'required');
 			
 			if ($this->form_validation->run() == false || $_FILES === null) {
-				$result['data_unit'] = $this->unit_model->getUnitList();
+				$result['data_unit'] = $this->unit_model->getUnitListForContent('tbl_forum');
 				$this->load->view('Forum/add', $result);
 			} else {
 				$unit_number = $this->input->post('unit_number');
@@ -72,7 +72,7 @@ class Forum extends CI_Controller {
 			$this->form_validation->set_rules('content', 'Forum Content', 'required');
 			
 			if ($this->form_validation->run() == false) {
-				$result['data_unit'] = $this->unit_model->getUnitList();
+				$result['data_unit'] = $this->unit_model->getUnitListForContent('tbl_forum', $id);
 				$result['data_forum'] = $this->forum_model->get($id);
 				$this->load->view('Forum/edit', $result);
 			} else {

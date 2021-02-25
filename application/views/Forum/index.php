@@ -186,7 +186,7 @@
                                                         echo '<td>' . $forum->title . '</td>';
                                                         echo '<td>' . $forum->content . '</td>';
                                                         echo '<td>' . $forum->comments . '</td>';
-                                                        echo '<td>' . $forum->likes . '</td>';
+                                                        echo '<td>' . ($forum->likes == '' ? 0 : $forum->likes) . '</td>';
                                                         echo '<td style="white-space: nowrap">
                                                                 <a type="button" class="btn btn-info text-white" href="' . base_url() . 'forum/edit/' . $forum->id . '"
                                                                     title="Edit">
