@@ -29,7 +29,7 @@ class Auth extends CI_Controller
 				$email = $this->input->post('email');
 				$password = $this->input->post('password');
 
-				if ($this->user_model->resolveLogin($email, $password)) {
+				if ($this->user_model->resolveAdminLogin($email, $password)) {
 					$user_id = $this->user_model->getUserIdFromEmail($email);
 					$user    = $this->user_model->getUser($user_id);
 

@@ -24,12 +24,25 @@ class User_model extends CI_Model
 		return $this->db->insert('tbl_user', $data);
 	}
 
-	public function resolveLogin($email, $password)
+	public function resolveAdminLogin($email, $password)
 	{
 		$this->db->select('password');
 		$this->db->from('tbl_user');
 		$this->db->where('email', $email);
 		$this->db->where('role >', 1);
+		$this->db->where('status', 1);
+		$this->db->where('is_deleted', 0);
+
+		$hash = $this->db->get()->row('password');
+
+		return $this->verifyPasswordHash($password, $hash);
+	}
+
+	public function resolveLogin($email, $password)
+	{
+		$this->db->select('password');
+		$this->db->from('tbl_user');
+		$this->db->where('email', $email);
 		$this->db->where('status', 1);
 		$this->db->where('is_deleted', 0);
 

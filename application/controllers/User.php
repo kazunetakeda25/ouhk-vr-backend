@@ -35,8 +35,6 @@ class User extends CI_Controller
 			$this->form_validation->set_rules('status', 'Status', 'required');
 
 			if ($this->form_validation->run() == false) {
-				//echo 'sdfsf';
-				//exit;
 				$this->load->view('User/add');
 			} else {
 				$username = $this->input->post('username');
@@ -52,11 +50,13 @@ class User extends CI_Controller
 					$array = array(
 						'username' => $username,
 						'email' => $email,
-						'password' => $password,
 						'role' => $role,
 						'status' => $status,
 						'photo' => $photo_path
 					);
+
+					$hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+					$data['password'] = $hashedPassword;
 
 					$result = $this->user_model->add($array);
 					if ($result > 0) {
@@ -66,10 +66,12 @@ class User extends CI_Controller
 					$data = array(
 						'username' => $username,
 						'email' => $email,
-						'password' => $password,
 						'role' => $role,
 						'status' => $status
 					);
+
+					$hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+					$data['password'] = $hashedPassword;
 
 					$result = $this->user_model->add($data);
 					if ($result > 0) {
