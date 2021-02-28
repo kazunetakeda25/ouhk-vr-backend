@@ -31,11 +31,6 @@ CREATE TABLE `ci_sessions` (
 
 /*Data for the table `ci_sessions` */
 
-insert  into `ci_sessions`(`id`,`ip_address`,`timestamp`,`data`) values 
-('19sql2o59i7h57dtnehsalo03m','::1',1614284136,'user_id|i:3;username|s:5:\"Kevin\";email|s:27:\"kevingilliard0205@gmail.com\";photo|s:19:\"uploads/photo/2.jpg\";role|s:1:\"2\";logged_in|b:1;'),
-('j0qveqt7ibijsqo6mka2etvd2h','::1',1614285264,''),
-('v7ma7ilua2156gk370vudontnl','::1',1614284984,'');
-
 /*Table structure for table `tbl_forum` */
 
 DROP TABLE IF EXISTS `tbl_forum`;
@@ -85,12 +80,9 @@ CREATE TABLE `tbl_forum_comment` (
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `tbl_forum_comment` */
-
-insert  into `tbl_forum_comment`(`id`,`forum_id`,`user_id`,`url`,`comment`,`like`,`is_deleted`,`created_at`,`updated_at`,`deleted_at`) values 
-(1,5,3,'uploads/audio/recording/Recording_5_1_1.wav','Shared an audio file',0,0,'2021-02-26 04:33:59',NULL,NULL);
 
 /*Table structure for table `tbl_glossary` */
 
@@ -348,15 +340,14 @@ CREATE TABLE `tbl_user` (
   `deleted_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `tbl_user` */
 
 insert  into `tbl_user`(`id`,`username`,`email`,`password`,`photo`,`role`,`code`,`status`,`logged_in`,`is_deleted`,`created_at`,`deleted_at`,`updated_at`) values 
 (1,'reysa0202','reysantanasocorro@hotmail.com','$2y$10$U/UUI7jWLwtMmFAKZVWTpexhCibTe1astYT1qI7GxTnOn0L8IycPa','uploads/photo/CAM_BR135126.jpg',3,'J33K61PF',1,0,0,'2021-02-21 19:07:31',NULL,'2021-02-25 12:25:50'),
-(2,'Sweetmei Sprietsma','sweetmei25@yahoo.com','$2y$10$U/UUI7jWLwtMmFAKZVWTpexhCibTe1astYT1qI7GxTnOn0L8IycPa','uploads/photo/CAM_BR135126.jpg',3,NULL,1,0,0,'2021-02-23 01:58:35',NULL,NULL),
-(3,'Kevin','kevingilliard0205@gmail.com','$2y$10$j4m.iRnbksIHU7cAg/FxfuQsC322W6eO.SKtSlC0bR53jmWz58ZMq','uploads/photo/2.jpg',2,NULL,1,0,0,'2021-02-23 02:05:33',NULL,'2021-02-23 02:47:49'),
-(4,'Test User','ouhkedu@hotmail.com','OuRadi88','uploads/photo/logo_main.png',1,NULL,1,0,0,'2021-02-25 21:05:43',NULL,NULL);
+(2,'Admin','admin@ouhk.edu.hk','$2y$10$NYCF.kcqSekioEUssw0R..NUbg6wo.99mnVSVOGZbKjIcLtd86k6i',NULL,3,NULL,1,0,0,'2021-02-28 18:24:41',NULL,NULL),
+(3,'OUHK EDU','ouhkedu@hotmail.com','$2y$10$ID7h/0UnIgmtq2j.v.la4uGRn4BwW8iBOclXApYtziyu4wDSLigZW',NULL,1,NULL,1,0,0,'2021-02-28 18:25:06',NULL,'2021-02-28 18:27:02');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
