@@ -47,9 +47,9 @@ class API extends CI_Controller
         $result = new stdClass();
 
         if ($this->user_model->createUser($username, $email, $password)) {
-            $result->success = true;
+            $result->success = 1;
         } else {
-            $result->success = false;
+            $result->success = 0;
         }
 
         echo json_encode($result, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
@@ -235,7 +235,23 @@ class API extends CI_Controller
         echo json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
 
-    public function createUnitForumComment()
+    public function getForumComments()
+    {
+        $forumId = $this->input->post('forumId');
+        $this->db->select('tbl_forum_comment.id, tbl_forum_comment.forum_id, tbl_user.username, tbl_forum_comment.url, tbl_forum_comment.comment, tbl_forum_comment.like');
+        $this->db->from('tbl_forum_comment');
+        $this->db->join('tbl_user', 'tbl_user.id = tbl_forum_comment.user_id', 'left');
+        $this->db->where("tbl_forum_comment.is_deleted", "0");
+        $this->db->where("tbl_forum_comment.forum_id", $forumId);
+
+        $result = $this->db->get()->result();
+
+        $data = new stdClass();
+        $data->list = $result;
+        echo json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    }
+
+    public function unitForumRecordingShare()
     {
         $unitNumber = $this->input->post('unitNumber');
         $userId = $this->input->post('userId');
@@ -262,7 +278,7 @@ class API extends CI_Controller
 
         if ($forumId == 0) {
             $data = new stdClass();
-            $data->success = false;
+            $data->success = 0;
             echo json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
             return;
         }
@@ -289,13 +305,35 @@ class API extends CI_Controller
             $this->db->insert('tbl_forum_comment', $data);
             $insertId = $this->db->insert_id();
             $data = new stdClass();
-            $data->success = $insertId > 0 ? true : false;
+            $data->success = $insertId > 0 ? 1 : 0;
 
             echo json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         } else {
             $data = new stdClass();
-            $data->success = false;
+            $data->success = 0;
             echo json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         }
+    }
+
+    public function createForumComment()
+    {
+        $forumId = $this->input->post('forumId');
+        $userId = $this->input->post('userId');
+        $comment = $this->input->post('comment');
+
+        $data = array(
+            'forum_id' => $forumId,
+            'user_id' => $userId,
+            'url' => '',
+            'comment' => $comment,
+            'created_at' => date("Y-m-d H:i:s")
+        );
+
+        $this->db->insert('tbl_forum_comment', $data);
+        $insertId = $this->db->insert_id();
+        $data = new stdClass();
+        $data->success = $insertId > 0 ? 1 : 0;
+
+        echo json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
 }
