@@ -19,7 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 | Please see the user guide for complete details:
 |
-|	http://codeigniter.com/user_guide/general/routing.html
+|	https://codeigniter.com/user_guide/general/routing.html
 |
 | -------------------------------------------------------------------------
 | RESERVED ROUTES
@@ -49,62 +49,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-
-$route['login'] = 'auth/login';
-$route['register'] = 'auth/register';
-$route['forgot-password'] = 'auth/forgotPassword';
-$route['reset-password'] = 'auth/resetPassword';
-$route['logout'] = 'auth/logout';
-
-$route['user'] = 'user/index';
-$route['user/add'] = 'user/add';
-$route['user/delete/(:num)'] = 'user/delete/$1';
-$route['user/edit/(:num)'] = 'user/edit/$1';
-
-$route['unit'] = 'unit/index';
-$route['unit/add'] = 'unit/add';
-$route['unit/delete/(:num)'] = 'unit/delete/$1';
-$route['unit/edit/(:num)'] = 'unit/edit/$1';
-
-$route['learning-content'] = 'learningContent/index';
-$route['learning-content/(:num)'] = 'learningContent/unitLearningContent/$1';
-$route['learning-content/add'] = 'learningContent/add';
-$route['learning-content/delete/(:num)'] = 'learningContent/delete/$1';
-$route['learning-content/edit/(:num)'] = 'learningContent/edit/$1';
-
-$route['lecture'] = 'lecture/index';
-$route['lecture/(:num)'] = 'lecture/unitLecture/$1';
-$route['lecture/add'] = 'lecture/add';
-$route['lecture/delete/(:num)'] = 'lecture/delete/$1';
-$route['lecture/edit/(:num)'] = 'lecture/edit/$1';
-
-$route['practice'] = 'practice/index';
-$route['practice/(:num)'] = 'practice/unitPractice/$1';
-$route['practice/add'] = 'practice/add';
-$route['practice/delete/(:num)'] = 'practice/delete/$1';
-$route['practice/edit/(:num)'] = 'practice/edit/$1';
-
-$route['glossary'] = 'glossary/index';
-$route['glossary/(:num)'] = 'glossary/unitGlossary/$1';
-$route['glossary/practice/(:num)'] = 'glossary/practiceGlossary/$1';
-$route['glossary/add'] = 'glossary/add';
-$route['glossary/delete/(:num)'] = 'glossary/delete/$1';
-$route['glossary/edit/(:num)'] = 'glossary/edit/$1';
-
-$route['sttt'] = 'sttt/index';
-$route['sttt/(:num)'] = 'sttt/unitSTTT/$1';
-$route['sttt/practice/(:num)'] = 'sttt/practiceSTTT/$1';
-$route['sttt/add'] = 'sttt/add';
-$route['sttt/delete/(:num)'] = 'sttt/delete/$1';
-$route['sttt/edit/(:num)'] = 'sttt/edit/$1';
-
-$route['forum'] = 'forum/index';
-$route['forum/add'] = 'forum/add';
-$route['forum/delete/(:num)'] = 'forum/delete/$1';
-$route['forum/edit/(:num)'] = 'forum/edit/$1';
-
-$route['setting'] = 'setting/index';
-
-$route['default_controller'] = 'auth/login';
+$route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
