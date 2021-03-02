@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+date_default_timezone_set('Asia/Shanghai');
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
@@ -23,8 +23,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://58.82.192.226:86/';
-
+//$config['base_url'] = 'http://www.traveltimevr.com/';
+$config['base_url'] = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "https" : "http");
+$config['base_url'] .= "://" . $_SERVER['HTTP_HOST'];
+$config['base_url'] .= str_replace(basename($_SERVER['SCRIPT_NAME']), "", $_SERVER['SCRIPT_NAME']);
 /*
 |--------------------------------------------------------------------------
 | Index File
@@ -35,8 +37,8 @@ $config['base_url'] = 'http://58.82.192.226:86/';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
-
+// $config['index_page'] = 'index.php';
+$config['index_page'] = '';  // add
 /*
 |--------------------------------------------------------------------------
 | URI PROTOCOL
@@ -52,8 +54,9 @@ $config['index_page'] = 'index.php';
 |
 | WARNING: If you set this to 'PATH_INFO', URIs will always be URL-decoded!
 */
-$config['uri_protocol']	= 'REQUEST_URI';
+$config['uri_protocol']  = 'AUTO';
 
+//$config['uri_protocol'] = "REQUEST_URI";
 /*
 |--------------------------------------------------------------------------
 | URL suffix
@@ -100,7 +103,7 @@ $config['charset'] = 'UTF-8';
 | setting this variable to TRUE (boolean).  See the user guide for details.
 |
 */
-$config['enable_hooks'] = FALSE;
+$config['enable_hooks'] = true;
 
 /*
 |--------------------------------------------------------------------------
@@ -158,7 +161,7 @@ $config['composer_autoload'] = FALSE;
 | DO NOT CHANGE THIS UNLESS YOU FULLY UNDERSTAND THE REPERCUSSIONS!!
 |
 */
-$config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-';
+$config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-=';
 
 /*
 |--------------------------------------------------------------------------
@@ -167,6 +170,9 @@ $config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-';
 |
 | By default CodeIgniter uses search-engine friendly segment based URLs:
 | example.com/who/what/where/
+|
+| By default CodeIgniter enables access to the $_GET array.  If for some
+| reason you would like to disable it, set 'allow_get_array' to FALSE.
 |
 | You can optionally enable standard query string based URLs:
 | example.com?who=me&what=something&where=here
@@ -182,24 +188,11 @@ $config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-';
 | use segment based URLs.
 |
 */
+$config['allow_get_array'] = TRUE;
 $config['enable_query_strings'] = FALSE;
 $config['controller_trigger'] = 'c';
 $config['function_trigger'] = 'm';
 $config['directory_trigger'] = 'd';
-
-/*
-|--------------------------------------------------------------------------
-| Allow $_GET array
-|--------------------------------------------------------------------------
-|
-| By default CodeIgniter enables access to the $_GET array.  If for some
-| reason you would like to disable it, set 'allow_get_array' to FALSE.
-|
-| WARNING: This feature is DEPRECATED and currently available only
-|          for backwards compatibility purposes!
-|
-*/
-$config['allow_get_array'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------
@@ -324,7 +317,7 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = '12345678900987654321';
 
 /*
 |--------------------------------------------------------------------------
@@ -414,8 +407,8 @@ $config['cookie_httponly'] 	= FALSE;
 | Determines whether to standardize newline characters in input data,
 | meaning to replace \r\n, \r, \n occurrences with the PHP_EOL value.
 |
-| WARNING: This feature is DEPRECATED and currently available only
-|          for backwards compatibility purposes!
+| This is particularly useful for portability between UNIX-based OSes,
+| (usually \n) and Windows (\r\n).
 |
 */
 $config['standardize_newlines'] = FALSE;
@@ -521,4 +514,5 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
+
 date_default_timezone_set('Asia/Hong_Kong');

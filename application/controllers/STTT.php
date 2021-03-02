@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class STTT extends CI_Controller {
+class Sttt extends CI_Controller {
 
 	public function __construct() 
 	{
@@ -17,7 +17,7 @@ class STTT extends CI_Controller {
 	{
 		if ($this->session->userdata('logged_in') === true) {
 			$result['data_sttt'] = $this->sttt_model->getAll();
-            $this->load->view('ST-and-TT/index', $result);
+            $this->load->view('Sttt/index', $result);
 		} else {
 			redirect('/login');
 		}
@@ -27,7 +27,7 @@ class STTT extends CI_Controller {
 	{
 		if ($this->session->userdata('logged_in') === true) {
 			$result['data_sttt'] = $this->sttt_model->getAllForUnit($unit_number);
-            $this->load->view('ST-and-TT/index', $result);
+            $this->load->view('Sttt/index', $result);
 		} else {
 			redirect('/login');
 		}
@@ -37,7 +37,7 @@ class STTT extends CI_Controller {
 	{
 		if ($this->session->userdata('logged_in') === true) {
 			$result['data_sttt'] = $this->sttt_model->getAllForPractice($practice_number);
-            $this->load->view('ST-and-TT/index', $result);
+            $this->load->view('Sttt/index', $result);
 		} else {
 			redirect('/login');
 		}
@@ -53,7 +53,7 @@ class STTT extends CI_Controller {
 			
 			if ($this->form_validation->run() == false || $_FILES === null) {
 				$result['data_practice'] = $this->practice_model->getPracticeListForContent('tbl_sttt');
-				$this->load->view('ST-and-TT/add', $result);
+				$this->load->view('Sttt/add', $result);
 			} else {
 				$practice_number = $this->input->post('practice_number');
 				$title = $this->input->post('title');
@@ -98,7 +98,7 @@ class STTT extends CI_Controller {
 			if ($this->form_validation->run() == false) {
 				$result['data_practice'] = $this->practice_model->getPracticeListForContent('tbl_sttt', $id);
 				$result['data_sttt'] = $this->sttt_model->get($id);
-				$this->load->view('ST-and-TT/edit', $result);
+				$this->load->view('Sttt/edit', $result);
 			} else {
 				$practice_number = $this->input->post('practice_number');
 				$title = $this->input->post('title');

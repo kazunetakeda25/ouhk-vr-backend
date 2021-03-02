@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class LearningContent_model extends CI_Model 
+class Learningcontent_model extends CI_Model 
 {
 	public function __construct() 
 	{

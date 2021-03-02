@@ -6,7 +6,7 @@
  *
  * This content is released under the MIT License (MIT)
  *
- * Copyright (c) 2014 - 2019, British Columbia Institute of Technology
+ * Copyright (c) 2014 - 2016, British Columbia Institute of Technology
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,8 +29,8 @@
  * @package	CodeIgniter
  * @author	EllisLab Dev Team
  * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
- * @copyright	Copyright (c) 2014 - 2019, British Columbia Institute of Technology (https://bcit.ca/)
- * @license	https://opensource.org/licenses/MIT	MIT License
+ * @copyright	Copyright (c) 2014 - 2016, British Columbia Institute of Technology (http://bcit.ca/)
+ * @license	http://opensource.org/licenses/MIT	MIT License
  * @link	https://codeigniter.com
  * @since	Version 2.0.0
  * @filesource
@@ -57,7 +57,6 @@ class CI_Session {
 
 	protected $_driver = 'files';
 	protected $_config;
-	protected $_sid_regexp;
 
 	// ------------------------------------------------------------------------
 
@@ -92,7 +91,6 @@ class CI_Session {
 		// Note: BC workaround
 		elseif (config_item('sess_use_database'))
 		{
-			log_message('debug', 'Session: "sess_driver" is empty; using BC fallback to "sess_use_database".');
 			$this->_driver = 'database';
 		}
 
@@ -100,14 +98,13 @@ class CI_Session {
 
 		// Configuration ...
 		$this->_configure($params);
-		$this->_config['_sid_regexp'] = $this->_sid_regexp;
 
 		$class = new $class($this->_config);
 		if ($class instanceof SessionHandlerInterface)
 		{
 			if (is_php('5.4'))
 			{
-				session_set_save_handler($class, TRUE);
+				@session_set_save_handler($class, TRUE);
 			}
 			else
 			{
@@ -133,14 +130,14 @@ class CI_Session {
 		if (isset($_COOKIE[$this->_config['cookie_name']])
 			&& (
 				! is_string($_COOKIE[$this->_config['cookie_name']])
-				OR ! preg_match('#\A'.$this->_sid_regexp.'\z#', $_COOKIE[$this->_config['cookie_name']])
+				OR ! preg_match('/^[0-9a-f]{40}$/', $_COOKIE[$this->_config['cookie_name']])
 			)
 		)
 		{
 			unset($_COOKIE[$this->_config['cookie_name']]);
 		}
 
-		session_start();
+	//	session_start();
 
 		// Is session ID auto-regeneration configured? (ignoring ajax requests)
 		if ((empty($_SERVER['HTTP_X_REQUESTED_WITH']) OR strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) !== 'xmlhttprequest')
@@ -241,8 +238,10 @@ class CI_Session {
 			{
 				return $prefix.$class;
 			}
-
-			log_message('debug', 'Session: '.$prefix.$class.".php found but it doesn't declare class ".$prefix.$class.'.');
+			else
+			{
+				log_message('debug', 'Session: '.$prefix.$class.".php found but it doesn't declare class ".$prefix.$class.'.');
+			}
 		}
 
 		return 'CI_'.$class;
@@ -279,21 +278,21 @@ class CI_Session {
 		}
 		else
 		{
-			ini_set('session.name', $params['cookie_name']);
+			@ini_set('session.name', $params['cookie_name']);
 		}
 
 		isset($params['cookie_path']) OR $params['cookie_path'] = config_item('cookie_path');
 		isset($params['cookie_domain']) OR $params['cookie_domain'] = config_item('cookie_domain');
 		isset($params['cookie_secure']) OR $params['cookie_secure'] = (bool) config_item('cookie_secure');
 
-		session_set_cookie_params(
+		/*session_set_cookie_params(
 			$params['cookie_lifetime'],
 			$params['cookie_path'],
 			$params['cookie_domain'],
 			$params['cookie_secure'],
 			TRUE // HttpOnly; Yes, this is intentional and not configurable for security reasons
 		);
-
+*/
 		if (empty($expiration))
 		{
 			$params['expiration'] = (int) ini_get('session.gc_maxlifetime');
@@ -301,7 +300,7 @@ class CI_Session {
 		else
 		{
 			$params['expiration'] = (int) $expiration;
-			ini_set('session.gc_maxlifetime', $expiration);
+			@ini_set('session.gc_maxlifetime', $expiration);
 		}
 
 		$params['match_ip'] = (bool) (isset($params['match_ip']) ? $params['match_ip'] : config_item('sess_match_ip'));
@@ -311,86 +310,12 @@ class CI_Session {
 		$this->_config = $params;
 
 		// Security is king
-		ini_set('session.use_trans_sid', 0);
-		ini_set('session.use_strict_mode', 1);
-		ini_set('session.use_cookies', 1);
-		ini_set('session.use_only_cookies', 1);
-
-		$this->_configure_sid_length();
-	}
-
-	// ------------------------------------------------------------------------
-
-	/**
-	 * Configure session ID length
-	 *
-	 * To make life easier, we used to force SHA-1 and 4 bits per
-	 * character on everyone. And of course, someone was unhappy.
-	 *
-	 * Then PHP 7.1 broke backwards-compatibility because ext/session
-	 * is such a mess that nobody wants to touch it with a pole stick,
-	 * and the one guy who does, nobody has the energy to argue with.
-	 *
-	 * So we were forced to make changes, and OF COURSE something was
-	 * going to break and now we have this pile of shit. -- Narf
-	 *
-	 * @return	void
-	 */
-	protected function _configure_sid_length()
-	{
-		if (PHP_VERSION_ID < 70100)
-		{
-			$hash_function = ini_get('session.hash_function');
-			if (ctype_digit($hash_function))
-			{
-				if ($hash_function !== '1')
-				{
-					ini_set('session.hash_function', 1);
-				}
-
-				$bits = 160;
-			}
-			elseif ( ! in_array($hash_function, hash_algos(), TRUE))
-			{
-				ini_set('session.hash_function', 1);
-				$bits = 160;
-			}
-			elseif (($bits = strlen(hash($hash_function, 'dummy', false)) * 4) < 160)
-			{
-				ini_set('session.hash_function', 1);
-				$bits = 160;
-			}
-
-			$bits_per_character = (int) ini_get('session.hash_bits_per_character');
-			$sid_length         = (int) ceil($bits / $bits_per_character);
-		}
-		else
-		{
-			$bits_per_character = (int) ini_get('session.sid_bits_per_character');
-			$sid_length         = (int) ini_get('session.sid_length');
-			if (($bits = $sid_length * $bits_per_character) < 160)
-			{
-				// Add as many more characters as necessary to reach at least 160 bits
-				$sid_length += (int) ceil((160 % $bits) / $bits_per_character);
-				ini_set('session.sid_length', $sid_length);
-			}
-		}
-
-		// Yes, 4,5,6 are the only known possible values as of 2016-10-27
-		switch ($bits_per_character)
-		{
-			case 4:
-				$this->_sid_regexp = '[0-9a-f]';
-				break;
-			case 5:
-				$this->_sid_regexp = '[0-9a-v]';
-				break;
-			case 6:
-				$this->_sid_regexp = '[0-9a-zA-Z,-]';
-				break;
-		}
-
-		$this->_sid_regexp .= '{'.$sid_length.'}';
+		//ini_set('session.use_trans_sid', 0);
+	//	ini_set('session.use_strict_mode', 1);
+		//ini_set('session.use_cookies', 1);
+		//ini_set('session.use_only_cookies', 1);
+	//	ini_set('session.hash_function', 1);
+	//	ini_set('session.hash_bits_per_character', 4);
 	}
 
 	// ------------------------------------------------------------------------
@@ -604,7 +529,7 @@ class CI_Session {
 	// ------------------------------------------------------------------------
 
 	/**
-	 * Unmark temp
+	 * Unmark flash
 	 *
 	 * @param	mixed	$key	Session data key(s)
 	 * @return	void
@@ -804,7 +729,7 @@ class CI_Session {
 	 *
 	 * Legacy CI_Session compatibility method
 	 *
-	 * @param	mixed	$key	Session data key(s)
+	 * @param	mixed	$data	Session data key(s)
 	 * @return	void
 	 */
 	public function unset_userdata($key)

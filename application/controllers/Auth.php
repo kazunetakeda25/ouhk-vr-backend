@@ -95,6 +95,8 @@ class Auth extends CI_Controller
 				$email = $this->input->post('email');
 
 				$result = $this->user_model->sendVerificationCode($email);
+				var_dump($result);
+				exit;
 				if ($result == true) {
 					redirect('/reset-password');
 				} else {

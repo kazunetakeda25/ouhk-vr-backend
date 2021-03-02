@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class LearningContent extends CI_Controller
+class Learningcontent extends CI_Controller
 {
 
 	public function __construct()
@@ -17,7 +17,7 @@ class LearningContent extends CI_Controller
 	{
 		if ($this->session->userdata('logged_in') === true) {
 			$result['data_learning_content'] = $this->learningcontent_model->getAll();
-			$this->load->view('Learning-Content/index', $result);
+			$this->load->view('Learningcontent/index', $result);
 		} else {
 			redirect('/login');
 		}
@@ -27,7 +27,7 @@ class LearningContent extends CI_Controller
 	{
 		if ($this->session->userdata('logged_in') === true) {
 			$result['data_learning_content'] = $this->learningcontent_model->getForUnit($unit_number);
-			$this->load->view('Learning-Content/index', $result);
+			$this->load->view('Learningcontent/index', $result);
 		} else {
 			redirect('/login');
 		}
@@ -45,7 +45,7 @@ class LearningContent extends CI_Controller
 
 			if ($this->form_validation->run() == false) {
 				$result['data_unit'] = $this->unit_model->getUnitListForContent('tbl_learning_content');
-				$this->load->view('Learning-Content/add', $result);
+				$this->load->view('Learningcontent/add', $result);
 			} else {
 				$unit_number = $this->input->post('unit_number');
 				$title = $this->input->post('title');
@@ -88,7 +88,7 @@ class LearningContent extends CI_Controller
 			if ($this->form_validation->run() == false) {
 				$result['data_unit'] = $this->unit_model->getUnitListForContent('tbl_learning_content', $id);
 				$result['data_learning_content'] = $this->learningcontent_model->get($id);
-				$this->load->view('Learning-Content/edit', $result);
+				$this->load->view('Learningcontent/edit', $result);
 			} else {
 				$unit_number = $this->input->post("unit_number");
 				$title = $this->input->post("title");
