@@ -118,8 +118,8 @@
                 </li>
                 <li class=" nav-item active"><a href="<?= base_url() ?>forum"><i class="fa fa-comments"></i><span class="menu-title" data-i18n="">Forum</span></a>
                 </li>
-<li class=" nav-item"><a href="<?= base_url() ?>setting"><i class="fa fa-cog"></i><span class="menu-title" data-i18n="">Settings</span></a>
-                </li>
+<!--<li class=" nav-item"><a href="<?= base_url() ?>setting"><i class="fa fa-cog"></i><span class="menu-title" data-i18n="">Settings</span></a>
+                </li>-->
             </ul>
         </div>
     </div>
@@ -188,6 +188,10 @@
                                                         echo '<td>' . $forum->comments . '</td>';
                                                         echo '<td>' . ($forum->likes == '' ? 0 : $forum->likes) . '</td>';
                                                         echo '<td style="white-space: nowrap">
+                                                                <a type="button" class="btn btn-primary text-white" href="' . base_url() . 'forum/comment/' . $forum->id . '"
+                                                                    title="Edit">
+                                                                    <span class="fa fa-comments"></span>
+                                                                </a>
                                                                 <a type="button" class="btn btn-info text-white" href="' . base_url() . 'forum/edit/' . $forum->id . '"
                                                                     title="Edit">
                                                                     <span class="fa fa-edit"></span>

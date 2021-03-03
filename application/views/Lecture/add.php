@@ -116,8 +116,8 @@
                 </li>
                 <li class=" nav-item"><a href="<?= base_url() ?>forum"><i class="fa fa-comments"></i><span class="menu-title" data-i18n="">Forum</span></a>
                 </li>
-                <li class=" nav-item"><a href="<?= base_url() ?>setting"><i class="fa fa-cog"></i><span class="menu-title" data-i18n="">Settings</span></a>
-                </li>
+                <!--<li class=" nav-item"><a href="<?= base_url() ?>setting"><i class="fa fa-cog"></i><span class="menu-title" data-i18n="">Settings</span></a>
+                </li>-->
             </ul>
         </div>
     </div>
