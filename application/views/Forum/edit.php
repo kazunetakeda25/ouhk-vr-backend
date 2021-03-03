@@ -146,7 +146,7 @@
                                         <?= form_open_multipart(base_url() . 'forum/edit/' . $data_forum->id) ?>
                                         <div class="form-body">
                                             <h4 class="form-section">
-                                                <i class="fa fa-folder"></i>Answer ST and TT Edit
+                                                <i class="fa fa-folder"></i>Forum Edit
                                             </h4>
                                             <div class="form-group">
                                                 <label for="unit_number">Unit Number</label>

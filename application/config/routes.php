@@ -103,6 +103,10 @@ $route['forum'] = 'forum/index';
 $route['forum/add'] = 'forum/add';
 $route['forum/delete/(:num)'] = 'forum/delete/$1';
 $route['forum/edit/(:num)'] = 'forum/edit/$1';
+$route['forum/comment/(:num)'] = 'forum/comment/$1';
+$route['forum/comment/add'] = 'forum/addComment';
+$route['forum/comment/delete/(:num)'] = 'forum/deleteComment/$1';
+$route['forum/comment/edit/(:num)'] = 'forum/editComment/$1';
 
 $route['setting'] = 'setting/index';
 

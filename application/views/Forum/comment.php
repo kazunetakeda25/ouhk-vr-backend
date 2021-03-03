@@ -9,7 +9,7 @@
     <meta name="description" content="Chameleon Admin is a modern Bootstrap 4 webapp &amp; admin dashboard html template with a large number of components, elegant design, clean and organized code.">
     <meta name="keywords" content="admin template, Chameleon admin template, dashboard template, gradient admin template, responsive admin template, webapp, eCommerce dashboard, analytic dashboard">
     <meta name="author" content="ThemeSelect">
-    <title>VIP - Forum</title>
+    <title>VIP - Forum Comment</title>
     <link rel="apple-touch-icon" href="<?= base_url() ?>app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="<?= base_url() ?>assets/images/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700" rel="stylesheet">
@@ -142,7 +142,7 @@
                                 </li>
                                 <li class="breadcrumb-item"><a>Forum Managment</a>
                                 </li>
-                                <li class="breadcrumb-item active"><a>Forum List</a>
+                                <li class="breadcrumb-item active"><a>Forum Comment List</a>
                                 </li>
                             </ol>
                         </div>
@@ -159,9 +159,9 @@
                             <div class="card">
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        <a type="button" class="btn btn-success" style="color: white" href="<?= base_url() ?>forum/add">
-                                            <i class="fa fa-folder"></i> Create New Forum
-                                        </a>
+                                        <!-- <a type="button" class="btn btn-success" style="color: white" href="<?= base_url() ?>forum/commentAdd">
+                                            <i class="fa fa-folder"></i> Create New Forum Comment
+                                        </a> -->
                                         <p>&nbsp;</p>
                                         <div class="table-responsive">
                                             <table class="table table-hover mb-0">
@@ -170,33 +170,31 @@
                                                     <tr>
                                                         <th scope="col" class="d-none">ID</th>
                                                         <th scope="col">Unit Number</th>
-                                                        <th scope="col">Title</th>
-                                                        <th scope="col">Content</th>
-                                                        <th scope="col">Comments</th>
-                                                        <th scope="col">Likes</th>
+                                                        <th scope="col">Author</th>
+                                                        <th scope="col">Comment</th>
+                                                        <!-- <th scope="col">Like</th> -->
                                                         <th scope="col">Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <?php
-                                                    foreach ($data_forum as $forum) {
+                                                    foreach ($data_forum_comment as $forum_comment) {
                                                         echo '<tr>';
-                                                        echo '<td class="d-none">' . $forum->id . '</td>';
-                                                        echo '<th scope="row">' . $forum->unit_number . '</th>';
-                                                        echo '<td>' . $forum->title . '</td>';
-                                                        echo '<td>' . $forum->content . '</td>';
-                                                        echo '<td>' . ($forum->comments == '' ? 0 : $forum->comments) . '</td>';
-                                                        echo '<td>' . ($forum->likes == '' ? 0 : $forum->likes) . '</td>';
+                                                        echo '<td class="d-none">' . $forum_comment->id . '</td>';
+                                                        echo '<th scope="row">' . $forum_comment->forum_id . '</th>';
+                                                        echo '<td><b>' . $forum_comment->username . '</b></td>';
+                                                        if ($forum_comment->url == null) {
+                                                            echo '<td>' . $forum_comment->comment . '</td>';
+                                                        } else {
+                                                            echo '<td><p>' . $forum_comment->comment . '</p><a href="' . base_url() . $forum_comment->url . '" target="_blank">' . $forum_comment->url . '</a></td>';
+                                                        }
+                                                        // echo '<td>' . ($forum_comment->like == 1 ? '<span class="fa fa-comments"></span>' : '') . '</td>';
                                                         echo '<td style="white-space: nowrap">
-                                                                <a type="button" class="btn btn-primary text-white ' . ($forum->comments == '' ? 'disabled' : '') . '" href="' . base_url() . 'forum/comment/' . $forum->id . '"
-                                                                    title="Edit">
-                                                                    <span class="fa fa-comments"></span>
-                                                                </a>
-                                                                <a type="button" class="btn btn-info text-white" href="' . base_url() . 'forum/edit/' . $forum->id . '"
+                                                                <a type="button" class="btn btn-info text-white" href="' . base_url() . 'forum/comment/edit/' . $forum_comment->id . '"
                                                                     title="Edit">
                                                                     <span class="fa fa-edit"></span>
                                                                 </a>
-                                                                <a type="button" class="btn btn-danger text-white" href="javascript:deleteForum(' . $forum->id . ');"
+                                                                <a type="button" class="btn btn-danger text-white" href="javascript:deleteForumComment(' . $forum_comment->id . ');"
                                                                     title="Delete">
                                                                     <span class="fa fa-trash"></span>
                                                                 </a>
@@ -250,9 +248,9 @@
     <!-- BEGIN: Page JS-->
     <!-- END: Page JS-->
     <script>
-        function deleteForum(id) {
+        function deleteForumComment(id) {
             if (confirm('Are you sure you want to delete this forum?')) {
-                window.location.replace("forum/delete/" + id);
+                window.location.replace("/forum/comment/delete/" + id);
             }
         }
     </script>

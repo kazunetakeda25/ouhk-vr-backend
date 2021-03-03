@@ -95,4 +95,79 @@ class Forum extends CI_Controller {
 			redirect('/login');
 		}
 	}
+
+	public function comment($id)
+	{
+		if ($this->session->userdata('logged_in') === true) {
+			$result['data_forum_comment'] = $this->forum_model->getComments($id);
+            $this->load->view('Forum/comment', $result);
+		} else {
+			redirect('/login');
+		}
+	}
+
+	public function addComment() {
+		if ($this->session->userdata('logged_in') === true) {
+			$this->load->helper('form');
+			$this->load->library('form_validation');
+			
+			$this->form_validation->set_rules('comment', 'Comment', 'required');
+			
+			if ($this->form_validation->run() == false) {
+				$this->load->view('Forum/addComment');
+			} else {
+				$url = $this->input->post('url');
+				$comment = $this->input->post('comment');
+				
+				$array = array(
+					'url' => $url, 
+					'comment' => $comment
+				);
+					
+				$result = $this->forum_model->addComment($array);
+				if ($result > 0) {
+					redirect('/forum');
+				}
+			}
+		} else {
+			redirect('/login');
+		}
+	}
+
+	public function deleteComment($id) {
+		$result = $this->forum_model->deleteComment($id);
+        if ($result > 0) {
+			redirect('/forum');
+		}
+	}
+
+	public function editComment($id) {
+		if ($this->session->userdata('logged_in') === true) {
+			$this->load->helper('form');
+			$this->load->library('form_validation');
+			
+			$this->form_validation->set_rules('url', 'Shared URL', 'required');
+			$this->form_validation->set_rules('comment', 'Comment', 'required');
+			
+			if ($this->form_validation->run() == false) {
+				$result['data_forum_comment'] = $this->forum_model->getComment($id);
+				$this->load->view('Forum/editComment', $result);
+			} else {
+				$url = $this->input->post('url');
+				$comment = $this->input->post('comment');
+				
+				$array = array(
+					'url' => $url, 
+					'comment' => $comment, 
+				);
+						
+				$result = $this->forum_model->updateComment($id, $array);
+				if ($result > 0) {
+					redirect('/forum');
+				}
+			}
+		} else {
+			redirect('/login');
+		}
+	}
 }

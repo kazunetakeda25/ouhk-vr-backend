@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
-<!-- BEGIN: Head-->
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -9,7 +8,7 @@
     <meta name="description" content="Chameleon Admin is a modern Bootstrap 4 webapp &amp; admin dashboard html template with a large number of components, elegant design, clean and organized code.">
     <meta name="keywords" content="admin template, Chameleon admin template, dashboard template, gradient admin template, responsive admin template, webapp, eCommerce dashboard, analytic dashboard">
     <meta name="author" content="ThemeSelect">
-    <title>VIP - Forum</title>
+    <title>VIP - Forum Comment</title>
     <link rel="apple-touch-icon" href="<?= base_url() ?>app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="<?= base_url() ?>assets/images/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700" rel="stylesheet">
@@ -35,7 +34,6 @@
 
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/style.css">
-
     <link rel="stylesheet" href="<?= base_url() ?>app-assets/css/feather.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
 
@@ -86,6 +84,7 @@
     </nav>
     <!-- END: Header-->
 
+
     <!-- BEGIN: Main Menu-->
     <div class="main-menu menu-fixed menu-light menu-accordion    menu-shadow " data-scroll-to-active="true" data-img="<?= base_url() ?>app-assets/images/backgrounds/02.jpg">
         <div class="navbar-header">
@@ -105,8 +104,7 @@
                 <?php } ?>
                 <li class=" nav-item"><a href="<?= base_url() ?>unit"><i class="fa fa-folder"></i><span class="menu-title" data-i18n="">Units</span></a>
                 </li>
-                <li class=" nav-item"><a href="<?= base_url() ?>learning-content"><i class="fa fa-book-open"></i><span class="menu-title" data-i18n="">Learning
-                            Contents</span></a>
+                <li class=" nav-item"><a href="<?= base_url() ?>learning-content"><i class="fa fa-book-open"></i><span class="menu-title" data-i18n="">Learning Contents</span></a>
                 </li>
                 <li class=" nav-item"><a href="<?= base_url() ?>lecture"><i class="fa fa-microphone"></i><span class="menu-title" data-i18n="">Lectures</span></a>
                 </li>
@@ -134,20 +132,6 @@
                 <div class="content-header-left col-md-4 col-12 mb-2">
                     <h3 class="content-header-title">Forum Management</h3>
                 </div>
-                <div class="content-header-right col-md-8 col-12">
-                    <div class="breadcrumbs-top float-md-right">
-                        <div class="breadcrumb-wrapper mr-1">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a>Admin</a>
-                                </li>
-                                <li class="breadcrumb-item"><a>Forum Managment</a>
-                                </li>
-                                <li class="breadcrumb-item active"><a>Forum List</a>
-                                </li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
             </div>
 
 
@@ -159,63 +143,39 @@
                             <div class="card">
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        <a type="button" class="btn btn-success" style="color: white" href="<?= base_url() ?>forum/add">
-                                            <i class="fa fa-folder"></i> Create New Forum
-                                        </a>
-                                        <p>&nbsp;</p>
-                                        <div class="table-responsive">
-                                            <table class="table table-hover mb-0">
+                                        <?= form_open_multipart(base_url() . 'forum/comment/add') ?>
+                                        <div class="form-body">
+                                            <h4 class="form-section">
+                                                <i class="fa fa-folder"></i>Forum Create
+                                            </h4>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="url">Share URL</label>
+                                                        <input type="text" id="url" class="form-control" placeholder="Enter URL" name="title">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="comment">Comment</label>
+                                                <textarea id="comment" rows="5" class="form-control" name="comment" placeholder="Enter Comment"></textarea>
+                                            </div>
 
-                                                <thead class="text-white" style="background-color: rgba(97, 227, 181,100)">
-                                                    <tr>
-                                                        <th scope="col" class="d-none">ID</th>
-                                                        <th scope="col">Unit Number</th>
-                                                        <th scope="col">Title</th>
-                                                        <th scope="col">Content</th>
-                                                        <th scope="col">Comments</th>
-                                                        <th scope="col">Likes</th>
-                                                        <th scope="col">Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php
-                                                    foreach ($data_forum as $forum) {
-                                                        echo '<tr>';
-                                                        echo '<td class="d-none">' . $forum->id . '</td>';
-                                                        echo '<th scope="row">' . $forum->unit_number . '</th>';
-                                                        echo '<td>' . $forum->title . '</td>';
-                                                        echo '<td>' . $forum->content . '</td>';
-                                                        echo '<td>' . ($forum->comments == '' ? 0 : $forum->comments) . '</td>';
-                                                        echo '<td>' . ($forum->likes == '' ? 0 : $forum->likes) . '</td>';
-                                                        echo '<td style="white-space: nowrap">
-                                                                <a type="button" class="btn btn-primary text-white ' . ($forum->comments == '' ? 'disabled' : '') . '" href="' . base_url() . 'forum/comment/' . $forum->id . '"
-                                                                    title="Edit">
-                                                                    <span class="fa fa-comments"></span>
-                                                                </a>
-                                                                <a type="button" class="btn btn-info text-white" href="' . base_url() . 'forum/edit/' . $forum->id . '"
-                                                                    title="Edit">
-                                                                    <span class="fa fa-edit"></span>
-                                                                </a>
-                                                                <a type="button" class="btn btn-danger text-white" href="javascript:deleteForum(' . $forum->id . ');"
-                                                                    title="Delete">
-                                                                    <span class="fa fa-trash"></span>
-                                                                </a>
-                                                            </td>';
-                                                        echo '</tr>';
-                                                    }
-                                                    ?>
-                                                </tbody>
-
-                                            </table>
+                                            <div class="form-actions">
+                                                <a type="button" class="btn btn-danger mr-1 text-white" href='javascript:history.back(1);'>
+                                                    <i class="fa fa-close"></i> Cancel
+                                                </a>
+                                                <button type="submit" class="btn btn-success">
+                                                    <i class="fa fa-save"></i> Save
+                                                </button>
+                                            </div>
+                                            </form>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
+
                         </div>
-
-                    </div>
-
                 </section>
                 <!-- // Basic form layout section end -->
             </div>
@@ -225,8 +185,6 @@
 
 
     <!-- BEGIN: Customizer-->
-    <!-- End: Customizer-->
-
 
     <!-- END: Footer-->
 
@@ -249,13 +207,6 @@
 
     <!-- BEGIN: Page JS-->
     <!-- END: Page JS-->
-    <script>
-        function deleteForum(id) {
-            if (confirm('Are you sure you want to delete this forum?')) {
-                window.location.replace("forum/delete/" + id);
-            }
-        }
-    </script>
 
 </body>
 <!-- END: Body-->
