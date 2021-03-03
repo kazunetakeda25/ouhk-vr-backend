@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <title>VIP - Register</title>
+    <title>VIP - Forgot Password</title>
     <link rel="apple-touch-icon" href="<?=base_url()?>app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="<?=base_url()?>assets/images/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700" rel="stylesheet">
@@ -57,33 +57,16 @@
                                     <div class="text-center mb-1">
                                         <img src="<?=base_url()?>assets/images/VIP_Icon.png" alt="branding logo">
                                     </div>
-                                    <div class="font-large-1  text-center">Register</div>
+                                    <div class="font-large-1  text-center">Forgot Password</div>
                                 </div>
+                                <p class="px-2 mb-0">Please enter your email address and we'll send you instructions on how to reset your password.</p>
                                 <div class="card-content">
                                     <div class="card-body">
-                                        <?= form_open('/register') ?>
+                                        <?= form_open('/forgot-password') ?>
                                             <fieldset class="form-group position-relative has-icon-left">
-                                                <input type="text" class="form-control round" id="user-name" name="username" placeholder="Username" required>
-                                                <div class="form-control-position">
-                                                    <i class="fa fa-user"></i>
-                                                </div>
-                                            </fieldset>
-                                            <fieldset class="form-group position-relative has-icon-left">
-                                                <input type="text" class="form-control round" id="user-email" name="email" placeholder="Email" required>
+                                                <input type="email" class="form-control round" id="email" name="email" placeholder="Email" required>
                                                 <div class="form-control-position">
                                                     <i class="fa fa-envelope"></i>
-                                                </div>
-                                            </fieldset>
-                                            <fieldset class="form-group position-relative has-icon-left">
-                                                <input type="password" class="form-control round" id="user-password" name="password" placeholder="Password" required>
-                                                <div class="form-control-position">
-                                                    <i class="fa fa-lock"></i>
-                                                </div>
-                                            </fieldset>
-                                            <fieldset class="form-group position-relative has-icon-left">
-                                                <input type="password" class="form-control round" id="user-password-confirm" name="password_confirm" placeholder="Confirm Password" required>
-                                                <div class="form-control-position">
-                                                    <i class="fa fa-lock"></i>
                                                 </div>
                                             </fieldset>
                                             <div class="form-group row">
@@ -91,23 +74,8 @@
                                                     <span class="message text-danger"><?php echo $this->session->flashdata('message'); ?></span>
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <div class="col-12">
-                                                    <fieldset class="checkbox">
-                                                        <div class="vs-checkbox-con vs-checkbox-primary">
-                                                            <input type="checkbox" checked>
-                                                            <span class="vs-checkbox">
-                                                                <span class="vs-checkbox--check">
-                                                                    <i class="vs-icon feather icon-check"></i>
-                                                                </span>
-                                                            </span>
-                                                            <span class=""> I accept the terms & conditions.</span>
-                                                        </div>
-                                                    </fieldset>
-                                                </div>
-                                            </div>
-                                            <a href="<?= base_url('login') ?>" class="btn btn-outline-primary float-left btn-inline mb-50">Back To Login</a>
-                                            <button type="submit" class="btn btn-primary float-right btn-inline mb-50">Register</a>
+                                            <a href="<?= base_url('login') ?>" class="btn btn-outline-primary float-left btn-inline">Back To Login</a>
+                                            <button type="submit" class="btn btn-primary float-right btn-inline">Send Verification Code</button>
                                         </form>
                                     </div>
                                 </div>

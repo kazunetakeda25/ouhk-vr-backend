@@ -57,11 +57,10 @@ class Auth extends CI_Controller
 		$this->form_validation->set_rules('username', 'Username', 'trim|required|alpha_numeric|min_length[4]|is_unique[tbl_user.username]', 
 			array('is_unique' => 'This username already exists. Please choose another one.'));
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[tbl_user.email]');
-		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]');
-		$this->form_validation->set_rules('password_confirm', 'Confirm Password', 'trim|required|min_length[6]|matches[password]');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required');
+		$this->form_validation->set_rules('password_confirm', 'Confirm Password', 'trim|required|matches[password]');
 
 		if ($this->form_validation->run() === false) {
-
 			$this->session->set_flashdata('message', validation_errors());
 			$this->load->view('Auth/register');
 		} else {
@@ -69,8 +68,16 @@ class Auth extends CI_Controller
 			$email    = $this->input->post('email');
 			$password = $this->input->post('password');
 			
-			if ($this->user_model->createUser($username, $email, $password)) {
-				redirect('/login');
+		    if ($this->user_model->createUser($username, $email, $password)) {
+		        $result = $this->user_model->sendEmailVerifyLink($email);
+		        if ($result == 1) {
+				    $this->session->set_flashdata('message', "User registered successfully. Please check your inbox to verify your email.");
+				    $this->load->view('Auth/register');
+		        }else {
+    			    $this->session->set_flashdata('message', "Unable to send email.");
+    				$this->load->view('Auth/register');
+    			}
+				
 			} else {
 				$this->session->set_flashdata('message', "Same user with username or email already exists.");
 				$this->load->view('Auth/register');
@@ -90,18 +97,23 @@ class Auth extends CI_Controller
 			
 			if ($this->form_validation->run() == false) {
 				$this->session->set_flashdata('message', validation_errors());
-				$this->load->view('Auth/forgot-password');
+				$this->load->view('Auth/forgotPassword');
 			} else {
 				$email = $this->input->post('email');
-
+				$userid = $this->user_model->getUserIdFromEmail($email);
+				if ($userid == null) {
+				    $this->session->set_flashdata('message', "User does not exist.");
+					$this->load->view('Auth/forgotPassword');
+					return;
+				}
+				
 				$result = $this->user_model->sendVerificationCode($email);
-				var_dump($result);
-				exit;
-				if ($result == true) {
-					redirect('/reset-password');
+				if ($result == 1) {
+				    $this->session->set_userdata('tmp_userid', (int)$userid);
+				    redirect('/reset-password');
 				} else {
 					$this->session->set_flashdata('message', "Unable to send verification code to your email.");
-					$this->load->view('Auth/forgot-password');
+					$this->load->view('Auth/forgotPassword');
 				}
 			}
 		}
@@ -115,23 +127,37 @@ class Auth extends CI_Controller
 			$this->load->helper('form');
 			$this->load->library('form_validation');
 			
+			$this->form_validation->set_rules('code', 'Code', 'required');
 			$this->form_validation->set_rules('password', 'New Password', 'trim|required');
-			$this->form_validation->set_rules('password_confirm', 'Confirm Password', 'trim|required|callback_check_equal_less['.$this->input->post('password').']');
+			$this->form_validation->set_rules('password_confirm', 'Confirm Password', 'trim|required|matches[password]');
 			
 			if ($this->form_validation->run() == false) {
 				$this->session->set_flashdata('message', validation_errors());
-				$this->load->view('Auth/reset-password');
+				$this->load->view('Auth/resetPassword');
 			} else {
+				$tmp_userid = $this->session->userdata('tmp_userid');
+				$code = $this->input->post('code');
 				$password = $this->input->post('password');
 
-				$result = $this->user_model->resetPassword($password);
+				$result = $this->user_model->resetPassword($tmp_userid, $code, $password);
 				if ($result == true) {
 					redirect('/login');
 				} else {
 					$this->session->set_flashdata('message', "Unable to reset your password.");
-					$this->load->view('Auth/reset-password');
+					$this->load->view('Auth/resetPassword');
 				}
 			}
+		}
+	}
+	
+	public function emailVerify() 
+	{
+		$hash = $this->input->get('hash');
+	    $result = $this->user_model->verifyHash($hash);
+		if ($result == true) {
+			redirect('/login');
+		} else {
+			redirect('/register');
 		}
 	}
 

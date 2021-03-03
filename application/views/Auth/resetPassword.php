@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <title>VIP - Register</title>
+    <title>VIP - Reset Password</title>
     <link rel="apple-touch-icon" href="<?=base_url()?>app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="<?=base_url()?>assets/images/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700" rel="stylesheet">
@@ -57,31 +57,26 @@
                                     <div class="text-center mb-1">
                                         <img src="<?=base_url()?>assets/images/VIP_Icon.png" alt="branding logo">
                                     </div>
-                                    <div class="font-large-1  text-center">Register</div>
+                                    <div class="font-large-1  text-center">Reset Password</div>
                                 </div>
+                                <p class="px-2 mb-0">Please enter your new password.</p>
                                 <div class="card-content">
                                     <div class="card-body">
-                                        <?= form_open('/register') ?>
+                                        <?= form_open('/reset-password') ?>
                                             <fieldset class="form-group position-relative has-icon-left">
-                                                <input type="text" class="form-control round" id="user-name" name="username" placeholder="Username" required>
+                                                <input type="text" class="form-control round" id="code" name="code" placeholder="Code" required>
                                                 <div class="form-control-position">
-                                                    <i class="fa fa-user"></i>
+                                                    <i class="fa fa-copyright"></i>
                                                 </div>
                                             </fieldset>
                                             <fieldset class="form-group position-relative has-icon-left">
-                                                <input type="text" class="form-control round" id="user-email" name="email" placeholder="Email" required>
-                                                <div class="form-control-position">
-                                                    <i class="fa fa-envelope"></i>
-                                                </div>
-                                            </fieldset>
-                                            <fieldset class="form-group position-relative has-icon-left">
-                                                <input type="password" class="form-control round" id="user-password" name="password" placeholder="Password" required>
+                                                <input type="password" class="form-control round" id="password" name="password" placeholder="New Password" required>
                                                 <div class="form-control-position">
                                                     <i class="fa fa-lock"></i>
                                                 </div>
                                             </fieldset>
                                             <fieldset class="form-group position-relative has-icon-left">
-                                                <input type="password" class="form-control round" id="user-password-confirm" name="password_confirm" placeholder="Confirm Password" required>
+                                                <input type="password" class="form-control round" id="password_confirm" name="password_confirm" placeholder="Confirm Password" required>
                                                 <div class="form-control-position">
                                                     <i class="fa fa-lock"></i>
                                                 </div>
@@ -91,23 +86,8 @@
                                                     <span class="message text-danger"><?php echo $this->session->flashdata('message'); ?></span>
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <div class="col-12">
-                                                    <fieldset class="checkbox">
-                                                        <div class="vs-checkbox-con vs-checkbox-primary">
-                                                            <input type="checkbox" checked>
-                                                            <span class="vs-checkbox">
-                                                                <span class="vs-checkbox--check">
-                                                                    <i class="vs-icon feather icon-check"></i>
-                                                                </span>
-                                                            </span>
-                                                            <span class=""> I accept the terms & conditions.</span>
-                                                        </div>
-                                                    </fieldset>
-                                                </div>
-                                            </div>
-                                            <a href="<?= base_url('login') ?>" class="btn btn-outline-primary float-left btn-inline mb-50">Back To Login</a>
-                                            <button type="submit" class="btn btn-primary float-right btn-inline mb-50">Register</a>
+                                            <a href="<?= base_url('login') ?>" class="btn btn-outline-primary float-left btn-inline">Back To Login</a>
+                                            <button type="submit" class="btn btn-primary float-right btn-inline">Reset</button>
                                         </form>
                                     </div>
                                 </div>

@@ -69,6 +69,22 @@ class User_model extends CI_Model
 
 		return $this->db->get()->row();
 	}
+	
+	public function verifyHash($hash)
+	{
+	    $this->db->from('tbl_user');
+		$this->db->where('hash', $hash);
+		$this->db->where('is_deleted', 0);
+
+		$result = $this->db->get()->result();
+		if (count($result) == 0)
+		    return false;
+		    
+		$this->db->where('id', $result[0]->id);
+		$data['status'] = 1;
+		$this->db->update('tbl_user', $data);
+		return $this->db->affected_rows();
+	}
 
 	public function sendVerificationCode($email)
 	{
@@ -76,14 +92,21 @@ class User_model extends CI_Model
 
 		$this->load->library('email');
 
-		$config = array();
-		$config['protocol'] = 'smtp';
-		$config['smtp_host'] = 'smtp.live.com';
-		$config['smtp_user'] = 'ouhkedu@hotmail.com';
-		$config['smtp_pass'] = 'OuRadi88';
-		$config['smtp_port'] = 587;
-		$this->email->initialize($config);
-
+        $mail_config = array();
+		$mail_config['smtp_host'] = 'smtp.live.com';
+        $mail_config['smtp_port'] = '587';
+        $mail_config['smtp_user'] = 'ouhkedu@hotmail.com';
+        $mail_config['_smtp_auth'] = TRUE;
+        $mail_config['smtp_pass'] = 'OuRadi88';
+        $mail_config['smtp_crypto'] = 'tls';
+        $mail_config['protocol'] = 'smtp';
+        $mail_config['mailtype'] = 'html';
+        $mail_config['charset'] = 'utf-8';
+        $mail_config['wordwrap'] = TRUE;
+        $this->email->initialize($mail_config);
+        
+        $this->email->set_newline("\r\n");
+		
 		$this->email->from($from, 'VIP Admin');
 		$this->email->to($email);
 		$this->email->subject('Please Verify Your Email.');
@@ -101,9 +124,8 @@ class User_model extends CI_Model
 		$this->update($user_id, $data);
 
 		$this->email->message('
-		<!DOCTYPE html
-			PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-		<html xmlns="http://www.w3.org/1999/xhtml">
+		<!DOCTYPE html>
+		<html>
 
 		<head>
 			<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -111,15 +133,12 @@ class User_model extends CI_Model
 
 		<body>
 
-			Hi, <b>reysa</b>!
+			Hi, <b>' . $user->username . '</b>!
 			<br>
 			<br>
+			Please copy below code and paste it in your browser/app to reset your password.
 			<br>
-			<b>Please copy below code and paste it in your app to reset your password.</b>
-			<br>
-			' . $code . '
-			<br>
-			<br>
+			<p style="font-size: 24px">' . $code . '</p>
 			<br>
 			Best,
 			<br>
@@ -131,49 +150,128 @@ class User_model extends CI_Model
 		</html>
 		');
 
-		// $this->email->message('
-		// <!DOCTYPE html
-		// 	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-		// <html xmlns="http://www.w3.org/1999/xhtml">
+		if ($this->email->send()) {
+		    return 1;
+        } else {
+            show_error($this->email->print_debugger());
+            return 0;
+        }
+	}
+	
+	public function sendEmailVerifyLink($email)
+	{
+		$from = 'ouhkedu@hotmail.com';
 
-		// <head>
-		// 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		// </head>
+		$this->load->library('email');
 
-		// <body>
+        $mail_config = array();
+		$mail_config['smtp_host'] = 'smtp.live.com';
+        $mail_config['smtp_port'] = '587';
+        $mail_config['smtp_user'] = 'ouhkedu@hotmail.com';
+        $mail_config['_smtp_auth'] = TRUE;
+        $mail_config['smtp_pass'] = 'OuRadi88';
+        $mail_config['smtp_crypto'] = 'tls';
+        $mail_config['protocol'] = 'smtp';
+        $mail_config['mailtype'] = 'html';
+        $mail_config['wordwrap'] = TRUE;
+        $this->email->initialize($mail_config);
+        
+        $this->email->set_newline("\r\n");
+		
+		$this->email->from($from, 'VIP Admin');
+		$this->email->to($email);
+		$this->email->subject('Please Verify Your Email.');
+		$user_id = $this->getUserIdFromEmail($email);
+		$user = $this->getUser($user_id);
 
-		// 	Hi, <b>reysa</b>!
-		// 	<br>
-		// 	<br>
-		// 	<br>
-		// 	<b>Please click below link to reset your password.</b>
-		// 	<br>
-		// 	<a href="http://localhost/ouhk-vr-backend/reset-password/?hash=wjtgklwhjiohn23512hig8njiejgklwerwerj">Reset
-		// 		Password</a>
-		// 	<br>
-		// 	<br>
-		// 	<b>If you cannot open above link from your email inbox, please copy below url in your browser manually.</b>
-		// 	<br>
-		// 	http://localhost/ouhk-vr-backend/reset-password/?hash=wjtgklwhjiohn23512hig8njiejgklwerwerj
-		// 	<br>
-		// 	<br>
-		// 	<br>
-		// 	Best,
-		// 	<br>
-		// 	VIP Developer Team
-		// 	<br>
+		if ($user == null) {
+			return -1;
+		}
 
-		// </body>
+		$hash = $this->generateHash(8);
+		$data = array(
+			'hash' => $hash
+		);
+		$this->update($user_id, $data);
 
-		// </html>
-		// ');
+		$this->email->message('
+		<!DOCTYPE html>
+		<html>
 
-		return $this->email->send();
+		<head>
+			<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		</head>
+
+		<body>
+
+			<p>Hi, <b>' . $user->username . '</b>!</p>
+			<p>Please copy this url in your browser manually to continue login.</p>
+			' . base_url() . 'email-verify/?hash=' . $hash . '
+			<br>
+			<br>
+			Best,
+			<br>
+			VIP Developer Team
+			<br>
+
+		</body>
+
+		</html>
+		');
+		
+// 		$this->email->message('
+// 		<!DOCTYPE html>
+// 		<html>
+
+// 		<head>
+// 			<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+// 		</head>
+
+// 		<body>
+
+// 			<p>Hi, <b>' . $user->username . '</b>!</p>
+// 			<p>Please click below link to reset your password.</p>
+// 			<p><a href="' . base_url() . 'email-verify/?hash=' . $hash . '">Verify Your Email</a></p>
+// 			<p>If you cannot open above link from your email inbox, please copy this url in your browser manually.</p>
+// 			<br>
+// 			' . base_url() . 'email-verify/?hash=' . $hash . '
+// 			<br>
+// 			<br>
+// 			Best,
+// 			<br>
+// 			VIP Developer Team
+// 			<br>
+
+// 		</body>
+
+// 		</html>
+// 		');
+
+		if ($this->email->send()) {
+		    return 1;
+        } else {
+            //show_error($this->email->print_debugger());
+            return 0;
+        }
 	}
 
 	private function generateCode($digits)
 	{
 		$permitted_chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+		$input_length = strlen($permitted_chars);
+		$random_string = '';
+		for ($i = 0; $i < $digits; $i++) {
+			$random_character = $permitted_chars[mt_rand(0, $input_length - 1)];
+			$random_string .= $random_character;
+		}
+
+		return $random_string;
+	}
+	
+	private function generateHash($digits)
+	{
+		$permitted_chars = '0123456789';
 
 		$input_length = strlen($permitted_chars);
 		$random_string = '';

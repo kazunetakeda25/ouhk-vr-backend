@@ -61,7 +61,17 @@ class API extends CI_Controller
 
         $result = $this->user_model->sendVerificationCode($email);
         $data = new stdClass();
-        $data->success = $result;
+        
+        if ($result == true) {
+            $userid = $this->user_model->getUserIdFromEmail($email);
+			if ($userid == null) {
+                $data->success = 0;
+			} else {
+			    $data->success = $userid;
+			}
+        } else {
+            $data->success = 0;
+        }
 
         echo json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }

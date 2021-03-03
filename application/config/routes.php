@@ -54,6 +54,7 @@ $route['login'] = 'auth/login';
 $route['register'] = 'auth/register';
 $route['forgot-password'] = 'auth/forgotPassword';
 $route['reset-password'] = 'auth/resetPassword';
+$route['email-verify'] = 'auth/emailVerify';
 $route['logout'] = 'auth/logout';
 
 $route['user'] = 'user/index';

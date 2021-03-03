@@ -65,7 +65,7 @@
                                             <fieldset class="form-group position-relative has-icon-left">
                                                 <input type="email" class="form-control round" id="email" name="email" placeholder="Email" required>
                                                 <div class="form-control-position">
-                                                    <i class="fa fa-user"></i>
+                                                    <i class="fa fa-envelope"></i>
                                                 </div>
                                             </fieldset>
                                             <fieldset class="form-group position-relative has-icon-left">
