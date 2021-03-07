@@ -248,11 +248,12 @@ class API extends CI_Controller
     public function getForumComments()
     {
         $forumId = $this->input->post('forumId');
-        $this->db->select('tbl_forum_comment.id, tbl_forum_comment.forum_id, tbl_user.username, tbl_forum_comment.url, tbl_forum_comment.comment, tbl_forum_comment.like');
+        $this->db->select('tbl_forum_comment.id, tbl_forum_comment.forum_id, tbl_user.username, tbl_forum_comment.url, tbl_forum_comment.comment, tbl_forum_comment.like, tbl_forum_comment.created_at as date');
         $this->db->from('tbl_forum_comment');
         $this->db->join('tbl_user', 'tbl_user.id = tbl_forum_comment.user_id', 'left');
         $this->db->where("tbl_forum_comment.is_deleted", "0");
         $this->db->where("tbl_forum_comment.forum_id", $forumId);
+        $this->db->order_by("tbl_forum_comment.created_at", "desc");
 
         $result = $this->db->get()->result();
 
